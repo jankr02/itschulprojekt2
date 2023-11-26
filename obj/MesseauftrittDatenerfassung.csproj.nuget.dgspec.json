@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\MesseauftrittDatenerfassung.csproj": {}
+    "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\MesseauftrittDatenerfassung.csproj": {
+    "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\MesseauftrittDatenerfassung.csproj",
+        "projectUniqueName": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj",
         "projectName": "MesseauftrittDatenerfassung",
-        "projectPath": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\MesseauftrittDatenerfassung.csproj",
-        "packagesPath": "C:\\Users\\jankg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\obj\\",
+        "projectPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj",
+        "packagesPath": "C:\\Users\\Matth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jankg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,6 +44,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.3, )"
@@ -73,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
