@@ -6,6 +6,8 @@
         {
             CreateMap<Customer, GetCustomerResponseDto>();
             CreateMap<AddCustomerRequestDto, Customer>();
+            CreateMap<UpdateCustomerRequestDto, Customer>();
+
         }
     }
 }

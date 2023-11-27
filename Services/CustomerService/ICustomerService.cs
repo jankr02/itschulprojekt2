@@ -4,6 +4,8 @@
     {
         Task<ServiceResponse<List<GetCustomerResponseDto>>> GetAllCustomers();
         Task<ServiceResponse<GetCustomerResponseDto>> GetCustomerById(int id);
-        Task<ServiceResponse<List<GetCustomerResponseDto>>> AddCustomer(AddCustomerRequestDto customer);
+        Task<ServiceResponse<List<GetCustomerResponseDto>>> AddCustomer(AddCustomerRequestDto newCustomer);
+        Task<ServiceResponse<GetCustomerResponseDto>> UpdateCustomer(UpdateCustomerRequestDto updatedCustomer);
+        Task<ServiceResponse<List<GetCustomerResponseDto>>> DeleteCustomer(int id);
     }
 }

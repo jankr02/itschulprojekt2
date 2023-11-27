@@ -10,7 +10,7 @@ namespace MesseauftrittDatenerfassung.Controllers
 
         public CustomerController(ICustomerService customerService)
         {
-                _customerService = customerService;
+            _customerService = customerService;
         }
 
         [HttpGet("GetAll")]
@@ -22,13 +22,43 @@ namespace MesseauftrittDatenerfassung.Controllers
         [HttpGet("{id}")]
         public async Task <ActionResult<ServiceResponse<GetCustomerResponseDto>>> GetSingleCustomer(int id)
         {
-            return Ok(await _customerService.GetCustomerById(id));
+            var response = await _customerService.GetCustomerById(id);
+            if (response.Data is null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<List<GetCustomerResponseDto>>>> AddCustomer(AddCustomerRequestDto customer)
+        public async Task<ActionResult<ServiceResponse<List<GetCustomerResponseDto>>>> AddCustomer(AddCustomerRequestDto newCustomer)
         {
-            return Ok(await _customerService.AddCustomer(customer));
+            return Ok(await _customerService.AddCustomer(newCustomer));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<List<GetCustomerResponseDto>>>> UpdateCustomer(UpdateCustomerRequestDto updatedCustomer)
+        {
+            var response = await _customerService.UpdateCustomer(updatedCustomer);
+            if (response.Data is null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ServiceResponse<GetCustomerResponseDto>>> DeleteSingleCustomer(int id)
+        {
+            var response = await _customerService.DeleteCustomer(id);
+            if (response.Data is null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
         }
     }
 }
