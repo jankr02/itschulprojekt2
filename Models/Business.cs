@@ -2,12 +2,11 @@
 {
     public class Business
     {
-        public int Id { get; set; } = 1;
-        public string Name { get; set; } = "Testunternehmen";
-        public string Street { get; set; } = "Teststraße";
-
-        public string HouseNumber { get; set; } = "12a";
-        public int PostalCode { get; set; } = 01234;
-        public string City { get; set; } = "Musterhausen";
+        public int Id { get; set; }
+        public required string Name { get; set; }
+        public required string Street { get; set; }
+        public required string HouseNumber { get; set; }
+        public required string PostalCode { get; set; }
+        public required string City { get; set; }
     }
 }

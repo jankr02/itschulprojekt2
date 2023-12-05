@@ -2,15 +2,17 @@
 {
     public class Customer
     {
-        public int Id { get; set; } = 1;
-        public string FirstName { get; set; } = "Test";
-        public string LastName { get; set; } = "User";
-        public string Street { get; set; } = "Teststraße";
-        public string HouseNumber {  get; set; } = "123";
-        public int PostalCode { get; set; } = 12345;
-        public string City { get; set; } = "Testhausen";
-        public Image Image { get; set; } = new Image();
-        public ProductGroups ProductGroup { get; set; } = ProductGroups.Testgruppe1;
-        public Business Business { get; set; } = new Business();
+        public int Id { get; set; }
+        public required string FirstName { get; set; }
+        public required string LastName { get; set; }
+        public required string Street { get; set; }
+        public required string HouseNumber { get; set; }
+        public required string PostalCode { get; set; }
+        public required string City { get; set; }
+        public Picture? Picture { get; set; }
+        public int PictureId { get; set; }
+        public List<ProductGroup>? ProductGroups { get; set; }
+        public Business? Business { get; set; }
+        public int BusinessId { get; set; }
     }
 }

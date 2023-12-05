@@ -3,43 +3,50 @@ namespace MesseauftrittDatenerfassung.Services.CustomerService
 {
     public class CustomerService : ICustomerService
     {
-        private static List<Customer> customers = new()
-        {
-            new Customer (),
-            new Customer { Id = 2, FirstName = "Neuer", LastName = "Kunde"}
-        };
+        private readonly IMapper _mapper;
+        private readonly DataContext _context;
 
-        private readonly IMapper _autoMapper;
-
-        public CustomerService(IMapper autoMapper)
+        public CustomerService(IMapper mapper, DataContext context)
         {
-            _autoMapper = autoMapper;
+            _context = context;
+            _mapper = mapper;
         }
 
-        public async Task<ServiceResponse<List<GetCustomerResponseDto>>> AddCustomer(AddCustomerRequestDto newCustomer)
+        public async Task<ServiceResponse<List<GetCustomerDto>>> AddCustomer(AddCustomerDto newCustomer)
         {
-            var serviceResponse = new ServiceResponse<List<GetCustomerResponseDto>>();
-            var customer = _autoMapper.Map<Customer>(newCustomer);
-            customer.Id = customers.Max(c => c.Id) + 1;
-            customers.Add(customer);
-            serviceResponse.Data = customers.Select(c => _autoMapper.Map<GetCustomerResponseDto>(c)).ToList();
+            var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
+            var customer = _mapper.Map<Customer>(newCustomer);
+
+            _context.Customers.Add(customer);
+            await _context.SaveChangesAsync();
+
+            serviceResponse.Data = await _context.Customers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToListAsync();
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<GetCustomerResponseDto>>> GetAllCustomers()
+        public async Task<ServiceResponse<List<GetCustomerDto>>> GetAllCustomers()
         {
-            var serviceResponse = new ServiceResponse<List<GetCustomerResponseDto>>();
-            serviceResponse.Data = customers.Select(c => _autoMapper.Map<GetCustomerResponseDto>(c)).ToList();
+            var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
+            var dbcustomers = await _context.Customers
+                .Include(c => c.Picture)
+                .Include(c => c.ProductGroups)
+                .Include(c => c.Business)
+                .ToListAsync();
+            serviceResponse.Data = dbcustomers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToList();
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetCustomerResponseDto>> GetCustomerById(int id)
+        public async Task<ServiceResponse<GetCustomerDto>> GetCustomerById(int id)
         {
-            var serviceResponse = new ServiceResponse<GetCustomerResponseDto>();
+            var serviceResponse = new ServiceResponse<GetCustomerDto>();
             try
             {
-                var customer = customers.FirstOrDefault(c => c.Id == id) ?? throw new Exception($"Customer with Id '{id}' not found.");
-                serviceResponse.Data = _autoMapper.Map<GetCustomerResponseDto>(customer);
+                var dbcustomer = await _context.Customers
+                    .Include(c => c.Picture)
+                    .Include(c => c.ProductGroups)
+                    .Include(c => c.Business)
+                    .FirstOrDefaultAsync(c => c.Id == id) ?? throw new Exception($"Customer with Id '{id}' not found.");
+                serviceResponse.Data = _mapper.Map<GetCustomerDto>(dbcustomer);
             }
             catch (Exception ex)
             {
@@ -50,15 +57,18 @@ namespace MesseauftrittDatenerfassung.Services.CustomerService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetCustomerResponseDto>> UpdateCustomer(UpdateCustomerRequestDto updatedCustomer)
+        public async Task<ServiceResponse<GetCustomerDto>> UpdateCustomer(UpdateCustomerDto updatedCustomer)
         {
-            var serviceResponse = new ServiceResponse<GetCustomerResponseDto>();
+            var serviceResponse = new ServiceResponse<GetCustomerDto>();
             
             try
             {
-                var customer = customers.FirstOrDefault(c => c.Id == updatedCustomer.Id) ?? throw new Exception($"Customer with Id '{updatedCustomer.Id}' not found.");
-                _autoMapper.Map(updatedCustomer, customer);
-                serviceResponse.Data = _autoMapper.Map<GetCustomerResponseDto>(customer);
+                var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Id == updatedCustomer.Id) ?? throw new Exception($"Customer with Id '{updatedCustomer.Id}' not found.");
+                _mapper.Map(updatedCustomer, customer);
+
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Data = _mapper.Map<GetCustomerDto>(customer);
             }
             catch (Exception ex)
             {
@@ -69,15 +79,18 @@ namespace MesseauftrittDatenerfassung.Services.CustomerService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<GetCustomerResponseDto>>> DeleteCustomer(int id)
+        public async Task<ServiceResponse<List<GetCustomerDto>>> DeleteCustomer(int id)
         {
-            var serviceResponse = new ServiceResponse<List<GetCustomerResponseDto>>();
+            var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
 
             try
             {
-                var customer = customers.FirstOrDefault(c => c.Id == id) ?? throw new Exception($"Customer with Id '{id}' not found.");
-                customers.Remove(customer);
-                serviceResponse.Data = customers.Select(c => _autoMapper.Map<GetCustomerResponseDto>(c)).ToList();
+                var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Id == id) ?? throw new Exception($"Customer with Id '{id}' not found.");
+                _context.Customers.Remove(customer);
+
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Data = await _context.Customers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToListAsync();
             }
             catch (Exception ex)
             {

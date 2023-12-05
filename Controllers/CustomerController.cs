@@ -14,13 +14,13 @@ namespace MesseauftrittDatenerfassung.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<ActionResult<ServiceResponse<List<GetCustomerResponseDto>>>> GetAllCustomers()
+        public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> GetAllCustomers()
         {
            return Ok(await _customerService.GetAllCustomers());
         }
 
         [HttpGet("{id}")]
-        public async Task <ActionResult<ServiceResponse<GetCustomerResponseDto>>> GetSingleCustomer(int id)
+        public async Task <ActionResult<ServiceResponse<GetCustomerDto>>> GetSingleCustomer(int id)
         {
             var response = await _customerService.GetCustomerById(id);
             if (response.Data is null)
@@ -32,13 +32,13 @@ namespace MesseauftrittDatenerfassung.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<List<GetCustomerResponseDto>>>> AddCustomer(AddCustomerRequestDto newCustomer)
+        public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> AddCustomer(AddCustomerDto newCustomer)
         {
             return Ok(await _customerService.AddCustomer(newCustomer));
         }
 
         [HttpPut]
-        public async Task<ActionResult<ServiceResponse<List<GetCustomerResponseDto>>>> UpdateCustomer(UpdateCustomerRequestDto updatedCustomer)
+        public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> UpdateCustomer(UpdateCustomerDto updatedCustomer)
         {
             var response = await _customerService.UpdateCustomer(updatedCustomer);
             if (response.Data is null)
@@ -50,7 +50,7 @@ namespace MesseauftrittDatenerfassung.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ServiceResponse<GetCustomerResponseDto>>> DeleteSingleCustomer(int id)
+        public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> DeleteSingleCustomer(int id)
         {
             var response = await _customerService.DeleteCustomer(id);
             if (response.Data is null)
