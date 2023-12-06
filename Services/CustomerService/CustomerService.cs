@@ -20,7 +20,11 @@ namespace MesseauftrittDatenerfassung.Services.CustomerService
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
 
-            serviceResponse.Data = await _context.Customers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToListAsync();
+            serviceResponse.Data = await _context.Customers
+                .Include(c => c.Picture)
+                .Include(c => c.ProductGroups)
+                .Include(c => c.Business)
+                .Select(c => _mapper.Map<GetCustomerDto>(c)).ToListAsync();
             return serviceResponse;
         }
 

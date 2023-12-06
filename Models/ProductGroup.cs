@@ -4,7 +4,7 @@ namespace MesseauftrittDatenerfassung.Models
 {
     public class ProductGroup
     {
-        public int Id { get; set; } = 1;
+        public int Id { get; set; }
         public ProductGroupName Name { get; set; }
         public List<Customer>? Customers { get; set; }
     }

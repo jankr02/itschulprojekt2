@@ -3,6 +3,6 @@
     public class GetPictureDto
     {
         public int Id { get; set; }
-        public Image? Image { get; set; }
+        public required string Data { get; set; }
     }
 }

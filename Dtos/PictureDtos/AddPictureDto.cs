@@ -2,6 +2,6 @@
 {
     public class AddPictureDto
     {
-        public Image? Image { get; set; }
+        public required string Data { get; set; }
     }
 }

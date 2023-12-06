@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MesseauftrittDatenerfassung")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+777560e0f8867afb554591d15ed5883991758523")]
 [assembly: System.Reflection.AssemblyProductAttribute("MesseauftrittDatenerfassung")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MesseauftrittDatenerfassung")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
