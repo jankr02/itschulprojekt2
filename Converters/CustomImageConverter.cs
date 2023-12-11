@@ -10,7 +10,7 @@
             }
 
             using var ms = new MemoryStream();
-            imageIn.Save(ms, ImageFormat.Jpeg);
+            imageIn.Save(ms, imageIn.RawFormat);
 
             return ms.ToArray();
         }

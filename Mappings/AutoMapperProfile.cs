@@ -23,7 +23,6 @@
             CreateMap<UpdateBusinessDto, Business>();
 
             CreateMap<ProductGroup, GetProductGroupDto>();
-            CreateMap<AddProductGroupDto, ProductGroup>();
             CreateMap<UpdateProductGroupDto, ProductGroup>();
         }
     }

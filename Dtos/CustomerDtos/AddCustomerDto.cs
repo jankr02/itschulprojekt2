@@ -8,8 +8,5 @@
         public required string HouseNumber { get; set; }
         public required string PostalCode { get; set; }
         public required string City { get; set; }
-        public AddPictureDto? Picture { get; set; }
-        public List<AddProductGroupDto>? ProductGroups { get; set; }
-        public AddBusinessDto? Business { get; set; }
     }
 }

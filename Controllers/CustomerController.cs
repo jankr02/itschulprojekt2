@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace MesseauftrittDatenerfassung.Controllers
 {
@@ -54,6 +53,42 @@ namespace MesseauftrittDatenerfassung.Controllers
         public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> DeleteSingleCustomer(int id)
         {
             var response = await _customerService.DeleteCustomer(id);
+            if (response.Data is null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPost("ProductGroup")]
+        public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> AddCustomerProductGroup(List<AddCustomerProductGroupDto> newCustomerProductGroups)
+        {
+            var response = await _customerService.AddCustomerProductGroup(newCustomerProductGroups);
+            if (response.Data is null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPost("Business/{customerId}")]
+        public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> AddBusiness(AddBusinessDto newBusiness, int customerId)
+        {
+            var response = await _customerService.AddBusiness(newBusiness, customerId);
+            if (response.Data is null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPost("Picture/{customerId}")]
+        public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> AddPicture(AddPictureDto newPicture, int customerId)
+        {
+            var response = await _customerService.AddPicture(newPicture, customerId);
             if (response.Data is null)
             {
                 return NotFound(response);

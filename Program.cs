@@ -10,6 +10,7 @@ global using System.Drawing.Imaging;
 global using AutoMapper;
 global using Microsoft.EntityFrameworkCore;
 global using MesseauftrittDatenerfassung.Data;
+global using MesseauftrittDatenerfassung.Dtos.CustomerProductGroupDto;
 global using System.Drawing;
 
 var builder = WebApplication.CreateBuilder(args);
