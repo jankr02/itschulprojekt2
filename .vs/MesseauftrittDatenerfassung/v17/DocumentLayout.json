@@ -1,0 +1,131 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8AC48C8F-4C7E-4505-8FA8-3A3D3074AF2B}|..\\MesseauftrittDatenerfassung-UI\\MesseauftrittDatenerfassung-UI.csproj|c:\\users\\jrk1fe\\desktop\\schule\\projekt\\messeauftrittdatenerfassung-ui\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AC48C8F-4C7E-4505-8FA8-3A3D3074AF2B}|..\\MesseauftrittDatenerfassung-UI\\MesseauftrittDatenerfassung-UI.csproj|c:\\users\\jrk1fe\\desktop\\schule\\projekt\\messeauftrittdatenerfassung-ui\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\MainWindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16DAB324-4C8D-4872-B4AE-74B5AFD40E78}|MesseauftrittDatenerfassung.csproj|c:\\users\\jrk1fe\\desktop\\schule\\projekt\\schulprojekt2\\cameraapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16DAB324-4C8D-4872-B4AE-74B5AFD40E78}|MesseauftrittDatenerfassung.csproj|solutionrelative:cameraapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16DAB324-4C8D-4872-B4AE-74B5AFD40E78}|MesseauftrittDatenerfassung.csproj|c:\\users\\jrk1fe\\desktop\\schule\\projekt\\schulprojekt2\\messeauftrittdatenerfassung.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{16DAB324-4C8D-4872-B4AE-74B5AFD40E78}|MesseauftrittDatenerfassung.csproj|solutionrelative:messeauftrittdatenerfassung.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\obj\\Debug\\App.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\MesseauftrittDatenerfassung-UI\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "..\\MesseauftrittDatenerfassung-UI\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\MesseauftrittDatenerfassung-UI\\MainWindow.xaml",
+              "RelativeToolTip": "..\\MesseauftrittDatenerfassung-UI\\MainWindow.xaml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2023-12-11T15:07:36.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\MesseauftrittDatenerfassung-UI\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "..\\MesseauftrittDatenerfassung-UI\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\MesseauftrittDatenerfassung-UI\\MainWindow.xaml.cs",
+              "RelativeToolTip": "..\\MesseauftrittDatenerfassung-UI\\MainWindow.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-12-11T15:07:35.99Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MesseauftrittDatenerfassung.csproj",
+              "DocumentMoniker": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\MesseauftrittDatenerfassung.csproj",
+              "RelativeDocumentMoniker": "MesseauftrittDatenerfassung.csproj",
+              "ToolTip": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\MesseauftrittDatenerfassung.csproj",
+              "RelativeToolTip": "MesseauftrittDatenerfassung.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2023-12-11T15:01:38.762Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CameraAPI.cs",
+              "DocumentMoniker": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\CameraAPI.cs",
+              "RelativeDocumentMoniker": "CameraAPI.cs",
+              "ToolTip": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\CameraAPI.cs",
+              "RelativeToolTip": "CameraAPI.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAACwAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-12-11T15:01:38.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "App.g.cs",
+              "DocumentMoniker": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\obj\\Debug\\App.g.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\obj\\Debug\\App.g.cs",
+              "ToolTip": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\obj\\Debug\\App.g.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\obj\\Debug\\App.g.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-11-29T20:13:44.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\MainWindow.xaml.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\MainWindow.xaml.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2023-12-11T15:01:38.869Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\MainWindow.xaml",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung - Frontend\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2023-12-11T15:01:38.871Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

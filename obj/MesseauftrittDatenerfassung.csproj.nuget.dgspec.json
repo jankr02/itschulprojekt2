@@ -1,37 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\MesseauftrittDatenerfassung.csproj": {}
+    "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\MesseauftrittDatenerfassung.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\MesseauftrittDatenerfassung.csproj": {
+    "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\MesseauftrittDatenerfassung.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\MesseauftrittDatenerfassung.csproj",
+        "projectUniqueName": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\MesseauftrittDatenerfassung.csproj",
         "projectName": "MesseauftrittDatenerfassung",
-        "projectPath": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\MesseauftrittDatenerfassung.csproj",
-        "packagesPath": "C:\\Users\\jankg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\obj\\",
+        "projectPath": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\MesseauftrittDatenerfassung.csproj",
+        "packagesPath": "C:\\Users\\JRK1FE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jankg\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\JRK1FE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net7.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net7.0-windows7.0": {
+            "targetAlias": "net7.0-windows",
             "projectReferences": {}
           }
         },
@@ -42,8 +37,8 @@
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net7.0-windows7.0": {
+          "targetAlias": "net7.0-windows",
           "dependencies": {
             "AForge": {
               "target": "Package",
@@ -60,6 +55,10 @@
             "Extended.Wpf.Toolkit": {
               "target": "Package",
               "version": "[4.5.1, )"
+            },
+            "Gu.Wpf.Adorners": {
+              "target": "Package",
+              "version": "[2.1.1, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -93,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

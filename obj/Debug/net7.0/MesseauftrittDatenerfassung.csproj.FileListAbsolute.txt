@@ -55,3 +55,6 @@ C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\Me
 C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\System.Drawing.Common.dll
 C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.ResolveComReference.cache
+C:\Users\JRK1FE\Desktop\Schule\Projekt\schulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.dll
+C:\Users\JRK1FE\Desktop\Schule\Projekt\schulprojekt2\obj\Debug\net7.0\refint\MesseauftrittDatenerfassung.dll
+C:\Users\JRK1FE\Desktop\Schule\Projekt\schulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.pdb

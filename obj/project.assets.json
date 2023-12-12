@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
+    "net7.0-windows7.0": {
       "AForge/2.2.5": {
         "type": "package",
         "compile": {
@@ -89,6 +89,22 @@
             "locale": "zh-Hans"
           }
         }
+      },
+      "Gu.Wpf.Adorners/2.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/Gu.Wpf.Adorners.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Gu.Wpf.Adorners.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       },
       "Microsoft.AspNetCore.OpenApi/7.0.3": {
         "type": "package",
@@ -327,6 +343,21 @@
         "lib/net5.0/sv/Xceed.Wpf.AvalonDock.NET5.resources.dll",
         "lib/net5.0/zh-Hans/Xceed.Wpf.AvalonDock.NET5.resources.dll",
         "tools/install.ps1"
+      ]
+    },
+    "Gu.Wpf.Adorners/2.1.1": {
+      "sha512": "CAwRRcQxEm+x7shkUxg3qCvTZV6BJ/7ImcGusQSVPK+uBtVfn5wt1kBsv0xr0Fc31z4nXElhUfcRrwJUyhqKCA==",
+      "type": "package",
+      "path": "gu.wpf.adorners/2.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "gu.wpf.adorners.2.1.1.nupkg.sha512",
+        "gu.wpf.adorners.nuspec",
+        "lib/net45/Gu.Wpf.Adorners.dll",
+        "lib/net45/Gu.Wpf.Adorners.xml",
+        "lib/netcoreapp3.1/Gu.Wpf.Adorners.dll",
+        "lib/netcoreapp3.1/Gu.Wpf.Adorners.xml"
       ]
     },
     "Microsoft.AspNetCore.OpenApi/7.0.3": {
@@ -747,48 +778,43 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net7.0": [
+    "net7.0-windows7.0": [
       "AForge >= 2.2.5",
       "AForge.Video >= 2.2.5",
       "AForge.Video.DirectShow >= 2.2.5",
       "Extended.Wpf.Toolkit >= 4.5.1",
+      "Gu.Wpf.Adorners >= 2.1.1",
       "Microsoft.AspNetCore.OpenApi >= 7.0.3",
       "Swashbuckle.AspNetCore >= 6.4.0",
       "System.Drawing.Common >= 8.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jankg\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\JRK1FE\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\MesseauftrittDatenerfassung.csproj",
+      "projectUniqueName": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\MesseauftrittDatenerfassung.csproj",
       "projectName": "MesseauftrittDatenerfassung",
-      "projectPath": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\MesseauftrittDatenerfassung.csproj",
-      "packagesPath": "C:\\Users\\jankg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jankg\\OneDrive\\Dokumente\\Schule\\SAE und ITS Projekte\\itschulprojekt2\\MesseauftrittDatenerfassung\\obj\\",
+      "projectPath": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\MesseauftrittDatenerfassung.csproj",
+      "packagesPath": "C:\\Users\\JRK1FE\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JRK1FE\\Desktop\\Schule\\Projekt\\schulprojekt2\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\jankg\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\JRK1FE\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net7.0"
+        "net7.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net7.0-windows7.0": {
+          "targetAlias": "net7.0-windows",
           "projectReferences": {}
         }
       },
@@ -799,8 +825,8 @@
       }
     },
     "frameworks": {
-      "net7.0": {
-        "targetAlias": "net7.0",
+      "net7.0-windows7.0": {
+        "targetAlias": "net7.0-windows",
         "dependencies": {
           "AForge": {
             "target": "Package",
@@ -817,6 +843,10 @@
           "Extended.Wpf.Toolkit": {
             "target": "Package",
             "version": "[4.5.1, )"
+          },
+          "Gu.Wpf.Adorners": {
+            "target": "Package",
+            "version": "[2.1.1, )"
           },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
@@ -850,7 +880,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -859,30 +889,30 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Das Paket \"AForge 2.2.5\" wurde nicht mit dem Projektzielframework \"net7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "message": "Package 'AForge 2.2.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "AForge",
       "targetGraphs": [
-        "net7.0"
+        "net7.0-windows7.0"
       ]
     },
     {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Das Paket \"AForge.Video 2.2.5\" wurde nicht mit dem Projektzielframework \"net7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "message": "Package 'AForge.Video 2.2.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "AForge.Video",
       "targetGraphs": [
-        "net7.0"
+        "net7.0-windows7.0"
       ]
     },
     {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Das Paket \"AForge.Video.DirectShow 2.2.5\" wurde nicht mit dem Projektzielframework \"net7.0\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
+      "message": "Package 'AForge.Video.DirectShow 2.2.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0-windows7.0'. This package may not be fully compatible with your project.",
       "libraryId": "AForge.Video.DirectShow",
       "targetGraphs": [
-        "net7.0"
+        "net7.0-windows7.0"
       ]
     }
   ]
