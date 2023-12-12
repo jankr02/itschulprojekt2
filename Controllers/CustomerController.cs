@@ -13,7 +13,7 @@ namespace MesseauftrittDatenerfassung.Controllers
             _customerService = customerService;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> GetAllCustomers()
         {
            return Ok(await _customerService.GetAllCustomers());
@@ -86,8 +86,13 @@ namespace MesseauftrittDatenerfassung.Controllers
         }
 
         [HttpPost("Picture/{customerId}")]
-        public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> AddPicture(AddPictureDto newPicture, int customerId)
+        public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> AddPicture(IFormFile image, int customerId)
         {
+            var newPicture = new AddPictureDto()
+            { 
+                Name = image.FileName,
+                Image = (FormFile)image
+            };
             var response = await _customerService.AddPicture(newPicture, customerId);
             if (response.Data is null)
             {

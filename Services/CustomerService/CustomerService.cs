@@ -1,5 +1,4 @@
-﻿
-namespace MesseauftrittDatenerfassung.Services.CustomerService
+﻿namespace MesseauftrittDatenerfassung.Services.CustomerService
 {
     public class CustomerService : ICustomerService
     {
@@ -206,19 +205,51 @@ namespace MesseauftrittDatenerfassung.Services.CustomerService
 
             try
             {
+                if (newPicture.Image == null)
+                {
+                    throw new InvalidDataException("An image must be uploaded.");
+                }
+
+                using var memoryStream = new MemoryStream();
+                await newPicture.Image.CopyToAsync(memoryStream);
+                Image? testImage = null;
+
+                try
+                {
+                    testImage = Image.FromStream(memoryStream);
+                }
+                catch
+                {
+                    throw new InvalidDataException("The uploaded file must be an image.");
+                }
+                finally
+                {
+                    memoryStream.Dispose();
+                }
+
+                if (newPicture.Image.Length <= 0)
+                {
+                    throw new InvalidDataException("The image must contain data.");
+                }
+
+                if (newPicture.Image.Length > 10000000)
+                {
+                    throw new InvalidDataException("The image must not exceed 10MB.");
+                }
+
                 var customer = await _context.Customers
                     .Include(c => c.Picture)
                     .Include(c => c.ProductGroups)
                     .Include(c => c.Business)
                     .FirstOrDefaultAsync(c => c.Id == customerId) ?? throw new Exception($"Customer with Id '{customerId}' not found.");
 
-                Picture? existingPicture;
-                var imageConverter = new ImageConverter();
+                byte[]? imageDataArray = new CustomConverter().FormFileToByteArray(newPicture.Image);
 
-                if ((existingPicture = await _context.Pictures.FirstOrDefaultAsync(p => p.Name == newPicture.Name)) != null)
+                Picture? existingPicture;
+
+                if ((existingPicture = await _context.Pictures.Where(p => p.Customer != null).Where(p => p.Customer.Id == customerId).FirstOrDefaultAsync(p => p.Name == newPicture.Name)) != null)
                 {
-                    existingPicture.Name = newPicture.Name;
-                    existingPicture.Data = (byte[]?)imageConverter.ConvertTo(newPicture.Image, typeof(byte[]));
+                    existingPicture.Data = imageDataArray;
                     customer.Picture = _mapper.Map<Picture>(existingPicture);
                 }
                 else
@@ -226,8 +257,8 @@ namespace MesseauftrittDatenerfassung.Services.CustomerService
                     var newConvertedPicture = new Picture()
                     {
                         Name = newPicture.Name,
-                        Data = (byte[]?)imageConverter.ConvertTo(newPicture.Image, typeof(byte[]))
-                };
+                        Data = imageDataArray
+                    };
 
                     var pictures = await _context.Pictures.ToListAsync();
                     pictures.Add(newConvertedPicture);

@@ -3,6 +3,6 @@
     public class AddPictureDto
     {
         public required string Name { get; set; }
-        public Image? Image { get; set; }
+        public required FormFile? Image { get; set; }
     }
 }

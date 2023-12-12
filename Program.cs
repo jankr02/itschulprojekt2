@@ -6,7 +6,6 @@ global using MesseauftrittDatenerfassung.Dtos.ProductGroupDtos;
 global using MesseauftrittDatenerfassung.Dtos.BusinessDtos;
 global using MesseauftrittDatenerfassung.Enums;
 global using MesseauftrittDatenerfassung.Converters;
-global using System.Drawing.Imaging;
 global using AutoMapper;
 global using Microsoft.EntityFrameworkCore;
 global using MesseauftrittDatenerfassung.Data;

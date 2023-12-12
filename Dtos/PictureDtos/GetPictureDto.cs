@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public required string Name { get; set; }
-        public Image? Image { get; set; }
+        public required byte[]? Image { get; set; }
     }
 }
