@@ -9,10 +9,10 @@
         public required string HouseNumber { get; set; }
         public required string PostalCode { get; set; }
         public required string City { get; set; }
-        public Picture? Picture { get; set; }
-        public int PictureId { get; set; }
+        public required Picture Picture { get; set; }
+        public int? PictureId { get; set; }
         public List<ProductGroup>? ProductGroups { get; set; }
         public Business? Business { get; set; }
-        public int BusinessId { get; set; }
+        public int? BusinessId { get; set; }
     }
 }

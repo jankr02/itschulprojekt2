@@ -77,3 +77,4 @@ C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDa
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\System.Drawing.Common.dll
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Newtonsoft.Json.dll

@@ -9,8 +9,5 @@
         public required string HouseNumber { get; set; }
         public required string PostalCode { get; set; }
         public required string City { get; set; }
-        public UpdatePictureDto? Picture { get; set; }
-        public List<UpdateProductGroupDto>? ProductGroups { get; set; }
-        public UpdateBusinessDto? Business { get; set; }
     }
 }
