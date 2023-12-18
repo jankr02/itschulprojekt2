@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MesseauftrittDatenerfassung", "MesseauftrittDatenerfassung.csproj", "{16DAB324-4C8D-4872-B4AE-74B5AFD40E78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MesseauftrittDatenerfassung", "Backend\RemoteDatabase\MesseauftrittDatenerfassung.csproj", "{16DAB324-4C8D-4872-B4AE-74B5AFD40E78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalDatabase", "..\LocalDatabase\LocalDatabase.csproj", "{9417D6A1-845F-4706-A886-78DEB56373F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalDatabase", "Backend\LocalDatabase\LocalDatabase.csproj", "{9417D6A1-845F-4706-A886-78DEB56373F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
