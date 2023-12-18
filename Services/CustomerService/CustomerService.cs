@@ -212,11 +212,10 @@
 
                 using var memoryStream = new MemoryStream();
                 await newPicture.Image.CopyToAsync(memoryStream);
-                Image? testImage = null;
 
                 try
                 {
-                    testImage = Image.FromStream(memoryStream);
+                    Image.FromStream(memoryStream);
                 }
                 catch
                 {
@@ -224,30 +223,28 @@
                 }
                 finally
                 {
-                    memoryStream.Dispose();
+                    await memoryStream.DisposeAsync();
                 }
 
-                if (newPicture.Image.Length <= 0)
+                switch (newPicture.Image.Length)
                 {
+                  case <= 0:
                     throw new InvalidDataException("The image must contain data.");
-                }
-
-                if (newPicture.Image.Length > 10000000)
-                {
+                  case > 10 * 1024 * 1024:
                     throw new InvalidDataException("The image must not exceed 10MB.");
                 }
 
                 var customer = await _context.Customers
-                    .Include(c => c.Picture)
-                    .Include(c => c.ProductGroups)
-                    .Include(c => c.Business)
-                    .FirstOrDefaultAsync(c => c.Id == customerId) ?? throw new Exception($"Customer with Id '{customerId}' not found.");
+                                             .Include(c => c.Picture)
+                                             .Include(c => c.ProductGroups)
+                                             .Include(c => c.Business)
+                                             .FirstOrDefaultAsync(c => c.Id == customerId) ?? throw new Exception($"Customer with Id '{customerId}' not found.");
 
-                byte[]? imageDataArray = new CustomConverter().FormFileToByteArray(newPicture.Image);
+                var imageDataArray = CustomConverter.FormFileToByteArray(newPicture.Image);
 
                 Picture? existingPicture;
 
-                if ((existingPicture = await _context.Pictures.Where(p => p.Customer != null).Where(p => p.Customer.Id == customerId).FirstOrDefaultAsync(p => p.Name == newPicture.Name)) != null)
+                if ((existingPicture = await _context.Pictures.Where(p => (p.Customer != null) && (p.Customer.Id == customerId)).FirstOrDefaultAsync(p => p.Name == newPicture.Name)) != null)
                 {
                     existingPicture.Data = imageDataArray;
                     customer.Picture = _mapper.Map<Picture>(existingPicture);

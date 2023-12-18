@@ -19,7 +19,7 @@ namespace MesseauftrittDatenerfassung.Controllers
            return Ok(await _customerService.GetAllCustomers());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task <ActionResult<ServiceResponse<GetCustomerDto>>> GetSingleCustomer(int id)
         {
             var response = await _customerService.GetCustomerById(id);
@@ -49,7 +49,7 @@ namespace MesseauftrittDatenerfassung.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> DeleteSingleCustomer(int id)
         {
             var response = await _customerService.DeleteCustomer(id);
@@ -73,7 +73,7 @@ namespace MesseauftrittDatenerfassung.Controllers
             return Ok(response);
         }
 
-        [HttpPost("Business/{customerId}")]
+        [HttpPost("Business/{customerId:int}")]
         public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> AddBusiness(AddBusinessDto newBusiness, int customerId)
         {
             var response = await _customerService.AddBusiness(newBusiness, customerId);
@@ -85,7 +85,7 @@ namespace MesseauftrittDatenerfassung.Controllers
             return Ok(response);
         }
 
-        [HttpPost("Picture/{customerId}")]
+        [HttpPost("Picture/{customerId:int}")]
         public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> AddPicture(IFormFile image, int customerId)
         {
             var newPicture = new AddPictureDto()

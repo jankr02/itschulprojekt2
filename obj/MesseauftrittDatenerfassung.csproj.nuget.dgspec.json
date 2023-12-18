@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj": {}
+    "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj": {
+    "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj",
+        "projectUniqueName": "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj",
         "projectName": "MesseauftrittDatenerfassung",
-        "projectPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj",
-        "packagesPath": "C:\\Users\\Matth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\obj\\",
+        "projectPath": "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\MesseauftrittDatenerfassung.csproj",
+        "packagesPath": "C:\\Users\\JMJ1FE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JMJ1FE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,10 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://artifactory.boschdevcloud.com/artifactory/api/nuget/lab000003-bci-nuget-virtual/": {}
         },
         "frameworks": {
           "net7.0": {
@@ -72,10 +75,6 @@
               "target": "Package",
               "version": "[7.0.14, )"
             },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
-            },
             "SQLite": {
               "target": "Package",
               "version": "[3.13.0, )"
@@ -108,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
