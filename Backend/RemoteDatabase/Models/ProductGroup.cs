@@ -1,6 +1,6 @@
-﻿using MesseauftrittDatenerfassung.Enums;
+﻿using RemoteDatabase.Enums;
 
-namespace MesseauftrittDatenerfassung.Models
+namespace RemoteDatabase.Models
 {
     public class ProductGroup
     {

@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "JJRIFDHAQNV7lrRq/c4TV31eMLVMKYWqicAQothRsRtZsvAiFBPKJGx90pQ3eHSrAs5bqD/KpAMhX/C8Ck83aw==",
+  "dgSpecHash": "Fi2CxCshesqXGt9WDbZAwB36E49/Dod1av+8kkVqYF2uqQS4tYNtRo/Nf3vZG71aiPvDTExUw1QdzKPPyyYkNw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\Backend\\RemoteDatabase\\MesseauftrittDatenerfassung.csproj",
+  "projectFilePath": "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\Backend\\RemoteDatabase\\RemoteDatabase.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\JMJ1FE\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\JMJ1FE\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\JMJ1FE\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
-    "C:\\Users\\JMJ1FE\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.3\\microsoft.aspnetcore.openapi.7.0.3.nupkg.sha512",
+    "C:\\Users\\JMJ1FE\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.5\\microsoft.aspnetcore.openapi.7.0.5.nupkg.sha512",
     "C:\\Users\\JMJ1FE\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\JMJ1FE\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.14\\microsoft.data.sqlite.core.7.0.14.nupkg.sha512",
     "C:\\Users\\JMJ1FE\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.14\\microsoft.entityframeworkcore.7.0.14.nupkg.sha512",

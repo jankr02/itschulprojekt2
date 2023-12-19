@@ -1,4 +1,4 @@
-﻿namespace MesseauftrittDatenerfassung.Mappings
+﻿namespace RemoteDatabase.Mappings
 {
     public class AutoMapperProfile : Profile
     {

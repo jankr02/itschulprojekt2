@@ -1,4 +1,4 @@
-﻿namespace MesseauftrittDatenerfassung.Dtos.ProductGroupDtos
+﻿namespace RemoteDatabase.Dtos.ProductGroupDtos
 {
     public class GetProductGroupDto
     {

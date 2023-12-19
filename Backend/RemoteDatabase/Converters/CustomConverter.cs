@@ -1,4 +1,4 @@
-﻿namespace MesseauftrittDatenerfassung.Converters
+﻿namespace RemoteDatabase.Converters
 {
     public static class CustomConverter
     {

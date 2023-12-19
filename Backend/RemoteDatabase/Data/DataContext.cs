@@ -1,4 +1,4 @@
-﻿namespace MesseauftrittDatenerfassung.Data
+﻿namespace RemoteDatabase.Data
 {
     public class DataContext : DbContext
     {

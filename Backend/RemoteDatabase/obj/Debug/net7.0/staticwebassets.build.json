@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "f06CFTs4fiXoRbeDavcwt7VRw7ztesEy7+qPxOx6c24=",
-  "Source": "MesseauftrittDatenerfassung",
-  "BasePath": "_content/MesseauftrittDatenerfassung",
+  "Hash": "M2P109J4K9RTluoYX1NARN1QhrxxNDXdZbjWsGxc0Mk=",
+  "Source": "RemoteDatabase",
+  "BasePath": "_content/RemoteDatabase",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

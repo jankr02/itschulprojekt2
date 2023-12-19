@@ -1,4 +1,4 @@
-﻿namespace MesseauftrittDatenerfassung.Services.CustomerService
+﻿namespace RemoteDatabase.Services.CustomerService
 {
     public class CustomerService : ICustomerService
     {
@@ -11,33 +11,29 @@
             _mapper = mapper;
         }
 
-        public async Task<ServiceResponse<List<GetCustomerDto>>> AddCustomer(AddCustomerDto newCustomer)
+        public async Task<ServiceResponse<GetCustomerDto>> AddCustomer(AddCustomerDto newCustomer)
         {
-            var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
+            var serviceResponse = new ServiceResponse<GetCustomerDto>();
             var customer = _mapper.Map<Customer>(newCustomer);
 
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
 
-            serviceResponse.Data = await _context.Customers
-                .Include(c => c.Picture)
-                .Include(c => c.ProductGroups)
-                .Include(c => c.Business)
-                .Select(c => _mapper.Map<GetCustomerDto>(c)).ToListAsync();
+            serviceResponse.Data = _mapper.Map<GetCustomerDto>(customer);
             return serviceResponse;
         }
 
         public async Task<ServiceResponse<List<GetCustomerDto>>> GetAllCustomers()
-        {
-            var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
-            var dbcustomers = await _context.Customers
-                .Include(c => c.Picture)
-                .Include(c => c.ProductGroups)
-                .Include(c => c.Business)
-                .ToListAsync();
-            serviceResponse.Data = dbcustomers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToList();
-            return serviceResponse;
-        }
+            {
+                var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
+                var dbcustomers = await _context.Customers
+                    .Include(c => c.Picture)
+                    .Include(c => c.ProductGroups)
+                    .Include(c => c.Business)
+                    .ToListAsync();
+                serviceResponse.Data = dbcustomers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToList();
+                return serviceResponse;
+            }
 
         public async Task<ServiceResponse<GetCustomerDto>> GetCustomerById(int id)
         {

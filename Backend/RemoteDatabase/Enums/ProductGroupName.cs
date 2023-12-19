@@ -1,4 +1,4 @@
-﻿namespace MesseauftrittDatenerfassung.Enums
+﻿namespace RemoteDatabase.Enums
 {
     public enum ProductGroupName
     {

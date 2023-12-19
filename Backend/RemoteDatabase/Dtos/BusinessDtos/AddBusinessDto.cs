@@ -1,4 +1,4 @@
-﻿namespace MesseauftrittDatenerfassung.Dtos.BusinessDtos
+﻿namespace RemoteDatabase.Dtos.BusinessDtos
 {
     public class AddBusinessDto
     {

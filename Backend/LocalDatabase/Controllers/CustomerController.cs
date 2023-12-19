@@ -32,7 +32,7 @@ namespace LocalDatabase.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> AddCustomer(AddCustomerDto newCustomer)
+    public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> AddCustomer(AddCustomerDto newCustomer)
     {
       return Ok(await _customerService.AddCustomer(newCustomer));
     }

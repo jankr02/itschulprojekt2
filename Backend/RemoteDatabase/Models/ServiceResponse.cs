@@ -1,4 +1,4 @@
-﻿namespace MesseauftrittDatenerfassung.Models
+﻿namespace RemoteDatabase.Models
 {
     public class ServiceResponse<T>
     {

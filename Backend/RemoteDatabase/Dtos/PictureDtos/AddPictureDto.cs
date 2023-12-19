@@ -1,4 +1,4 @@
-﻿namespace MesseauftrittDatenerfassung.Dtos.PictureDtos
+﻿namespace RemoteDatabase.Dtos.PictureDtos
 {
     public class AddPictureDto
     {
