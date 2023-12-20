@@ -7,6 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MesseauftrittDatenerfassung
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MesseauftrittDatenerfassung-UI", "..\MesseauftrittDatenerfassung-UI\MesseauftrittDatenerfassung-UI.csproj", "{8AC48C8F-4C7E-4505-8FA8-3A3D3074AF2B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{F3F6354C-4ACE-49CD-979E-824AD6B7F6D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{5A4EA499-156F-4A56-BB88-216D7FAD2F78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LocalDatabase", "LocalDatabase", "{81C16552-030F-447B-8D95-5A1393D33D7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RemoteDatabase", "RemoteDatabase", "{A9DB6602-6BE4-4680-A329-3C4292D4778B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +32,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16DAB324-4C8D-4872-B4AE-74B5AFD40E78} = {A9DB6602-6BE4-4680-A329-3C4292D4778B}
+		{8AC48C8F-4C7E-4505-8FA8-3A3D3074AF2B} = {5A4EA499-156F-4A56-BB88-216D7FAD2F78}
+		{81C16552-030F-447B-8D95-5A1393D33D7F} = {F3F6354C-4ACE-49CD-979E-824AD6B7F6D4}
+		{A9DB6602-6BE4-4680-A329-3C4292D4778B} = {F3F6354C-4ACE-49CD-979E-824AD6B7F6D4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E657D743-4B13-4B85-8808-31A97B83FE6E}
