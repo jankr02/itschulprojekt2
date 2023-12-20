@@ -1,236 +1,60 @@
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\appsettings.Development.json
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\appsettings.json
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\MesseauftrittDatenerfassung.exe
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\MesseauftrittDatenerfassung.deps.json
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\MesseauftrittDatenerfassung.runtimeconfig.json
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\MesseauftrittDatenerfassung.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\MesseauftrittDatenerfassung.pdb
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Microsoft.OpenApi.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.AssemblyReference.cache
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.AssemblyInfoInputs.cache
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.AssemblyInfo.cs
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.CoreCompileInputs.cache
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\staticwebassets\msbuild.MesseauftrittDatenerfassung.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\staticwebassets\msbuild.build.MesseauftrittDatenerfassung.props
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.MesseauftrittDatenerfassung.props
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.MesseauftrittDatenerfassung.props
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\staticwebassets.pack.json
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\staticwebassets.build.json
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\staticwebassets.development.json
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\scopedcss\bundle\MesseauftrittDatenerfassung.styles.css
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.CopyComplete
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\refint\MesseauftrittDatenerfassung.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.pdb
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.genruntimeconfig.cache
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\ref\MesseauftrittDatenerfassung.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\AutoMapper.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Humanizer.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Microsoft.Data.Sqlite.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Sqlite.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Mono.TextTemplating.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\SQLitePCLRaw.batteries_v2.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\SQLitePCLRaw.core.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\SQLitePCLRaw.provider.e_sqlite3.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\System.CodeDom.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-x64\native\libsqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\osx-x64\native\libsqlite3.dylib
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\win7-x64\native\sqlite3.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\win7-x86\native\sqlite3.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\alpine-arm\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\alpine-arm64\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\alpine-x64\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\browser-wasm\nativeassets\net7.0\e_sqlite3.a
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-arm\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-arm64\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-armel\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-mips64\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-s390x\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-x64\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-x86\native\libe_sqlite3.so
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\osx-arm64\native\libe_sqlite3.dylib
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\osx-x64\native\libe_sqlite3.dylib
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\win-arm\native\e_sqlite3.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\win-arm64\native\e_sqlite3.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\win-x64\native\e_sqlite3.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.sourcelink.json
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\System.Drawing.Common.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\Matth\Documents\GitHub\itschulprojekt2\bin\Debug\net7.0\Newtonsoft.Json.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\appsettings.Development.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\appsettings.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\MesseauftrittDatenerfassung.exe
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\MesseauftrittDatenerfassung.deps.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\MesseauftrittDatenerfassung.runtimeconfig.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\MesseauftrittDatenerfassung.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\MesseauftrittDatenerfassung.pdb
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\AutoMapper.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Humanizer.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Microsoft.Data.Sqlite.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Sqlite.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Microsoft.OpenApi.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Mono.TextTemplating.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\SQLitePCLRaw.batteries_v2.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\SQLitePCLRaw.core.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\SQLitePCLRaw.provider.e_sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\System.CodeDom.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\System.Drawing.Common.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-x64\native\libsqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\osx-x64\native\libsqlite3.dylib
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\win7-x64\native\sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\win7-x86\native\sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\alpine-arm\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\alpine-arm64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\alpine-x64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\browser-wasm\nativeassets\net7.0\e_sqlite3.a
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-arm\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-arm64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-armel\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-mips64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-s390x\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-x64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\linux-x86\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\osx-arm64\native\libe_sqlite3.dylib
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\osx-x64\native\libe_sqlite3.dylib
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\win-arm\native\e_sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\win-arm64\native\e_sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\win-x64\native\e_sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\bin\Debug\net7.0\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.AssemblyReference.cache
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.AssemblyInfoInputs.cache
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.AssemblyInfo.cs
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.CoreCompileInputs.cache
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\staticwebassets\msbuild.MesseauftrittDatenerfassung.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\staticwebassets\msbuild.build.MesseauftrittDatenerfassung.props
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.MesseauftrittDatenerfassung.props
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.MesseauftrittDatenerfassung.props
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\staticwebassets.pack.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\staticwebassets.build.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\staticwebassets.development.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\scopedcss\bundle\MesseauftrittDatenerfassung.styles.css
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.CopyComplete
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\refint\MesseauftrittDatenerfassung.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.pdb
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.genruntimeconfig.cache
-C:\Users\JMJ1FE\Documents\itschulprojekt2\obj\Debug\net7.0\ref\MesseauftrittDatenerfassung.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\appsettings.Development.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\appsettings.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\MesseauftrittDatenerfassung.exe
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\MesseauftrittDatenerfassung.deps.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\MesseauftrittDatenerfassung.runtimeconfig.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\MesseauftrittDatenerfassung.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\MesseauftrittDatenerfassung.pdb
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\AutoMapper.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Humanizer.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.Data.Sqlite.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Sqlite.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.OpenApi.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Mono.TextTemplating.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\SQLitePCLRaw.batteries_v2.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\SQLitePCLRaw.core.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\SQLitePCLRaw.provider.e_sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\System.CodeDom.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\System.Drawing.Common.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-x64\native\libsqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\osx-x64\native\libsqlite3.dylib
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\win7-x64\native\sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\win7-x86\native\sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\alpine-arm\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\alpine-arm64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\alpine-x64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\browser-wasm\nativeassets\net7.0\e_sqlite3.a
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-arm\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-arm64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-armel\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-mips64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-s390x\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-x64\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\linux-x86\native\libe_sqlite3.so
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\osx-arm64\native\libe_sqlite3.dylib
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\osx-x64\native\libe_sqlite3.dylib
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\win-arm\native\e_sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\win-arm64\native\e_sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\win-x64\native\e_sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.AssemblyReference.cache
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\MesseauftrittDatenerfassung.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\MesseauftrittDatenerfassung.AssemblyInfoInputs.cache
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\MesseauftrittDatenerfassung.AssemblyInfo.cs
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.CoreCompileInputs.cache
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\MesseauftrittDatenerfassung.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\MesseauftrittDatenerfassung.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\staticwebassets\msbuild.MesseauftrittDatenerfassung.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\staticwebassets\msbuild.build.MesseauftrittDatenerfassung.props
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.MesseauftrittDatenerfassung.props
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.MesseauftrittDatenerfassung.props
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\staticwebassets.pack.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\staticwebassets.build.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\staticwebassets.development.json
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\scopedcss\bundle\MesseauftrittDatenerfassung.styles.css
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.CopyComplete
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\MesseauftrittDatenerfassung.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\refint\MesseauftrittDatenerfassung.dll
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\MesseauftrittDatenerfassung.pdb
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\MesseauftrittDatenerfassung.genruntimeconfig.cache
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\ref\MesseauftrittDatenerfassung.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\appsettings.json
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\MesseauftrittDatenerfassung.exe
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\MesseauftrittDatenerfassung.deps.json
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\MesseauftrittDatenerfassung.runtimeconfig.json
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\MesseauftrittDatenerfassung.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\MesseauftrittDatenerfassung.pdb
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\Xceed.Wpf.AvalonDock.NET5.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\Xceed.Wpf.AvalonDock.Themes.Aero.NET5.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\Xceed.Wpf.AvalonDock.Themes.Metro.NET5.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\Xceed.Wpf.AvalonDock.Themes.VS2010.NET5.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\Xceed.Wpf.Toolkit.NET5.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\cs-CZ\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\de\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\es\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\fr\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\hu\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\it\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\ja-JP\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\pt-BR\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\ro\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\ru\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\sv\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\zh-Hans\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.AssemblyReference.cache
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.AssemblyInfoInputs.cache
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.AssemblyInfo.cs
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.CoreCompileInputs.cache
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\staticwebassets\msbuild.MesseauftrittDatenerfassung.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\staticwebassets\msbuild.build.MesseauftrittDatenerfassung.props
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.MesseauftrittDatenerfassung.props
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.MesseauftrittDatenerfassung.props
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\scopedcss\bundle\MesseauftrittDatenerfassung.styles.css
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.CopyComplete
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\refint\MesseauftrittDatenerfassung.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.pdb
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.genruntimeconfig.cache
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\ref\MesseauftrittDatenerfassung.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\AForge.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\AForge.Video.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\AForge.Video.DirectShow.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\jankg\OneDrive\Dokumente\Schule\SAE und ITS Projekte\itschulprojekt2\MesseauftrittDatenerfassung\obj\Debug\net7.0\MesseauftrittDatenerfassung.csproj.ResolveComReference.cache
+C:\Users\JRK1FE\Desktop\Schule\Projekt\schulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.dll
+C:\Users\JRK1FE\Desktop\Schule\Projekt\schulprojekt2\obj\Debug\net7.0\refint\MesseauftrittDatenerfassung.dll
+C:\Users\JRK1FE\Desktop\Schule\Projekt\schulprojekt2\obj\Debug\net7.0\MesseauftrittDatenerfassung.pdb
