@@ -3,10 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MesseauftrittDatenerfassung-UI", "Frontend\Panels\MesseauftrittDatenerfassung-UI.csproj", "{8AC48C8F-4C7E-4505-8FA8-3A3D3074AF2B}"
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteDatabase", "Backend\RemoteDatabase\RemoteDatabase.csproj", "{16DAB324-4C8D-4872-B4AE-74B5AFD40E78}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalDatabase", "Backend\LocalDatabase\LocalDatabase.csproj", "{9417D6A1-845F-4706-A886-78DEB56373F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MesseauftrittDatenerfassung-UI", "Frontend\Panels\MesseauftrittDatenerfassung-UI.csproj", "{8AC48C8F-4C7E-4505-8FA8-3A3D3074AF2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{692FCC90-E56D-4C63-8637-A28BBAD5C45B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{289F3607-3384-4496-97E3-E32E51494039}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +34,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16DAB324-4C8D-4872-B4AE-74B5AFD40E78} = {289F3607-3384-4496-97E3-E32E51494039}
+		{9417D6A1-845F-4706-A886-78DEB56373F9} = {289F3607-3384-4496-97E3-E32E51494039}
+		{8AC48C8F-4C7E-4505-8FA8-3A3D3074AF2B} = {692FCC90-E56D-4C63-8637-A28BBAD5C45B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E657D743-4B13-4B85-8808-31A97B83FE6E}
