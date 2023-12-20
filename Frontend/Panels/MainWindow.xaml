@@ -1,0 +1,304 @@
+﻿<Window x:Class="MesseauftrittDatenerfassung_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MesseauftrittDatenerfassung_UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="638" ResizeMode="CanResizeWithGrip">
+
+    <Window.Resources>
+        <local:PasswordLengthToVisibilityConverter x:Key="PasswordLengthToVisibilityConverter"/>
+        <Style x:Key="TransparentHoverButton" TargetType="Button">
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <!-- Keine Änderungen bei Mouseover -->
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <!-- Optional: Effekt bei gedrücktem Button -->
+                                <Setter Property="Background" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Border x:Name="MainBorder" CornerRadius="8" BorderBrush="Black"
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ToggleButton x:Name="ToggleButton" 
+                                    BorderBrush="White" 
+                                    Background="White" 
+                                    IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, 
+                                    RelativeSource={RelativeSource TemplatedParent}}">
+                                    <ToggleButton.Template>
+                                        <ControlTemplate TargetType="ToggleButton">
+                                            <Border Background="Transparent" CornerRadius="8">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition Width="19"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                                    <Path x:Name="Arrow" Grid.Column="1" 
+                                                  Fill="{TemplateBinding Foreground}" 
+                                                  HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center" 
+                                                  Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </ToggleButton.Template>
+                                </ToggleButton>
+                                <ContentPresenter Name="ContentSite" 
+                                          IsHitTestVisible="False" 
+                                          Content="{TemplateBinding SelectionBoxItem}" 
+                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" 
+                                          ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" 
+                                          Margin="3" Visibility="Visible" 
+                                          VerticalAlignment="Center" 
+                                          HorizontalAlignment="Left"/>
+                                <Popup Name="Popup" 
+                                   Placement="Bottom" 
+                                   IsOpen="{TemplateBinding IsDropDownOpen}" 
+                                   AllowsTransparency="True" 
+                                   Focusable="False" 
+                                   PopupAnimation="Slide"
+                                   HorizontalOffset="0">
+
+                                    <Grid Name="DropDown" 
+                                          SnapsToDevicePixels="True" 
+                                          MinWidth="{TemplateBinding ActualWidth}" 
+                                          MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                        <Border x:Name="DropDownBorder" 
+                                        Background="White" 
+                                        BorderBrush="Black" 
+                                        BorderThickness="1,0,1,1"
+                                        CornerRadius="0,0,8,8"/>
+                                        <ScrollViewer Margin="4,6,4,6" 
+                                              SnapsToDevicePixels="True">
+                                            <StackPanel IsItemsHost="True" 
+                                                KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                        </ScrollViewer>
+                                    </Grid>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Trigger zum Ändern des unteren Randes beim Öffnen des Dropdowns -->
+                            <Trigger Property="IsDropDownOpen" Value="True">
+                                <Setter TargetName="MainBorder" Property="CornerRadius" Value="8,8,0,0"/>
+                                <Setter TargetName="MainBorder" Property="BorderThickness" Value="1,1,1,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Viewbox Stretch="Uniform" StretchDirection="Both">
+        <Grid x:Name="Window_Grid">
+            <!--Titel-->
+            <Label x:Name="Title_Label" Content="Sichere Dir jetzt deinen Gutschein!" HorizontalAlignment="Left" Height="60" 
+                   VerticalAlignment="Top" Width="467" FontSize="20" FontWeight="Bold" Margin="10,11,0,0"/>
+
+            <!--Datengrid-->
+            <Grid x:Name="Data_Grid" HorizontalAlignment="Left" Height="362" Margin="23,62,0,0" VerticalAlignment="Top" Width="529">
+                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8">
+                    <Image x:Name="personalImage" Source="C:\Users\JRK1FE\Desktop\Schule\Projekt\images.png" 
+                       Margin="353,21,74,232"/>
+                </Border>  
+
+                <Border CornerRadius="8" Background="Black" Margin="353,137,78,201"/>
+                <Button x:Name="image_Button" Content="Bild" Margin="359,140,87,201" Background="Black" BorderBrush="Black" Foreground="White"
+                        Style="{StaticResource TransparentHoverButton}" Click="Image_Button_Click"/>
+                <Border x:Name="Data_Border" CornerRadius="8" BorderBrush="Black" BorderThickness="2"/>
+
+                <!--Persönliche Daten-->
+                <Grid x:Name="PersonalData_Grid" HorizontalAlignment="Left" Height="141" 
+                      VerticalAlignment="Top" Width="337" Margin="0,-6,0,0">
+                    <Label x:Name="PersonalData_Label" Content="Persönliche Daten:" 
+                           HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" 
+                           Width="467" FontSize="20" FontWeight="Bold"/>
+
+                    <!--Vorname Datenerfassung-->
+                    <Border CornerRadius="8" Background="Black" Margin="10,40,215,80">
+                        <Label x:Name="name_Label" Content="Vorname" HorizontalAlignment="Left"
+                               Height="18" Padding="2,2,2,2" VerticalAlignment="Top" Width="98" 
+                               FontWeight="Bold" Foreground="White" Margin="2,0,0,0"/>
+                    </Border>
+                    <Border CornerRadius="8" Margin="127,40,25,81" BorderBrush="Black" BorderThickness="1">
+                        <TextBox x:Name="name_TextBox" Tag="Vorname" HorizontalAlignment="Left" 
+                                 Height="23" TextWrapping="Wrap" Text="Vorname" VerticalAlignment="Top" 
+                                 Width="185" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+
+                    <!--Nachname Datenerfassung-->
+                    <Border CornerRadius="8" Background="Black" Margin="10,64,215,56">
+                        <Label x:Name="surname_Label" Content="Nachname" HorizontalAlignment="Center" 
+                               Height="26" Padding="2,2,2,2" VerticalAlignment="Center" Width="112" 
+                               FontWeight="Bold" Foreground="White" Margin="5,3,0,0"/>
+                    </Border>
+                    <Border CornerRadius="8" Margin="127,65,25,56" BorderBrush="Black" BorderThickness="1">
+                        <TextBox x:Name="surname_TextBox" Tag="Nachname" HorizontalAlignment="Left" 
+                                 Height="23" TextWrapping="Wrap" Text="Nachname" VerticalAlignment="Top" 
+                                 Width="185" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+
+                    <!--Straßenname Datenerfassung-->
+                    <Border CornerRadius="8" Background="Black" Margin="10,88,215,32">
+                        <Label x:Name="street_Label" Content="Straßenname" HorizontalAlignment="Center" 
+                               Height="21" Padding="2,2,2,2" VerticalAlignment="Top" Width="112" 
+                               FontWeight="Bold" Foreground="White" Margin="5,-1,0,0"/>
+                    </Border>
+                    <Border CornerRadius="8" Margin="127,88,91,33" BorderBrush="Black" BorderThickness="1">
+                        <TextBox Tag="Straßenname" HorizontalAlignment="Left" Height="23" 
+                                 TextWrapping="Wrap" Text="Straßenname" VerticalAlignment="Top" Width="108" 
+                                 GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+                    <Border CornerRadius="8" Margin="251,88,25,32" BorderBrush="Black" BorderThickness="1">
+                        <TextBox Tag="Hausnr." HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
+                                 Text="Hausnr." VerticalAlignment="Top" Width="108" GotFocus="TextBox_GotFocus" 
+                                 LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+
+                    <!--Stadtname Datenerfassung-->
+                    <Border CornerRadius="8" Background="Black" Margin="10,114,215,6" Padding="5,0,0,3">
+                        <Label x:Name="city_Label" Content="Ortsname" HorizontalAlignment="Left" 
+                               Height="23" Padding="2,2,2,2" VerticalAlignment="Top" Width="112" 
+                               FontWeight="Bold" Foreground="White" Margin="-2,-1,0,0"/>
+                    </Border>
+                    <Border CornerRadius="8" Margin="127,114,91,6" BorderBrush="Black" BorderThickness="1">
+                        <TextBox Tag="Ortsname" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
+                                 Text="Ortsname" VerticalAlignment="Top" Width="108" GotFocus="TextBox_GotFocus" 
+                                 LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+                    <Border CornerRadius="8" Margin="251,114,25,6" BorderBrush="Black" BorderThickness="1">
+                        <TextBox Tag="PLZ" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="PLZ" 
+                                 VerticalAlignment="Top" Width="108" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" 
+                                 BorderThickness="0" Background="Transparent"/>
+                    </Border>
+                </Grid>
+
+                <!--Produktgruppen-->
+                <Grid x:Name="ProductGroup_Grid" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="402" Margin="0,140,0,0">
+                    <Label x:Name="ProductGroup_Label" Content="Produktgruppen auswählen" HorizontalAlignment="Left" Height="60" 
+                           VerticalAlignment="Top" Width="467" FontSize="20" FontWeight="Bold"/>
+                    <Border CornerRadius="8" Background="Black" RenderTransformOrigin="0.5,0.5" Margin="10,36,280,12">
+                        <Label x:Name="chooseProductGroup_Label" Content="Produktgruppe" HorizontalAlignment="Center" 
+                               Height="22" Padding="2,2,2,2" VerticalAlignment="Center" Width="100" FontWeight="Bold" 
+                               Background="Black" Foreground="White" RenderTransformOrigin="0.5,0.5"/>
+                    </Border>
+                    <ComboBox x:Name="productGroup_ComboBox" Margin="127,36,90,11" BorderBrush="White">
+                        <ComboBox.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Color="#FFF0F0F0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ComboBox.Background>
+                    </ComboBox>
+                </Grid>
+
+                <!--Firmen Daten-->
+                <Grid x:Name="Company_Grid" HorizontalAlignment="Left" Height="141" 
+                      VerticalAlignment="Top" Width="337" Margin="0,210,0,0">
+                    <Label x:Name="Company_Label" Content="Firmen angehörig?" HorizontalAlignment="Left" 
+                           Height="60" VerticalAlignment="Top" Width="467" FontSize="20" FontWeight="Bold"/>
+
+                    <!--Firmenname Datenerfassung-->
+                    <Border CornerRadius="8" Background="Black" RenderTransformOrigin="0.5,0.5" Margin="10,37,215,84">
+                        <Label x:Name="companyName_Label" Content="Firmenname" HorizontalAlignment="Left" Height="19" Padding="2,2,2,2" 
+                               VerticalAlignment="Center" Width="92" FontWeight="Bold" Background="Black" Foreground="White" Margin="3,0,0,0"/>
+                    </Border>
+                    <Border CornerRadius="8" Margin="127,37,24,84" BorderBrush="Black" BorderThickness="1">
+                        <TextBox x:Name="companyName_TextBox" Tag="Firmenname" HorizontalAlignment="Center" Height="23" 
+                                 TextWrapping="Wrap" Text="Firmenname" VerticalAlignment="Top" Width="185" GotFocus="TextBox_GotFocus" 
+                                 LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+
+                    <!--Firmenstraße Datenerfassung-->
+                    <Border CornerRadius="8" Background="Black" RenderTransformOrigin="0.5,0.5" Margin="10,64,215,58">
+                        <Label x:Name="companyStreet_Label" Content="Straße" HorizontalAlignment="Center" Height="20" Padding="2,2,2,2" 
+                               VerticalAlignment="Center" Width="92" FontWeight="Bold" Background="Black" Foreground="White" Margin="-9,0,0,0"/>
+                    </Border>
+                    <Border CornerRadius="8" Margin="127,64,91,58" BorderBrush="Black" BorderThickness="1">
+                        <TextBox x:Name="companyStreet_TextBox" Tag="Straßenname" HorizontalAlignment="Center" Height="23" 
+                                 TextWrapping="Wrap" Text="Straßenname" VerticalAlignment="Top" Width="119" GotFocus="TextBox_GotFocus" 
+                                 LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+                    <Border CornerRadius="8" Margin="251,64,24,58" BorderBrush="Black" BorderThickness="1">
+                        <TextBox x:Name="companyHouseNr_TextBox" Tag="Hausnr." HorizontalAlignment="Center" Height="23" 
+                                 TextWrapping="Wrap" Text="Hausnr." VerticalAlignment="Top" Width="62" GotFocus="TextBox_GotFocus" 
+                                 LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+
+                    <!--Firmenort Datenerfassung-->
+                    <Border CornerRadius="8" Background="Black" RenderTransformOrigin="0.5,0.5" Margin="10,88,215,34">
+                        <Label x:Name="companyCity_Label" Content="Ort" HorizontalAlignment="Center" Height="20" 
+                               Padding="2,2,2,2" VerticalAlignment="Center" Width="92" FontWeight="Bold" 
+                               Background="Black" Foreground="White" Margin="-9,0,0,0"/>
+                    </Border>
+                    <Border CornerRadius="8" Margin="127,88,91,34" BorderBrush="Black" BorderThickness="1">
+                        <TextBox x:Name="companyCity_TextBox" Tag="Ortsname" HorizontalAlignment="Center" Height="23" 
+                                 TextWrapping="Wrap" Text="Ortsname" VerticalAlignment="Top" Width="119" GotFocus="TextBox_GotFocus" 
+                                 LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+                    <Border CornerRadius="8" Margin="251,88,24,34" BorderBrush="Black" BorderThickness="1">
+                        <TextBox x:Name="companyPLZ_TextBox" Tag="PLZ" HorizontalAlignment="Center" Height="23" 
+                                 TextWrapping="Wrap" Text="PLZ" VerticalAlignment="Top" Width="62" GotFocus="TextBox_GotFocus" 
+                                 LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
+                    </Border>
+                </Grid>
+                <Border CornerRadius="8" Background="Black" Margin="353,298,74,40"></Border>
+                <Button x:Name="sendData_Button" Content="Senden" Margin="362,298,83,40" Background="Black" BorderBrush="Black" Foreground="White"
+                        Style="{StaticResource TransparentHoverButton}"/>
+            </Grid>
+
+            <!--Admin Panel-->
+            <Grid x:Name="AdminPanel_Grid" HorizontalAlignment="Left" Height="38" Margin="351,10,0,0" VerticalAlignment="Top" Width="277">
+                <Border CornerRadius="8" Background="Black" Margin="0,13,185,6">
+                    <Button x:Name="adminPanelLogin_Button" Content="Login" HorizontalAlignment="Center" Height="20" 
+                            VerticalAlignment="Center" Width="81" Background="Black" Foreground="White" BorderBrush="Black"
+                            Style="{StaticResource TransparentHoverButton}" Click="OpenAdminPanel_Click"/>
+                </Border>
+
+                <!-- TextBox für adminName mit Border -->
+                <Border CornerRadius="8" Margin="97,13,97,6" BorderBrush="Black" BorderThickness="1">
+                    <TextBox x:Name="adminName_TextBox" Tag="Username" HorizontalAlignment="Center" Height="19" 
+                     TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="80" 
+                     GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent" Margin="7,0,0,0"/>
+                </Border>
+
+                <!-- PasswordBox mit Border und Watermark -->
+                <Grid Margin="186,13,0,0">
+                    <Border CornerRadius="8" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,5">
+                        <PasswordBox x:Name="passwordBox" Height="16" VerticalAlignment="Top" 
+                         BorderThickness="0" Background="White" PasswordChar="●" PasswordChanged="PasswordBox_PasswordChanged" Margin="6,0,6,0"/>
+                    </Border>
+                    <TextBlock x:Name="watermarkTextBlock" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                   Width="82" Text="Passwort" Foreground="Black" Margin="7,2,0,0" IsHitTestVisible="False"
+                   Visibility="{Binding ElementName=passwordBox, Path=Password.Length, Converter={StaticResource PasswordLengthToVisibilityConverter}}"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>
+
+
