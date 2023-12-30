@@ -124,7 +124,7 @@
                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8">
                     <Image x:Name="personalImage" Source="C:\Users\JRK1FE\Desktop\Schule\Projekt\images.png" 
                        Margin="353,21,74,232"/>
-                </Border>  
+                </Border>
 
                 <Border CornerRadius="8" Background="Black" Margin="353,137,78,201"/>
                 <Button x:Name="image_Button" Content="Bild" Margin="359,140,87,201" Background="Black" BorderBrush="Black" Foreground="White"
@@ -169,12 +169,12 @@
                                FontWeight="Bold" Foreground="White" Margin="5,-1,0,0"/>
                     </Border>
                     <Border CornerRadius="8" Margin="127,88,91,33" BorderBrush="Black" BorderThickness="1">
-                        <TextBox Tag="Straßenname" HorizontalAlignment="Left" Height="23" 
+                        <TextBox x:Name="street_TextBox" Tag="Straßenname" HorizontalAlignment="Left" Height="23" 
                                  TextWrapping="Wrap" Text="Straßenname" VerticalAlignment="Top" Width="108" 
                                  GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
                     </Border>
                     <Border CornerRadius="8" Margin="251,88,25,32" BorderBrush="Black" BorderThickness="1">
-                        <TextBox Tag="Hausnr." HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
+                        <TextBox x:Name="houseNr_TextBox" Tag="Hausnr." HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
                                  Text="Hausnr." VerticalAlignment="Top" Width="108" GotFocus="TextBox_GotFocus" 
                                  LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
                     </Border>
@@ -186,12 +186,12 @@
                                FontWeight="Bold" Foreground="White" Margin="-2,-1,0,0"/>
                     </Border>
                     <Border CornerRadius="8" Margin="127,114,91,6" BorderBrush="Black" BorderThickness="1">
-                        <TextBox Tag="Ortsname" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
+                        <TextBox x:Name="city_TextBox" Tag="Ortsname" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" 
                                  Text="Ortsname" VerticalAlignment="Top" Width="108" GotFocus="TextBox_GotFocus" 
                                  LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
                     </Border>
                     <Border CornerRadius="8" Margin="251,114,25,6" BorderBrush="Black" BorderThickness="1">
-                        <TextBox Tag="PLZ" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="PLZ" 
+                        <TextBox x:Name="postalCode_TextBox" Tag="PLZ" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="PLZ" 
                                  VerticalAlignment="Top" Width="108" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" 
                                  BorderThickness="0" Background="Transparent"/>
                     </Border>
@@ -206,21 +206,25 @@
                                Height="22" Padding="2,2,2,2" VerticalAlignment="Center" Width="100" FontWeight="Bold" 
                                Background="Black" Foreground="White" RenderTransformOrigin="0.5,0.5"/>
                     </Border>
-                    <ComboBox x:Name="productGroup_ComboBox" Margin="127,36,90,11" BorderBrush="White">
+                    <ComboBox x:Name="productGroup_ComboBox" Margin="127,36,90,11" BorderBrush="White" SelectionChanged="productGroup_ComboBox_SelectionChanged">
                         <ComboBox.Background>
                             <LinearGradientBrush EndPoint="0,1">
                                 <GradientStop Color="#FFF0F0F0"/>
                                 <GradientStop Color="White" Offset="1"/>
                             </LinearGradientBrush>
                         </ComboBox.Background>
+
                     </ComboBox>
                 </Grid>
 
                 <!--Firmen Daten-->
+
                 <Grid x:Name="Company_Grid" HorizontalAlignment="Left" Height="141" 
                       VerticalAlignment="Top" Width="337" Margin="0,210,0,0">
                     <Label x:Name="Company_Label" Content="Firmen angehörig?" HorizontalAlignment="Left" 
                            Height="60" VerticalAlignment="Top" Width="467" FontSize="20" FontWeight="Bold"/>
+
+
 
                     <!--Firmenname Datenerfassung-->
                     <Border CornerRadius="8" Background="Black" RenderTransformOrigin="0.5,0.5" Margin="10,37,215,84">
@@ -268,7 +272,7 @@
                 </Grid>
                 <Border CornerRadius="8" Background="Black" Margin="353,298,74,40"></Border>
                 <Button x:Name="sendData_Button" Content="Senden" Margin="362,298,83,40" Background="Black" BorderBrush="Black" Foreground="White"
-                        Style="{StaticResource TransparentHoverButton}"/>
+                        Style="{StaticResource TransparentHoverButton}" Click="sendData_Button_Click"/>
             </Grid>
 
             <!--Admin Panel-->
@@ -297,6 +301,9 @@
                    Visibility="{Binding ElementName=passwordBox, Path=Password.Length, Converter={StaticResource PasswordLengthToVisibilityConverter}}"/>
                 </Grid>
             </Grid>
+            <CheckBox x:Name="company_CheckBox" Margin="211,286,398,122" BorderBrush="Black" BorderThickness="1.2" 
+                            Checked="company_CheckBox_Checked"
+                            Unchecked="company_CheckBox_Unchecked"/>
         </Grid>
     </Viewbox>
 </Window>
