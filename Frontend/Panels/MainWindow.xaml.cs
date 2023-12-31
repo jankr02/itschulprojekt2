@@ -33,36 +33,38 @@ namespace MesseauftrittDatenerfassung_UI
         private CustomerApiClient _apiClient;
         private byte[] _capturedImageBytes;
         private int _productGroupId;
+        public List<String> ProductGroups { get; }
+
         public MainWindow()
         {
             InitializeComponent();
             SplashScreen splashScreen = new SplashScreen("Die Anwendung wird geladen ...");
             splashScreen.Show();
             InitializeApiClientAsync(splashScreen);
-            PopulateProductGroupComboBox();
             SetCompanyGridEnabled(false);
             SetCompanyGridVisibility(Visibility.Visible, 0.5);
+            ProductGroups = new List<string>();
         }
 
-        private void PopulateProductGroupComboBox()
-        {
-            productGroup_ComboBox.ItemsSource = Enum.GetValues(typeof(ProductGroupName))
-                                                       .Cast<ProductGroupName>();
-        }
+        //private void PopulateProductGroupComboBox()
+        //{
+        //    productGroup_ComboBox.ItemsSource = Enum.GetValues(typeof(ProductGroupName))
+        //                                               .Cast<ProductGroupName>();
+        //}
 
-        private void productGroup_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (productGroup_ComboBox.SelectedItem != null)
-            {
-                string selectedItem = productGroup_ComboBox.SelectedItem.ToString();
-                string[] parts = selectedItem.Split(' ');
+        //private void productGroup_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (productGroup_ComboBox.SelectedItem != null)
+        //    {
+        //        string selectedItem = productGroup_ComboBox.SelectedItem.ToString();
+        //        string[] parts = selectedItem.Split(' ');
 
-                if (parts.Length >= 2 && int.TryParse(parts[parts.Length - 1], out int productGroupId))
-                {
-                    _productGroupId = productGroupId;
-                }
-            }
-        }
+        //        if (parts.Length >= 2 && int.TryParse(parts[parts.Length - 1], out int productGroupId))
+        //        {
+        //            _productGroupId = productGroupId;
+        //        }
+        //    }
+        //}
 
         private async void InitializeApiClientAsync(SplashScreen splashScreen)
         {
@@ -169,6 +171,55 @@ namespace MesseauftrittDatenerfassung_UI
             };
 
             SendDataToBackend(customerData, businessData, pictureData, customerProductGroupData);
+        }
+
+        private void productGroup_CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            if (checkBox != null)
+            {
+                string productGroupName = "";
+                switch (checkBox.Name)
+                {
+                    case "productGroup_Checkbox1":
+                        productGroupName = productGroup_Label1.Content.ToString();
+                        break;
+                    case "productGroup_Checkbox2":
+                        productGroupName = productGroup_Label2.Content.ToString();
+                        break;
+                    case "productGroup_Checkbox3":
+                        productGroupName = productGroup_Label3.Content.ToString();
+                        break;
+                }
+
+                if (!ProductGroups.Contains(productGroupName))
+                {
+                    ProductGroups.Add(productGroupName);
+                }
+            }
+        }
+
+        private void productGroup_CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            if (checkBox != null)
+            {
+                string productGroupName = "";
+                switch (checkBox.Name)
+                {
+                    case "productGroup_Checkbox1":
+                        productGroupName = productGroup_Label1.Content.ToString();
+                        break;
+                    case "productGroup_Checkbox2":
+                        productGroupName = productGroup_Label2.Content.ToString();
+                        break;
+                    case "productGroup_Checkbox3":
+                        productGroupName = productGroup_Label3.Content.ToString();
+                        break;
+                }
+
+                ProductGroups.Remove(productGroupName);
+            }
         }
 
         private bool ValidateInput(DependencyObject container)
