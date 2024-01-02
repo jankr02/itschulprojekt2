@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\JRK1FE\Desktop\Schule\Projekt\schulprojekt2\Frontend\Panels\obj\Debug\
+C:\Users\jankg\Documents\Schule\Projekte\Messeauftritt\Frontend\Panels\obj\Debug\
 MesseauftrittDatenerfassung_UI
 none
 false
 DEBUG;TRACE
-C:\Users\JRK1FE\Desktop\Schule\Projekt\schulprojekt2\Frontend\Panels\App.xaml
-2-155518526
+C:\Users\jankg\Documents\Schule\Projekte\Messeauftritt\Frontend\Panels\App.xaml
+3-1491919765
 
-8-1780399228
-18-1746093760
-AdminPanel.xaml;MainWindow.xaml;
+201397619331
+19-1608844666
+AdminPanel.xaml;MainWindow.xaml;SplashScreen.xaml;
 
-True
+False
 
