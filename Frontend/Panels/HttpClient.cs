@@ -1,26 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Net.NetworkInformation;
 using MesseauftrittDatenerfassung_UI.Dtos.PictureDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
 using System.Net.Http.Headers;
+using MesseauftrittDatenerfassung_UI.Enums;
 
 namespace MesseauftrittDatenerfassung_UI
 {
-    public class CustomerApiClient
+    public sealed class CustomerApiClient
     {
         private readonly HttpClient _httpClient;
 
+        private static CustomerApiClient _remoteDatabaseClient;
+        private static CustomerApiClient _localDatabaseClient;
 
-        public CustomerApiClient()
+        private CustomerApiClient(DatabaseType databaseType)
         {
             _httpClient = new HttpClient();
+            SetBaseAddress(databaseType);
         }
 
         // GET: api/Customer
@@ -37,10 +39,10 @@ namespace MesseauftrittDatenerfassung_UI
         {
             var jsonContent = JsonConvert.SerializeObject(customer);
             var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("api/Customer", contentString);
+            var response = _httpClient.PostAsync("api/Customer", contentString).GetAwaiter().GetResult();
             response.EnsureSuccessStatusCode();
             var responseContent = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<GetCustomerDto>(responseContent);
+            return JsonConvert.DeserializeObject<ServiceResponse<GetCustomerDto>>(responseContent).Data;
         }
 
         // PUT: api/Customer
@@ -108,26 +110,42 @@ namespace MesseauftrittDatenerfassung_UI
             }
         }
 
-        public static async Task<CustomerApiClient> CreateAsync()
+        public static CustomerApiClient CreateOrGetClient(DatabaseType databaseType)
         {
-            var client = new CustomerApiClient();
-            await client.SetBaseAddress();
-            return client;
+            if(databaseType == DatabaseType.RemoteDatabase)
+            {
+                if(_remoteDatabaseClient == null)
+                {
+                    _remoteDatabaseClient = new CustomerApiClient(DatabaseType.RemoteDatabase);
+                }
+                return _remoteDatabaseClient;
+            }
+
+            if (databaseType == DatabaseType.LocalDatabase)
+            {
+                if (_localDatabaseClient == null)
+                {
+                    _localDatabaseClient = new CustomerApiClient(DatabaseType.LocalDatabase);
+                }
+                return _localDatabaseClient;
+            }
+
+            throw new NotImplementedException();
         }
 
-        private async Task SetBaseAddress()
+        private void SetBaseAddress(DatabaseType databaseType)
         {
-            if (await IsInternetAvailableAsync())
+            if (databaseType == DatabaseType.RemoteDatabase)
             {
-                _httpClient.BaseAddress = new Uri("http://localhost:5069/swagger/index.html");
+                _httpClient.BaseAddress = new Uri("http://localhost:5069/");
             }
             else
             {
-                _httpClient.BaseAddress = new Uri("http://localhost:5222/swagger/index.html");
+                _httpClient.BaseAddress = new Uri("http://localhost:5222/");
             }
         }
 
-        private async Task<bool> IsInternetAvailableAsync()
+        public async Task<bool> IsInternetAvailableAsync()
         {
             try
             {

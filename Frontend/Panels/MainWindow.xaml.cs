@@ -2,19 +2,12 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Gu.Wpf.Adorners;
 using MesseauftrittDatenerfassung.MesseauftrittDatenerfassung;
 using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
@@ -37,10 +30,14 @@ namespace MesseauftrittDatenerfassung_UI
 
         public MainWindow()
         {
-            InitializeComponent();
             SplashScreen splashScreen = new SplashScreen("Die Anwendung wird geladen ...");
             splashScreen.Show();
-            InitializeApiClientAsync(splashScreen);
+            if (!Task.Run(() => InitializeApiClientAsync(10)).GetAwaiter().GetResult())
+            {
+                Close();
+            }
+            splashScreen.Close();
+            InitializeComponent();
             SetCompanyGridEnabled(false);
             SetCompanyGridVisibility(Visibility.Visible, 0.5);
             ProductGroups = new List<string>();
@@ -66,20 +63,37 @@ namespace MesseauftrittDatenerfassung_UI
         //    }
         //}
 
-        private async void InitializeApiClientAsync(SplashScreen splashScreen)
+        private async Task<bool> InitializeApiClientAsync(int numberOfConnectionTries)
         {
             try
             {
-                _apiClient = await CustomerApiClient.CreateAsync();
-                await Task.Delay(TimeSpan.FromSeconds(0.15));
-                splashScreen.Close();
+                _apiClient = CustomerApiClient.CreateOrGetClient(DatabaseType.LocalDatabase);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Fehler bei der Initialisierung: " + ex.Message);
-                Close(); 
+                return false;
             }
 
+            for (int i = 0; i < numberOfConnectionTries; i++)
+            {
+                try
+                {
+                    await _apiClient.GetCustomerAsync();
+                }
+                catch (Exception ex)
+                {
+                    if(i == (numberOfConnectionTries - 1))
+                    {
+                        MessageBox.Show("Fehler bei der Initialisierung: " + ex.Message);
+                        return false;
+                    }
+                    await Task.Delay(TimeSpan.FromSeconds(2));
+                    continue;
+                }
+                return true;
+            }
+            return true;
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -107,7 +121,8 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void Image_Button_Click(object sender, RoutedEventArgs e)
         {
-            _capturedImageBytes = cameraApi.CaptureImage();
+            _capturedImageBytes = ToByteArray();
+            //_capturedImageBytes = cameraApi.CaptureImage();
 
             if (_capturedImageBytes != null)
             {
@@ -120,6 +135,16 @@ namespace MesseauftrittDatenerfassung_UI
                     image.EndInit();
                     personalImage.Source = image;
                 }
+            }
+        }
+
+        private static byte[] ToByteArray()
+        {
+            var image = System.Drawing.Image.FromFile("C:\\Users\\Matth\\Desktop\\Testbild.jpg");
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return memoryStream.ToArray();
             }
         }
 
@@ -248,9 +273,7 @@ namespace MesseauftrittDatenerfassung_UI
         {
             try
             {
-                int id = _apiClient.GetCustomerAsync().Result.Id;
-
-                await _apiClient.CreateCustomerAsync(customerData);
+                int id = _apiClient.CreateCustomerAsync(customerData).GetAwaiter().GetResult().Id;                
                 await _apiClient.AddBusinessToCustomerAsync(id, businessData);
                 await _apiClient.AddPictureToCustomerAsync(id, pictureData);
                 await _apiClient.AddProductGroupToCustomerAsync(id, customerProductGroupData);
