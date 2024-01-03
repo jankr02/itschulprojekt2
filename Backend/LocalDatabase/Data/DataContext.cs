@@ -22,5 +22,6 @@
         public DbSet<Picture> Pictures => Set<Picture>();
         public DbSet<ProductGroup> ProductGroups => Set<ProductGroup>();
         public DbSet<Business> Businesses => Set<Business>();
+        public DbSet<User> Users => Set<User>();
     }
 }

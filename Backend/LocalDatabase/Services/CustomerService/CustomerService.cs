@@ -24,9 +24,11 @@
         }
 
         public async Task<ServiceResponse<List<GetCustomerDto>>> GetAllCustomers()
+        // public async Task<ServiceResponse<List<GetCustomerDto>>> GetAllCustomers(int userId)
         {
             var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
             var dbcustomers = await _context.Customers
+                // .Where(c => c.User!.Id == userId)
                 .Include(c => c.Picture)
                 .Include(c => c.ProductGroups)
                 .Include(c => c.Business)
