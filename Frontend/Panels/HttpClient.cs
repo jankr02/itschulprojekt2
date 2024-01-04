@@ -9,6 +9,7 @@ using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
 using System.Net.Http.Headers;
 using MesseauftrittDatenerfassung_UI.Enums;
+using System.Collections.Generic;
 
 namespace MesseauftrittDatenerfassung_UI
 {
@@ -73,9 +74,9 @@ namespace MesseauftrittDatenerfassung_UI
         }
 
         // POST: api/Customer/ProductGroup
-        public async Task AddProductGroupToCustomerAsync(int customerId, AddCustomerProductGroupDto productGroup)
+        public async Task AddProductGroupsToCustomerAsync(List<AddCustomerProductGroupDto> productGroups)
         {
-            var jsonContent = JsonConvert.SerializeObject(productGroup);
+            var jsonContent = JsonConvert.SerializeObject(productGroups);
             var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync($"api/Customer/ProductGroup", contentString);
             response.EnsureSuccessStatusCode();

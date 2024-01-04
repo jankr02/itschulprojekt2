@@ -25,8 +25,6 @@ namespace MesseauftrittDatenerfassung_UI
         private CameraAPI cameraApi = new CameraAPI();
         private CustomerApiClient _apiClient;
         private byte[] _capturedImageBytes;
-        private int _productGroupId;
-        public List<String> ProductGroups { get; }
 
         public MainWindow()
         {
@@ -40,14 +38,16 @@ namespace MesseauftrittDatenerfassung_UI
             InitializeComponent();
             SetCompanyGridEnabled(false);
             SetCompanyGridVisibility(Visibility.Visible, 0.5);
-            ProductGroups = new List<string>();
+            PopulateProductGroupListBox();
         }
 
-        //private void PopulateProductGroupComboBox()
-        //{
-        //    productGroup_ComboBox.ItemsSource = Enum.GetValues(typeof(ProductGroupName))
-        //                                               .Cast<ProductGroupName>();
-        //}
+        private void PopulateProductGroupListBox()
+        {
+            foreach (var item in Enum.GetValues(typeof(ProductGroupName)))
+            {
+                productGroup_ListBox.Items.Add(item);
+            }
+        }
 
         //private void productGroup_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
@@ -153,12 +153,12 @@ namespace MesseauftrittDatenerfassung_UI
             if (adminName_TextBox.Text == "Admin" && passwordBox.Password == "Admin123")
             {
                 AdminPanel adminPanelWindow = new AdminPanel();
-                this.Close();
+                Close();
                 adminPanelWindow.Show();
             }
         }
 
-        private void sendData_Button_Click(object sender, RoutedEventArgs e)
+        private void SendData_Button_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidateInput(this)) 
             {
@@ -176,76 +176,117 @@ namespace MesseauftrittDatenerfassung_UI
                 City = city_TextBox.Text.ToString()
             };
 
-            AddBusinessDto businessData = new AddBusinessDto()
-            {
-                Name = companyName_TextBox.Text.ToString(),
-                Street = companyStreet_TextBox.Text.ToString(),
-                HouseNumber = companyHouseNr_TextBox.Text.ToString(),
-                City = companyCity_TextBox.Text.ToString(),
-                PostalCode = companyPLZ_TextBox.Text.ToString(),
-            };
+            var customerId = AddCustomerToDatabase(customerData);
 
-            AddPictureDto pictureData = new AddPictureDto()
+            if(customerId == 0)
             {
-                Name = personalImage.Name.ToString(),
-                Image = _capturedImageBytes
-            };
+                return;
+            }
 
-            AddCustomerProductGroupDto customerProductGroupData = new AddCustomerProductGroupDto()
+            if (_capturedImageBytes != null)
             {
-            };
-
-            SendDataToBackend(customerData, businessData, pictureData, customerProductGroupData);
-        }
-
-        private void productGroup_CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            CheckBox checkBox = sender as CheckBox;
-            if (checkBox != null)
-            {
-                string productGroupName = "";
-                switch (checkBox.Name)
+                AddPictureDto pictureData = new AddPictureDto()
                 {
-                    case "productGroup_Checkbox1":
-                        productGroupName = productGroup_Label1.Content.ToString();
-                        break;
-                    case "productGroup_Checkbox2":
-                        productGroupName = productGroup_Label2.Content.ToString();
-                        break;
-                    case "productGroup_Checkbox3":
-                        productGroupName = productGroup_Label3.Content.ToString();
-                        break;
-                }
+                    Name = personalImage.Name.ToString(),
+                    Image = _capturedImageBytes
+                };
 
-                if (!ProductGroups.Contains(productGroupName))
+                if(!Task.Run(() => AddPictureToCustomerAsync(customerId, pictureData)).GetAwaiter().GetResult())
                 {
-                    ProductGroups.Add(productGroupName);
+                    return;
                 }
             }
-        }
 
-        private void productGroup_CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            CheckBox checkBox = sender as CheckBox;
-            if (checkBox != null)
+            if (productGroup_ListBox.SelectedIndex != -1)
             {
-                string productGroupName = "";
-                switch (checkBox.Name)
+                var customerProductGroups = new List<AddCustomerProductGroupDto>();
+                foreach (var item in productGroup_ListBox.SelectedItems)
                 {
-                    case "productGroup_Checkbox1":
-                        productGroupName = productGroup_Label1.Content.ToString();
-                        break;
-                    case "productGroup_Checkbox2":
-                        productGroupName = productGroup_Label2.Content.ToString();
-                        break;
-                    case "productGroup_Checkbox3":
-                        productGroupName = productGroup_Label3.Content.ToString();
-                        break;
+                    if(Enum.TryParse(item.ToString(), out ProductGroupName productGroupName))
+                    {
+                        customerProductGroups.Add(
+                            new AddCustomerProductGroupDto()
+                            {
+                                CustomerId = customerId,
+                                ProductGroupId = (int)productGroupName
+                            }) ;
+                    }
                 }
 
-                ProductGroups.Remove(productGroupName);
+                if (!Task.Run(() => AddProductGroupsToCustomerAsync(customerProductGroups)).GetAwaiter().GetResult())
+                {
+                    return;
+                }
             }
+
+            if ((company_CheckBox.IsChecked != null) && (bool)company_CheckBox.IsChecked)
+            {
+                AddBusinessDto businessData = new AddBusinessDto()
+                {
+                    Name = companyName_TextBox.Text.ToString(),
+                    Street = companyStreet_TextBox.Text.ToString(),
+                    HouseNumber = companyHouseNr_TextBox.Text.ToString(),
+                    City = companyCity_TextBox.Text.ToString(),
+                    PostalCode = companyPLZ_TextBox.Text.ToString(),
+                };
+
+                if(!Task.Run(() => AddBusinessToCustomerAsync(customerId, businessData)).GetAwaiter().GetResult())
+                {
+                    return;
+                }
+            }
+
+            MessageBox.Show("Ihre Daten wurden erfolgreich gespeichert.");
         }
+
+        //private void productGroup_CheckBox_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    CheckBox checkBox = sender as CheckBox;
+        //    if (checkBox != null)
+        //    {
+        //        string productGroupName = "";
+        //        switch (checkBox.Name)
+        //        {
+        //            case "productGroup_Checkbox1":
+        //                productGroupName = productGroup_Label1.Content.ToString();
+        //                break;
+        //            case "productGroup_Checkbox2":
+        //                productGroupName = productGroup_Label2.Content.ToString();
+        //                break;
+        //            case "productGroup_Checkbox3":
+        //                productGroupName = productGroup_Label3.Content.ToString();
+        //                break;
+        //        }
+
+        //        if (!ProductGroups.Contains(productGroupName))
+        //        {
+        //            ProductGroups.Add(productGroupName);
+        //        }
+        //    }
+        //}
+
+        //private void productGroup_CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        //{
+        //    CheckBox checkBox = sender as CheckBox;
+        //    if (checkBox != null)
+        //    {
+        //        string productGroupName = "";
+        //        switch (checkBox.Name)
+        //        {
+        //            case "productGroup_Checkbox1":
+        //                productGroupName = productGroup_Label1.Content.ToString();
+        //                break;
+        //            case "productGroup_Checkbox2":
+        //                productGroupName = productGroup_Label2.Content.ToString();
+        //                break;
+        //            case "productGroup_Checkbox3":
+        //                productGroupName = productGroup_Label3.Content.ToString();
+        //                break;
+        //        }
+
+        //        ProductGroups.Remove(productGroupName);
+        //    }
+        //}
 
         private bool ValidateInput(DependencyObject container)
         {
@@ -268,29 +309,70 @@ namespace MesseauftrittDatenerfassung_UI
             return isValid;
         }
 
-        private async void SendDataToBackend(AddCustomerDto customerData, AddBusinessDto businessData, 
-            AddPictureDto pictureData, AddCustomerProductGroupDto customerProductGroupData)
+        private int AddCustomerToDatabase(AddCustomerDto customerData)
         {
+            int id = 0;
             try
             {
-                int id = _apiClient.CreateCustomerAsync(customerData).GetAwaiter().GetResult().Id;                
-                await _apiClient.AddBusinessToCustomerAsync(id, businessData);
-                await _apiClient.AddPictureToCustomerAsync(id, pictureData);
-                await _apiClient.AddProductGroupToCustomerAsync(id, customerProductGroupData);
+                id = _apiClient.CreateCustomerAsync(customerData).GetAwaiter().GetResult().Id;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Fehler beim Senden der Daten: " + ex.Message);
+                MessageBox.Show("Fehler beim Anlegen des Benutzers: " + ex.Message);
             }
+            return id;
         }
 
-        private void company_CheckBox_Checked(object sender, RoutedEventArgs e)
+        private async Task<bool> AddPictureToCustomerAsync(int customerId, AddPictureDto pictureData)
+        {
+            try
+            {
+                await _apiClient.AddPictureToCustomerAsync(customerId, pictureData);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fehler beim Senden des Bildes: " + ex.Message);
+                return false;
+            }
+            return true;
+        }
+
+        private async Task<bool> AddProductGroupsToCustomerAsync(List<AddCustomerProductGroupDto> customerProductGroups)
+        {
+            try
+            {
+                await _apiClient.AddProductGroupsToCustomerAsync(customerProductGroups);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fehler beim Hinzufügen der Produktgruppe(n): " + ex.Message);
+                return false;
+            }
+            return true;
+        }
+
+
+        private async Task<bool> AddBusinessToCustomerAsync(int customerId, AddBusinessDto businessData)
+        {
+            try
+            {
+                await _apiClient.AddBusinessToCustomerAsync(customerId, businessData);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fehler beim Hinzufügen der Unternehmensdaten: " + ex.Message);
+                return false;
+            }
+            return true;
+        }
+
+        private void Company_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             SetCompanyGridEnabled(true);
             SetCompanyGridVisibility(Visibility.Visible, 1);
         }
 
-        private void company_CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        private void Company_CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             SetCompanyGridEnabled(false);
             SetCompanyGridVisibility(Visibility.Visible, 0.5);
