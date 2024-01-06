@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Emilie\\OneDrive\\Dokumente\\Ausbildung\\Projekt_Messeauftritt\\Backend\\RemoteDatabase\\RemoteDatabase.csproj": {}
+    "C:\\Users\\jankg\\Documents\\Schule\\Projekte\\Messeauftritt\\Backend\\RemoteDatabase\\RemoteDatabase.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Emilie\\OneDrive\\Dokumente\\Ausbildung\\Projekt_Messeauftritt\\Backend\\RemoteDatabase\\RemoteDatabase.csproj": {
+    "C:\\Users\\jankg\\Documents\\Schule\\Projekte\\Messeauftritt\\Backend\\RemoteDatabase\\RemoteDatabase.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Emilie\\OneDrive\\Dokumente\\Ausbildung\\Projekt_Messeauftritt\\Backend\\RemoteDatabase\\RemoteDatabase.csproj",
+        "projectUniqueName": "C:\\Users\\jankg\\Documents\\Schule\\Projekte\\Messeauftritt\\Backend\\RemoteDatabase\\RemoteDatabase.csproj",
         "projectName": "RemoteDatabase",
-        "projectPath": "C:\\Users\\Emilie\\OneDrive\\Dokumente\\Ausbildung\\Projekt_Messeauftritt\\Backend\\RemoteDatabase\\RemoteDatabase.csproj",
-        "packagesPath": "C:\\Users\\Emilie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Emilie\\OneDrive\\Dokumente\\Ausbildung\\Projekt_Messeauftritt\\Backend\\RemoteDatabase\\obj\\",
+        "projectPath": "C:\\Users\\jankg\\Documents\\Schule\\Projekte\\Messeauftritt\\Backend\\RemoteDatabase\\RemoteDatabase.csproj",
+        "packagesPath": "C:\\Users\\jankg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jankg\\Documents\\Schule\\Projekte\\Messeauftritt\\Backend\\RemoteDatabase\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Emilie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jankg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -48,10 +48,6 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
-            },
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[7.0.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -84,10 +80,6 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
-            },
-            "Swashbuckle.AspNetCore.Filters": {
-              "target": "Package",
-              "version": "[7.0.12, )"
             },
             "System.Drawing.Common": {
               "target": "Package",
