@@ -24,16 +24,18 @@
         }
 
         public async Task<ServiceResponse<List<GetCustomerDto>>> GetAllCustomers()
-            {
-                var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
-                var dbcustomers = await _context.Customers
-                    .Include(c => c.Picture)
-                    .Include(c => c.ProductGroups)
-                    .Include(c => c.Business)
-                    .ToListAsync();
-                serviceResponse.Data = dbcustomers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToList();
-                return serviceResponse;
-            }
+        // public async Task<ServiceResponse<List<GetCustomerDto>>> GetAllCustomers(int userId)
+        {
+            var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
+            var dbcustomers = await _context.Customers
+                // .Where(c => c.User!.Id == userId)
+                .Include(c => c.Picture)
+                .Include(c => c.ProductGroups)
+                .Include(c => c.Business)
+                .ToListAsync();
+            serviceResponse.Data = dbcustomers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToList();
+            return serviceResponse;
+        }
 
         public async Task<ServiceResponse<GetCustomerDto>> GetCustomerById(int id)
         {
