@@ -3,6 +3,7 @@
     public interface ICustomerService
     {
         Task<ServiceResponse<List<GetCustomerDto>>> GetAllCustomers();
+        // Task<ServiceResponse<List<GetCustomerDto>>> GetAllCustomers(int customerId);
         Task<ServiceResponse<GetCustomerDto>> GetCustomerById(int id);
         Task<ServiceResponse<GetCustomerDto>> AddCustomer(AddCustomerDto newCustomer);
         Task<ServiceResponse<GetCustomerDto>> UpdateCustomer(UpdateCustomerDto updatedCustomer);

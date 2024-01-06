@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace RemoteDatabase.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomerController : ControllerBase
@@ -16,7 +19,9 @@ namespace RemoteDatabase.Controllers
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> GetAllCustomers()
         {
-           return Ok(await _customerService.GetAllCustomers());
+            int customerId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)!.Value);
+            return Ok(await _customerService.GetAllCustomers());
+            // return Ok(await _customerService.GetAllCustomers(customerId));
         }
 
         [HttpGet("{id:int}")]
@@ -31,6 +36,7 @@ namespace RemoteDatabase.Controllers
             return Ok(response);
         }
 
+        // [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> AddCustomer(AddCustomerDto newCustomer)
         {
@@ -61,6 +67,7 @@ namespace RemoteDatabase.Controllers
             return Ok(response);
         }
 
+        // [AllowAnonymous]
         [HttpPost("ProductGroup")]
         public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> AddCustomerProductGroup(List<AddCustomerProductGroupDto> newCustomerProductGroups)
         {
@@ -73,6 +80,7 @@ namespace RemoteDatabase.Controllers
             return Ok(response);
         }
 
+        // [AllowAnonymous]
         [HttpPost("Business/{customerId:int}")]
         public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> AddBusiness(AddBusinessDto newBusiness, int customerId)
         {
@@ -85,6 +93,7 @@ namespace RemoteDatabase.Controllers
             return Ok(response);
         }
 
+        // [AllowAnonymous]
         [HttpPost("Picture/{customerId:int}")]
         public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> AddPicture(IFormFile image, int customerId)
         {
