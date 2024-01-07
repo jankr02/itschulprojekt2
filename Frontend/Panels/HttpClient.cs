@@ -27,12 +27,12 @@ namespace MesseauftrittDatenerfassung_UI
         }
 
         // GET: api/Customer
-        public async Task<GetCustomerDto> GetCustomerAsync()
+        public async Task<List<GetCustomerDto>> GetAllCustomersAsync()
         {
             var response = await _httpClient.GetAsync("api/Customer");
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<GetCustomerDto>(content);
+            return JsonConvert.DeserializeObject<ServiceResponse<List<GetCustomerDto>>>(content).Data;
         }
 
         // POST: api/Customer
@@ -44,6 +44,17 @@ namespace MesseauftrittDatenerfassung_UI
             response.EnsureSuccessStatusCode();
             var responseContent = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<ServiceResponse<GetCustomerDto>>(responseContent).Data;
+        }
+
+        // POST: api/Customer/Multiple
+        public async Task<List<GetCustomerDto>> CreateMultipleCustomersAsync(List<AddCompleteCustomerDto> customers)
+        {
+            var jsonContent = JsonConvert.SerializeObject(customers);
+            var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var response = _httpClient.PostAsync("api/Customer/Multiple", contentString).GetAwaiter().GetResult();
+            response.EnsureSuccessStatusCode();
+            var responseContent = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<ServiceResponse<List<GetCustomerDto>>>(responseContent).Data;
         }
 
         // PUT: api/Customer
@@ -64,6 +75,15 @@ namespace MesseauftrittDatenerfassung_UI
             response.EnsureSuccessStatusCode();
             var content = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<GetCustomerDto>(content);
+        }
+
+        // DELETE: api/Customer
+        public async Task<List<GetCustomerDto>> TruncateAllTablesAsync()
+        {
+            var response = await _httpClient.DeleteAsync("api/Customer");
+            response.EnsureSuccessStatusCode();
+            var content = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<ServiceResponse<List<GetCustomerDto>>>(content).Data;
         }
 
         // DELETE: api/Customer/{id}
@@ -88,6 +108,13 @@ namespace MesseauftrittDatenerfassung_UI
             var jsonContent = JsonConvert.SerializeObject(business);
             var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync($"api/Customer/Business/{customerId}", contentString);
+            response.EnsureSuccessStatusCode();
+        }
+
+        // DELETE: api/Customer/Business/{businessId}
+        public async Task DeleteBusinessAsync(int businessId)
+        {
+            var response = await _httpClient.DeleteAsync($"api/Customer/Business/{businessId}");
             response.EnsureSuccessStatusCode();
         }
 

@@ -10,65 +10,21 @@
         <Grid>
 
             <Label Content="Admin Panel" Margin="31,10,588,356" FontSize="16" FontWeight="Bold"/>
-            <!--CustomersDataGrid-->
-            <DataGrid x:Name="CustomersDataGrid" Margin="91,88,91,147" BorderBrush="DarkGray" BorderThickness="2" Background="White">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id"/>
-                    <DataGridTextColumn Header="Name"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <!--CustomerInformationDataGrid-->
-            <DataGrid x:Name="CustomerInformationDataGrid" Margin="91,218,91,10" BorderBrush="DarkGray" BorderThickness="2" Background="White">
-                <DataGrid.Columns>
-                    <!-- Ihre bestehenden Spalten -->
-                    <DataGridTextColumn Header="Vorname"/>
-                    <DataGridTextColumn Header="Nachname"/>
-                    <DataGridTextColumn Header="Straßenname"/>
-                    <DataGridTextColumn Header="Hausnr."/>
-                    <DataGridTextColumn Header="Ortsname"/>
-                    <DataGridTextColumn Header="PLZ"/>
-                    <DataGridTextColumn Header="Produktgruppen"/>
-                    <DataGridTextColumn Header="Firma"/>
-
-                    <!-- Neue Bildspalte -->
-                    <DataGridTemplateColumn Header="Bild">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Source="C:\Users\JRK1FE\Desktop\Schule\Projekt\images.png" Width="50" Height="50"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <!--FilterComboBox-->
-            <ComboBox x:Name="FilterComboBox" Margin="91,62,477,311" Background="White" BorderBrush="White">
-                <ComboBoxItem>
-                    <CheckBox Content="Id" Tag="IdCheckBox" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    <CheckBox Content="Name" Tag="NameCheckBox" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    <CheckBox Content="Both" Tag="BothCheckBox" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
-                </ComboBoxItem>
-            </ComboBox>
-
-            <!--FilterNameTextBlock-->
-            <Border x:Name="FilterNameBorder" BorderBrush="DarkGray" BorderThickness="1" Margin="252,62,307,311" Visibility="Collapsed"/>
-            <TextBox x:Name="FilterNameTextBox" Tag="Name" Text="Name" Margin="261,66,0,314" HorizontalAlignment="Left" Width="148"
-                       GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" BorderBrush="White" FontWeight="Bold" Visibility="Collapsed"/>
-
-
-            <!--FilterIdTextBlock-->
-            <Border x:Name="FilterIdBorder" BorderBrush="DarkGray" BorderThickness="1"  Margin="422,62,202,311" Visibility="Collapsed"/>
-            <TextBox x:Name="FilterIdTextBox" Tag="Id" Text="Id" Margin="426,66,0,314" HorizontalAlignment="Left" Width="93"
-                       GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" BorderBrush="White" FontWeight="Bold" Visibility="Collapsed"/>
+            <!--CustomersDataGridRemote-->
+            <Label Content="Remote Datenbank" Margin="89,42,530,324" FontSize="14"/>
+            <DataGrid x:Name="CustomersDataGridRemote" Height="100" Width="600" Margin="89,73,93,224" BorderBrush="DarkGray" BorderThickness="2" Background="White"/>
             
+            <!--CustomersDataGridLocal-->
+            <Label Content="Lokale Datenbank" Margin="89,183,530,183" FontSize="14"/>
+            <DataGrid x:Name="CustomersDataGridLocal" Height="100" Width="600" Margin="89,212,93,85" BorderBrush="DarkGray" BorderThickness="2" Background="White"/>
+
             <!--BackButton-->
-            <Button Content="Zurück" HorizontalAlignment="Left" Height="23" Margin="591,14,0,0" 
+            <Button Content="Zurück" HorizontalAlignment="Right" Height="23" Margin="0,334,570,0" 
                     VerticalAlignment="Top" Width="123" Click="BackButton_Click" FontWeight="Bold" />
+
+            <!--SaveButton-->
+            <Button Content="Daten remote speichern" HorizontalAlignment="Right" Height="23" Margin="0,334,93,0" 
+                    VerticalAlignment="Top" Width="150" Click="SaveButton_Click" FontWeight="Bold" />
         </Grid>
     </Viewbox>
 </Window>

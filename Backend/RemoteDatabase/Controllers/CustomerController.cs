@@ -37,6 +37,12 @@ namespace RemoteDatabase.Controllers
             return Ok(await _customerService.AddCustomer(newCustomer));
         }
 
+        [HttpPost("Multiple")]
+        public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> AddMultipleCustomers(List<AddCompleteCustomerDto> newCustomers)
+        {
+            return Ok(await _customerService.AddMultipleCompleteCustomers(newCustomers));
+        }
+
         [HttpPut]
         public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> UpdateCustomer(UpdateCustomerDto updatedCustomer)
         {

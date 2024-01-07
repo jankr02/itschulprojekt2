@@ -1,4 +1,6 @@
-﻿namespace RemoteDatabase.Services.CustomerService
+﻿using System.Collections.Generic;
+
+namespace RemoteDatabase.Services.CustomerService
 {
     public class CustomerService : ICustomerService
     {
@@ -11,15 +13,113 @@
             _mapper = mapper;
         }
 
+        public async Task<ServiceResponse<List<GetCustomerDto>>> AddMultipleCompleteCustomers(List<AddCompleteCustomerDto> newCompleteCustomers)
+        {
+            var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
+
+            if (newCompleteCustomers == null || newCompleteCustomers.Count <= 0)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = "There are no new customers to add.";
+                return serviceResponse;
+            }
+
+            foreach (var completeCustomer in newCompleteCustomers)
+            {
+                if(completeCustomer == null)
+                {
+                    continue;
+                }
+
+                var completeAddedCustomer = new GetCustomerDto();
+                var addedCustomer = Task.Run(() => AddCustomer(_mapper.Map<AddCustomerDto>(completeCustomer)).GetAwaiter().GetResult()).Result.Data;
+
+                if (addedCustomer == null)
+                {
+                    continue;
+                }
+
+                if (completeCustomer.Picture != null)
+                {
+                    var customerAfterAdditionOfPicture = await AddPicture(completeCustomer.Picture, addedCustomer.Id);
+                    if(customerAfterAdditionOfPicture != null)
+                    {
+                        completeAddedCustomer = customerAfterAdditionOfPicture.Data;
+                    }
+                }
+
+                if (completeCustomer.Business != null)
+                {
+                    var customerAfterAdditionOfBusiness = await AddBusiness(completeCustomer.Business, addedCustomer.Id);
+                    if (customerAfterAdditionOfBusiness != null)
+                    {
+                        completeAddedCustomer = customerAfterAdditionOfBusiness.Data;
+                    }
+                }
+
+                if (completeCustomer.ProductGroups != null)
+                {
+                    List<AddCustomerProductGroupDto> customerProductGroups = new List<AddCustomerProductGroupDto>();
+
+                    foreach (var productGroup in completeCustomer.ProductGroups)
+                    {
+                        if (productGroup == null)
+                        {
+                            continue;
+                        }
+
+                        customerProductGroups.Add(new AddCustomerProductGroupDto
+                        {
+                            CustomerId = addedCustomer.Id,
+                            ProductGroupId = productGroup.Id,
+                        }) ;
+                    }
+
+                    var customerAfterAdditionOfProductGroups = await AddCustomerProductGroup(customerProductGroups);
+                    if ((customerAfterAdditionOfProductGroups != null) && (customerAfterAdditionOfProductGroups.Data != null))
+                    {
+                        completeAddedCustomer = customerAfterAdditionOfProductGroups.Data.FirstOrDefault(d => d.Id == addedCustomer.Id);
+                    }
+                }
+
+                serviceResponse.Data ??= new List<GetCustomerDto>();
+
+                if(completeAddedCustomer != null)
+                {
+                    serviceResponse.Data.Add(completeAddedCustomer);
+                }
+            }
+
+            return serviceResponse;
+        }
+
         public async Task<ServiceResponse<GetCustomerDto>> AddCustomer(AddCustomerDto newCustomer)
         {
+            Customer? existingCustomer;
+            Customer? customer;
             var serviceResponse = new ServiceResponse<GetCustomerDto>();
-            var customer = _mapper.Map<Customer>(newCustomer);
 
-            _context.Customers.Add(customer);
-            await _context.SaveChangesAsync();
+            if ((existingCustomer = await _context.Customers
+                .Where(c => (c.FirstName == newCustomer.FirstName)
+                    && (c.LastName == newCustomer.LastName)
+                    && (c.Street == newCustomer.Street)
+                    && (c.HouseNumber == newCustomer.HouseNumber)
+                    && (c.PostalCode == newCustomer.PostalCode))
+                .FirstOrDefaultAsync(c => c.City == newCustomer.City)) != null)
+            {
+                customer = existingCustomer;
+                serviceResponse.Success = false;
+                serviceResponse.Message = "The customer already exists.";
+            }
+            else
+            {
+                customer = _mapper.Map<Customer>(newCustomer);
+                _context.Customers.Add(customer);
+                await _context.SaveChangesAsync();
+            }
 
             serviceResponse.Data = _mapper.Map<GetCustomerDto>(customer);
+
             return serviceResponse;
         }
 
@@ -88,9 +188,9 @@
                     .Include(c => c.Picture)
                     .FirstOrDefaultAsync(c => c.Id == id) ?? throw new Exception($"Customer with Id '{id}' not found.");
 
-                var picture = await _context.Pictures.FirstOrDefaultAsync(p => p.Id == customer.Picture.Id);
+                Picture? picture;
 
-                if (picture != null)
+                if (customer.Picture != null && (picture = await _context.Pictures.FirstOrDefaultAsync(p => p.Id == customer.Picture.Id)) != null)
                 {
                     _context.Pictures.Remove(picture);
                 }
@@ -242,7 +342,7 @@
 
                 if ((existingPicture = await _context.Pictures.Where(p => (p.Customer != null) && (p.Customer.Id == customerId)).FirstOrDefaultAsync(p => p.Name == newPicture.Name)) != null)
                 {
-                    existingPicture.Data = imageDataArray;
+                    existingPicture.Image = imageDataArray;
                     customer.Picture = _mapper.Map<Picture>(existingPicture);
                 }
                 else
@@ -250,7 +350,7 @@
                     var newConvertedPicture = new Picture()
                     {
                         Name = newPicture.Name,
-                        Data = imageDataArray
+                        Image = imageDataArray
                     };
 
                     var pictures = await _context.Pictures.ToListAsync();

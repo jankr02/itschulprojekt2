@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MesseauftrittDatenerfassung.MesseauftrittDatenerfassung;
+using MesseauftrittDatenerfassung_UI.Converters;
 using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
@@ -65,21 +64,13 @@ namespace MesseauftrittDatenerfassung_UI
 
         private async Task<bool> InitializeApiClientAsync(int numberOfConnectionTries)
         {
-            try
-            {
-                _apiClient = CustomerApiClient.CreateOrGetClient(DatabaseType.LocalDatabase);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fehler bei der Initialisierung: " + ex.Message);
-                return false;
-            }
+            _apiClient = CustomerApiClient.CreateOrGetClient(DatabaseType.LocalDatabase);        
 
             for (int i = 0; i < numberOfConnectionTries; i++)
             {
                 try
                 {
-                    await _apiClient.GetCustomerAsync();
+                    await _apiClient.GetAllCustomersAsync();
                 }
                 catch (Exception ex)
                 {
@@ -126,21 +117,13 @@ namespace MesseauftrittDatenerfassung_UI
 
             if (_capturedImageBytes != null)
             {
-                using (MemoryStream ms = new MemoryStream(_capturedImageBytes))
-                {
-                    var image = new BitmapImage();
-                    image.BeginInit();
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.StreamSource = ms;
-                    image.EndInit();
-                    personalImage.Source = image;
-                }
+                personalImage.Source = CustomImageConverter.ConvertByteArrayToImage(_capturedImageBytes);
             }
         }
 
         private static byte[] ToByteArray()
         {
-            var image = System.Drawing.Image.FromFile("C:\\Users\\Matth\\Desktop\\Testbild.jpg");
+            var image = Properties.Resources.testImage;
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -236,7 +219,29 @@ namespace MesseauftrittDatenerfassung_UI
                 }
             }
 
+            ResetDataInWindow();
+
             MessageBox.Show("Ihre Daten wurden erfolgreich gespeichert.");
+        }
+
+        private void ResetDataInWindow()
+        {
+            name_TextBox.Text = "Vorname";
+            surname_TextBox.Text = "Nachname";
+            street_TextBox.Text = "Straßenname";
+            houseNr_TextBox.Text = "Hausnr.";
+            city_TextBox.Text = "Ortsname";
+            postalCode_TextBox.Text = "PLZ";
+
+            productGroup_ListBox.SelectedIndex = -1;
+
+            companyName_TextBox.Text = "Firmenname";
+            companyStreet_TextBox.Text = "Straßenname";
+            companyHouseNr_TextBox.Text = "Hausnr.";
+            companyCity_TextBox.Text = "Ortsname";
+            companyPLZ_TextBox.Text = "PLZ";
+
+            personalImage.Source = new BitmapImage(new Uri("Resources/defaultImage.jpg", UriKind.Relative));
         }
 
         //private void productGroup_CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -351,7 +356,6 @@ namespace MesseauftrittDatenerfassung_UI
             return true;
         }
 
-
         private async Task<bool> AddBusinessToCustomerAsync(int customerId, AddBusinessDto businessData)
         {
             try
@@ -400,19 +404,6 @@ namespace MesseauftrittDatenerfassung_UI
                     uiElement.IsEnabled = isEnabled;
                 }
             }
-        }
-    }
-
-    public class PasswordLengthToVisibilityConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return (value != null && value is int && (int)value > 0) ? Visibility.Collapsed : Visibility.Visible;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
         }
     }
 }

@@ -13,13 +13,31 @@
 
         public async Task<ServiceResponse<GetCustomerDto>> AddCustomer(AddCustomerDto newCustomer)
         {
+            Customer? existingCustomer;
+            Customer? customer;
             var serviceResponse = new ServiceResponse<GetCustomerDto>();
-            var customer = _mapper.Map<Customer>(newCustomer);
 
-            _context.Customers.Add(customer);
-            await _context.SaveChangesAsync();
+            if ((existingCustomer = await _context.Customers
+                .Where(c => (c.FirstName == newCustomer.FirstName)
+                    && (c.LastName == newCustomer.LastName)
+                    && (c.Street == newCustomer.Street)
+                    && (c.HouseNumber == newCustomer.HouseNumber)
+                    && (c.PostalCode == newCustomer.PostalCode))
+                .FirstOrDefaultAsync(c => c.City == newCustomer.City)) != null)
+            {
+                customer = existingCustomer;
+                serviceResponse.Success = false;
+                serviceResponse.Message = "The customer already exists.";
+            }
+            else
+            {
+                customer = _mapper.Map<Customer>(newCustomer);
+                _context.Customers.Add(customer);
+                await _context.SaveChangesAsync();
+            }
 
             serviceResponse.Data = _mapper.Map<GetCustomerDto>(customer);
+
             return serviceResponse;
         }
 
@@ -88,9 +106,9 @@
                     .Include(c => c.Picture)
                     .FirstOrDefaultAsync(c => c.Id == id) ?? throw new Exception($"Customer with Id '{id}' not found.");
 
-                var picture = await _context.Pictures.FirstOrDefaultAsync(p => p.Id == customer.Picture.Id);
+                Picture? picture;
 
-                if (picture != null)
+                if (customer.Picture != null && (picture = await _context.Pictures.FirstOrDefaultAsync(p => p.Id == customer.Picture.Id)) != null)
                 {
                     _context.Pictures.Remove(picture);
                 }
@@ -242,7 +260,7 @@
 
                 if ((existingPicture = await _context.Pictures.Where(p => (p.Customer != null) && (p.Customer.Id == customerId)).FirstOrDefaultAsync(p => p.Name == newPicture.Name)) != null)
                 {
-                    existingPicture.Data = imageDataArray;
+                    existingPicture.Image = imageDataArray;
                     customer.Picture = _mapper.Map<Picture>(existingPicture);
                 }
                 else
@@ -250,7 +268,7 @@
                     var newConvertedPicture = new Picture()
                     {
                         Name = newPicture.Name,
-                        Data = imageDataArray
+                        Image = imageDataArray
                     };
 
                     var pictures = await _context.Pictures.ToListAsync();
@@ -261,6 +279,51 @@
                 await _context.SaveChangesAsync();
 
                 serviceResponse.Data = _mapper.Map<GetCustomerDto>(customer);
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetCustomerDto>>> TruncateAllTables()
+        {
+            var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
+
+            var tableNames = _context.Model.GetEntityTypes()
+            .Select(t => t.GetTableName())
+            .Where(t => !t!.Equals("CustomerProductGroup"))
+            .Distinct()
+            .ToList();
+
+            foreach (var tableName in tableNames)
+            {
+                await _context.Database.ExecuteSqlRawAsync($"SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE `{tableName}`;");
+            }
+
+            serviceResponse.Data = await _context.Customers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToListAsync();
+
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetBusinessDto>>> DeleteBusiness(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<GetBusinessDto>>();
+
+            try
+            {
+                var business = await _context.Businesses
+                    .FirstOrDefaultAsync(b => b.Id == id) ?? throw new Exception($"Business with Id '{id}' not found.");
+
+                _context.Businesses.Remove(business);
+
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Data = await _context.Businesses
+                    .Select(b => _mapper.Map<GetBusinessDto>(b)).ToListAsync();
             }
             catch (Exception ex)
             {

@@ -104,7 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\CustomImageConverter.cs" />
+    <Compile Include="Dtos\CustomerDtos\AddCompleteCustomerDto.cs" />
     <Compile Include="Enums\DatabaseType.cs" />
+    <Compile Include="Converters\PasswordLengthToVisibilityConverter.cs" />
     <Compile Include="SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\defaultImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\testImage.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

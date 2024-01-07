@@ -123,7 +123,7 @@
             <!--Datengrid-->
             <Grid x:Name="Data_Grid" HorizontalAlignment="Left" Height="362" Margin="23,62,0,0" VerticalAlignment="Top" Width="529">
                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8">
-                    <Image x:Name="personalImage" Source="C:\Users\JRK1FE\Desktop\Schule\Projekt\images.png" 
+                    <Image x:Name="personalImage" Source="Resources/defaultImage.jpg" 
                        Margin="353,21,74,232"/>
                 </Border>
 

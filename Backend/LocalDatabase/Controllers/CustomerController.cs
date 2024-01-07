@@ -61,6 +61,12 @@ namespace LocalDatabase.Controllers
       return Ok(response);
     }
 
+    [HttpDelete]
+    public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> TruncateAllTables()
+    {
+        return Ok(await _customerService.TruncateAllTables());
+    }
+
     [HttpPost("ProductGroup")]
     public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> AddCustomerProductGroup(List<AddCustomerProductGroupDto> newCustomerProductGroups)
     {
@@ -83,6 +89,18 @@ namespace LocalDatabase.Controllers
       }
 
       return Ok(response);
+    }
+
+    [HttpDelete("Business/{businessId:int}")]
+    public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> DeleteSingleBusiness(int businessId)
+    {
+        var response = await _customerService.DeleteBusiness(businessId);
+        if (response.Data is null)
+        {
+            return NotFound(response);
+        }
+
+        return Ok(response);
     }
 
     [HttpPost("Picture/{customerId:int}")]

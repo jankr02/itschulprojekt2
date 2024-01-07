@@ -5,6 +5,7 @@
         public AutoMapperProfile()
         {
             CreateMap<Customer, GetCustomerDto>();
+            CreateMap<AddCompleteCustomerDto, AddCustomerDto>();
             CreateMap<AddCustomerDto, Customer>();
             CreateMap<UpdateCustomerDto, Customer>();
 

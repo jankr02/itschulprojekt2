@@ -1,4 +1,4 @@
-﻿using LocalDatabase.Dtos.ProductGroupDtos;
+﻿using MesseauftrittDatenerfassung_UI.Dtos.ProductGroupDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.PictureDtos;
 using System.Collections.Generic;
