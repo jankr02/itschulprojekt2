@@ -1,4 +1,3 @@
-C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\LocalDatabase\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\LocalDatabase\bin\Debug\net7.0\appsettings.json
 C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\LocalDatabase\bin\Debug\net7.0\LocalDatabase.exe
 C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\LocalDatabase\bin\Debug\net7.0\LocalDatabase.deps.json
@@ -310,3 +309,7 @@ C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\LocalDatabase\obj\Debug\
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\LocalDatabase\obj\Debug\net7.0\LocalDatabase.pdb
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\LocalDatabase\obj\Debug\net7.0\LocalDatabase.genruntimeconfig.cache
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\LocalDatabase\obj\Debug\net7.0\ref\LocalDatabase.dll
+C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\LocalDatabase\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\LocalDatabase\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\LocalDatabase\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\LocalDatabase\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll

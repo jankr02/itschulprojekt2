@@ -14,7 +14,7 @@ namespace MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos
         public string PostalCode { get; set; }
         public string City { get; set; }
         public AddPictureDto Picture { get; set; }
-        public List<GetProductGroupDto> ProductGroups { get; set; }
+        public List<AddProductGroupDto> ProductGroups { get; set; }
         public AddBusinessDto Business { get; set; }
     }
 }

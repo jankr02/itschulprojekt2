@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using System;
 using System.IO;
 using System.Windows.Media.Imaging;
 
@@ -6,9 +6,9 @@ namespace MesseauftrittDatenerfassung_UI.Converters
 {
     public static class CustomImageConverter
     {
-        public static BitmapImage ConvertByteArrayToImage(byte[] imageBytes)
+        public static BitmapImage ConvertByteArrayToBitmapImage(byte[] imageBytes)
         {
-            using (MemoryStream ms = new MemoryStream(imageBytes))
+            using (var ms = new MemoryStream(imageBytes))
             {
                 var image = new BitmapImage();
                 image.BeginInit();
@@ -18,5 +18,15 @@ namespace MesseauftrittDatenerfassung_UI.Converters
                 return image;
             }
         }
-    }
+    
+        public static BitmapImage ConvertStringToBitmapImage(string rawImageData)
+        {
+            if (string.IsNullOrEmpty(rawImageData))
+            {
+              return null;
+            }
+            var bytes = Convert.FromBase64String(rawImageData);
+            return ConvertByteArrayToBitmapImage(bytes);
+        }
+  }
 }

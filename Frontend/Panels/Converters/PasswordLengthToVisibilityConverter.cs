@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace MesseauftrittDatenerfassung_UI
+namespace MesseauftrittDatenerfassung_UI.Converters
 {
     public class PasswordLengthToVisibilityConverter : IValueConverter
     {

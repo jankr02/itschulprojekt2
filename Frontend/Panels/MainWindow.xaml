@@ -3,12 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MesseauftrittDatenerfassung_UI"
+        xmlns:converters="clr-namespace:MesseauftrittDatenerfassung_UI.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="638" ResizeMode="CanResizeWithGrip">
+        Title="MainWindow"
+        WindowStyle="None" ResizeMode="NoResize"  
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Window.Resources>
-        <local:PasswordLengthToVisibilityConverter x:Key="PasswordLengthToVisibilityConverter"/>
+        <converters:PasswordLengthToVisibilityConverter x:Key="PasswordLengthToVisibilityConverter"/>
         <Style x:Key="TransparentHoverButton" TargetType="Button">
             <Setter Property="Background" Value="LightGray"/>
             <Setter Property="BorderBrush" Value="Black"/>
@@ -227,7 +229,7 @@
                     </ComboBox>-->
 
                     <Grid Margin="15">
-                    <ListBox Margin="-10,20,10,-48" x:Name="productGroup_ListBox" SelectionMode="Multiple"/>
+                    <ListBox Margin="-10,20,75,-48" x:Name="productGroup_ListBox" SelectionMode="Multiple"/>
                     </Grid>
 
                 </Grid>

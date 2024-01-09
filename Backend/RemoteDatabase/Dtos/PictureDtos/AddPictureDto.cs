@@ -2,7 +2,7 @@
 {
     public class AddPictureDto
     {
-        public required string Name { get; set; }
-        public required FormFile? Image { get; set; }
+        public string? Name { get; set; } = string.Empty;
+        public string? Data { get; set; } = string.Empty;
     }
 }

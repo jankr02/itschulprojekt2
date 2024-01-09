@@ -313,3 +313,7 @@ C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\obj\Debug
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\RemoteDatabase.pdb
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\RemoteDatabase.genruntimeconfig.cache
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\obj\Debug\net7.0\ref\RemoteDatabase.dll
+C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\JMJ1FE\Documents\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll

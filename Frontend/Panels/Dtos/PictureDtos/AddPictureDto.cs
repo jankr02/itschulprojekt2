@@ -3,6 +3,6 @@
     public class AddPictureDto
     {
         public string Name { get; set; }
-        public byte[] Image { get; set; }
+        public string Data { get; set; }
     }
 }

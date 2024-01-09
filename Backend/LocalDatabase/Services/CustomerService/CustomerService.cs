@@ -11,33 +11,42 @@
             _mapper = mapper;
         }
 
-        public async Task<ServiceResponse<GetCustomerDto>> AddCustomer(AddCustomerDto newCustomer)
+        public async Task<ServiceResponse<GetCustomerDto>> AddCompleteCustomer(AddCompleteCustomerDto newCompleteCustomer)
         {
-            Customer? existingCustomer;
-            Customer? customer;
             var serviceResponse = new ServiceResponse<GetCustomerDto>();
 
-            if ((existingCustomer = await _context.Customers
-                .Where(c => (c.FirstName == newCustomer.FirstName)
-                    && (c.LastName == newCustomer.LastName)
-                    && (c.Street == newCustomer.Street)
-                    && (c.HouseNumber == newCustomer.HouseNumber)
-                    && (c.PostalCode == newCustomer.PostalCode))
-                .FirstOrDefaultAsync(c => c.City == newCustomer.City)) != null)
+            var addedCustomer = Task.Run(() => AddCustomer(_mapper.Map<AddCustomerDto>(newCompleteCustomer)).GetAwaiter().GetResult()).Result;
+      
+            if ((newCompleteCustomer.Picture != null) && CheckIfNotNull(newCompleteCustomer.Picture))
             {
-                customer = existingCustomer;
-                serviceResponse.Success = false;
-                serviceResponse.Message = "The customer already exists.";
-            }
-            else
-            {
-                customer = _mapper.Map<Customer>(newCustomer);
-                _context.Customers.Add(customer);
-                await _context.SaveChangesAsync();
+              var customerAfterAdditionOfPicture = await AddPicture(newCompleteCustomer.Picture, addedCustomer.Id);
+              addedCustomer = customerAfterAdditionOfPicture;
             }
 
-            serviceResponse.Data = _mapper.Map<GetCustomerDto>(customer);
+            if ((newCompleteCustomer.Business != null) && CheckIfNotNull(newCompleteCustomer.Business))
+            {
+              var customerAfterAdditionOfBusiness = await AddBusiness(newCompleteCustomer.Business, addedCustomer.Id);
+              addedCustomer = customerAfterAdditionOfBusiness.Data;
+            }
 
+            if ((newCompleteCustomer.ProductGroups != null) && !newCompleteCustomer.ProductGroups.Any())
+            {
+              var customerProductGroups = newCompleteCustomer.ProductGroups
+                                                             .Select(productGroup => new AddCustomerProductGroupDto
+                                                             {
+                                                               CustomerId = addedCustomer!.Id,
+                                                               ProductGroupId = GetProductGroupId(productGroup.Name)
+                                                             })
+                                                             .ToList();
+              var customerAfterAdditionOfProductGroups = await AddCustomerProductGroup(customerProductGroups);
+              addedCustomer = customerAfterAdditionOfProductGroups.FirstOrDefault(d => d.Id == addedCustomer!.Id);
+            }
+            
+            if (addedCustomer != null)
+            {
+              serviceResponse.Data = addedCustomer;
+            }
+            
             return serviceResponse;
         }
 
@@ -52,129 +61,78 @@
             serviceResponse.Data = dbcustomers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToList();
             return serviceResponse;
         }
-
-        public async Task<ServiceResponse<GetCustomerDto>> GetCustomerById(int id)
+    
+        public async Task<ServiceResponse<List<GetCustomerDto>>> TruncateAllTables()
         {
-            var serviceResponse = new ServiceResponse<GetCustomerDto>();
-            try
-            {
-                var dbcustomer = await _context.Customers
-                    .Include(c => c.Picture)
-                    .Include(c => c.ProductGroups)
-                    .Include(c => c.Business)
-                    .FirstOrDefaultAsync(c => c.Id == id) ?? throw new Exception($"Customer with Id '{id}' not found.");
-                serviceResponse.Data = _mapper.Map<GetCustomerDto>(dbcustomer);
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
+          var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
 
-            return serviceResponse;
+          await _context.Customers.ExecuteDeleteAsync();
+          await _context.Businesses.ExecuteDeleteAsync();
+          await _context.Pictures.ExecuteDeleteAsync();
+
+          serviceResponse.Data = await _context.Customers
+                                               .Select(c => _mapper.Map<GetCustomerDto>(c))
+                                               .ToListAsync();
+
+          return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetCustomerDto>> UpdateCustomer(UpdateCustomerDto updatedCustomer)
+        private async Task<GetCustomerDto> AddCustomer(AddCustomerDto newCustomer)
         {
-            var serviceResponse = new ServiceResponse<GetCustomerDto>();
-            
-            try
-            {
-                var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Id == updatedCustomer.Id) ?? throw new Exception($"Customer with Id '{updatedCustomer.Id}' not found.");
-                _mapper.Map(updatedCustomer, customer);
+            Customer? existingCustomer;
+            Customer? customer;
 
+            if ((existingCustomer = await _context.Customers
+                .Where(c => (c.FirstName == newCustomer.FirstName)
+                    && (c.LastName == newCustomer.LastName)
+                    && (c.Street == newCustomer.Street)
+                    && (c.HouseNumber == newCustomer.HouseNumber)
+                    && (c.PostalCode == newCustomer.PostalCode))
+                .FirstOrDefaultAsync(c => c.City == newCustomer.City)) != null)
+            {
+                customer = existingCustomer;
+            }
+            else
+            {
+                customer = _mapper.Map<Customer>(newCustomer);
+                _context.Customers.Add(customer);
                 await _context.SaveChangesAsync();
-
-                serviceResponse.Data = _mapper.Map<GetCustomerDto>(customer);
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
             }
 
-            return serviceResponse;
+            return _mapper.Map<GetCustomerDto>(customer);
         }
-
-        public async Task<ServiceResponse<List<GetCustomerDto>>> DeleteCustomer(int id)
+        
+        private async Task<List<GetCustomerDto>> AddCustomerProductGroup(List<AddCustomerProductGroupDto> newCustomerProductGroups)
         {
-            var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
-
-            try
+            foreach (var newCustomerProductGroup in newCustomerProductGroups)
             {
                 var customer = await _context.Customers
                     .Include(c => c.Picture)
-                    .FirstOrDefaultAsync(c => c.Id == id) ?? throw new Exception($"Customer with Id '{id}' not found.");
-
-                Picture? picture;
-
-                if (customer.Picture != null && (picture = await _context.Pictures.FirstOrDefaultAsync(p => p.Id == customer.Picture.Id)) != null)
-                {
-                    _context.Pictures.Remove(picture);
-                }
-
-                _context.Customers.Remove(customer);
-
-                await _context.SaveChangesAsync();
-
-                serviceResponse.Data = await _context.Customers
-                    .Include(c => c.Picture)
                     .Include(c => c.ProductGroups)
                     .Include(c => c.Business)
-                    .Select(c => _mapper.Map<GetCustomerDto>(c)).ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
-            }
+                    .FirstOrDefaultAsync(c => c.Id == newCustomerProductGroup.CustomerId) ?? throw new Exception($"Customer with Id '{newCustomerProductGroup.CustomerId}' not found.");
+                
+                var productGroup = await _context.ProductGroups.FirstOrDefaultAsync(p => p.Id == newCustomerProductGroup.ProductGroupId) ?? throw new Exception($"ProductGroup with Id '{newCustomerProductGroup.ProductGroupId}' not found.");
 
-            return serviceResponse;
-        }
+                customer.ProductGroups ??= new List<ProductGroup>();
 
-        public async Task<ServiceResponse<List<GetCustomerDto>>> AddCustomerProductGroup(List<AddCustomerProductGroupDto> newCustomerProductGroups)
-        {
-            var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
-
-            try
-            {
-                foreach (var newCustomerProductGroup in newCustomerProductGroups)
+                if (!customer.ProductGroups.Contains(productGroup))
                 {
-                    var customer = await _context.Customers
-                        .Include(c => c.Picture)
-                        .Include(c => c.ProductGroups)
-                        .Include(c => c.Business)
-                        .FirstOrDefaultAsync(c => c.Id == newCustomerProductGroup.CustomerId) ?? throw new Exception($"Customer with Id '{newCustomerProductGroup.CustomerId}' not found.");
-                    
-                    var productGroup = await _context.ProductGroups.FirstOrDefaultAsync(p => p.Id == newCustomerProductGroup.ProductGroupId) ?? throw new Exception($"ProductGroup with Id '{newCustomerProductGroup.ProductGroupId}' not found.");
-
-                    customer.ProductGroups ??= new List<ProductGroup>();
-
-                    if (!customer.ProductGroups.Contains(productGroup))
-                    {
-                        customer.ProductGroups.Add(productGroup);
-                    }
+                    customer.ProductGroups.Add(productGroup);
                 }
-
-                await _context.SaveChangesAsync();
-
-                serviceResponse.Data = await _context.Customers
-                        .Include(c => c.Picture)
-                        .Include(c => c.ProductGroups)
-                        .Include(c => c.Business)
-                        .Select(c => _mapper.Map<GetCustomerDto>(c)).ToListAsync();
-
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
             }
 
-            return serviceResponse;
+            await _context.SaveChangesAsync();
+
+            return await _context.Customers
+                                 .Include(c => c.Picture)
+                                 .Include(c => c.ProductGroups)
+                                 .Include(c => c.Business)
+                                 .Select(c => _mapper.Map<GetCustomerDto>(c))
+                                 .ToListAsync();
         }
 
-        public async Task<ServiceResponse<GetCustomerDto>> AddBusiness(AddBusinessDto newBusiness, int customerId)
+        private async Task<ServiceResponse<GetCustomerDto>> AddBusiness(AddBusinessDto newBusiness, int customerId)
         {
             var serviceResponse = new ServiceResponse<GetCustomerDto>();
 
@@ -213,125 +171,89 @@
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<GetCustomerDto>> AddPicture(AddPictureDto newPicture, int customerId)
+        private async Task<GetCustomerDto> AddPicture(AddPictureDto newPicture, int customerId)
         {
-            var serviceResponse = new ServiceResponse<GetCustomerDto>();
+            var pictureAsByteArray = Convert.FromBase64String(newPicture.Data) ?? throw new InvalidDataException("An image must be uploaded.");
 
             try
             {
-                if (newPicture.Image == null)
-                {
-                    throw new InvalidDataException("An image must be uploaded.");
-                }
-
-                using var memoryStream = new MemoryStream();
-                await newPicture.Image.CopyToAsync(memoryStream);
-
-                try
-                {
-                    Image.FromStream(memoryStream);
-                }
-                catch
-                {
-                    throw new InvalidDataException("The uploaded file must be an image.");
-                }
-                finally
-                {
-                    await memoryStream.DisposeAsync();
-                }
-
-                switch (newPicture.Image.Length)
-                {
-                  case <= 0:
-                    throw new InvalidDataException("The image must contain data.");
-                  case > 10 * 1024 * 1024:
-                    throw new InvalidDataException("The image must not exceed 10MB.");
-                }
-
-                var customer = await _context.Customers
-                                             .Include(c => c.Picture)
-                                             .Include(c => c.ProductGroups)
-                                             .Include(c => c.Business)
-                                             .FirstOrDefaultAsync(c => c.Id == customerId) ?? throw new Exception($"Customer with Id '{customerId}' not found.");
-
-                var imageDataArray = CustomConverter.FormFileToByteArray(newPicture.Image);
-
-                Picture? existingPicture;
-
-                if ((existingPicture = await _context.Pictures.Where(p => (p.Customer != null) && (p.Customer.Id == customerId)).FirstOrDefaultAsync(p => p.Name == newPicture.Name)) != null)
-                {
-                    existingPicture.Image = imageDataArray;
-                    customer.Picture = _mapper.Map<Picture>(existingPicture);
-                }
-                else
-                {
-                    var newConvertedPicture = new Picture()
-                    {
-                        Name = newPicture.Name,
-                        Image = imageDataArray
-                    };
-
-                    var pictures = await _context.Pictures.ToListAsync();
-                    pictures.Add(newConvertedPicture);
-                    customer.Picture = _mapper.Map<Picture>(newConvertedPicture);
-                }
-
-                await _context.SaveChangesAsync();
-
-                serviceResponse.Data = _mapper.Map<GetCustomerDto>(customer);
+              using var ms = new MemoryStream(pictureAsByteArray);
+              Image.FromStream(ms);
             }
-            catch (Exception ex)
+            catch
             {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
+              throw new InvalidDataException("The uploaded file must be an image.");
             }
 
-            return serviceResponse;
-        }
+            switch (pictureAsByteArray.Length)
+            {
+              case <= 0:
+                throw new InvalidDataException("The image must contain data.");
+              case > 10 * 1024 * 1024:
+                throw new InvalidDataException("The image must not exceed 10MB.");
+            }
 
-        public async Task<ServiceResponse<List<GetCustomerDto>>> TruncateAllTables()
+            var customer = await _context.Customers
+                                         .Include(c => c.Picture)
+                                         .Include(c => c.ProductGroups)
+                                         .Include(c => c.Business)
+                                         .FirstOrDefaultAsync(c => c.Id == customerId) ?? throw new Exception($"Customer with Id '{customerId}' not found.");
+
+            Picture? existingPicture;
+
+            if ((existingPicture = await _context.Pictures.Where(p => (p.Customer != null) && (p.Customer.Id == customerId))
+                                                 .FirstOrDefaultAsync(p => p.Name == newPicture.Name)) != null)
+            {
+              existingPicture.Image = pictureAsByteArray;
+              customer.Picture = _mapper.Map<Picture>(existingPicture);
+            }
+            else
+            {
+              var newConvertedPicture = new Picture()
+              {
+                Name = newPicture.Name,
+                Image = pictureAsByteArray
+              };
+
+              var pictures = await _context.Pictures.ToListAsync();
+              pictures.Add(newConvertedPicture);
+              customer.Picture = _mapper.Map<Picture>(newConvertedPicture);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<GetCustomerDto>(customer);
+
+        }
+        
+        private int GetProductGroupId(ProductGroupName productGroupName)
         {
-            var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
+            var result = _context.ProductGroups.FirstOrDefaultAsync(p => p.Name == productGroupName).GetAwaiter().GetResult();
 
-            var tableNames = _context.Model.GetEntityTypes()
-            .Select(t => t.GetTableName())
-            .Where(t => !t!.Equals("CustomerProductGroup"))
-            .Distinct()
-            .ToList();
-
-            foreach (var tableName in tableNames)
-            {
-                await _context.Database.ExecuteSqlRawAsync($"SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE `{tableName}`;");
-            }
-
-            serviceResponse.Data = await _context.Customers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToListAsync();
-
-            return serviceResponse;
+            return result?.Id ?? 0;
         }
 
-        public async Task<ServiceResponse<List<GetBusinessDto>>> DeleteBusiness(int id)
+        private static bool CheckIfNotNull(Object testObject)
         {
-            var serviceResponse = new ServiceResponse<List<GetBusinessDto>>();
-
-            try
+          foreach (var pi in testObject.GetType().GetProperties())
+          {
+            if (pi.GetValue(testObject) == null)
             {
-                var business = await _context.Businesses
-                    .FirstOrDefaultAsync(b => b.Id == id) ?? throw new Exception($"Business with Id '{id}' not found.");
-
-                _context.Businesses.Remove(business);
-
-                await _context.SaveChangesAsync();
-
-                serviceResponse.Data = await _context.Businesses
-                    .Select(b => _mapper.Map<GetBusinessDto>(b)).ToListAsync();
-            }
-            catch (Exception ex)
-            {
-                serviceResponse.Success = false;
-                serviceResponse.Message = ex.Message;
+              return false;
             }
 
-            return serviceResponse;
+            if (pi.PropertyType != typeof(string))
+            {
+              continue;
+            }
+
+            var value = (string)pi.GetValue(testObject)!;
+            if (string.IsNullOrEmpty(value))
+            {
+              return false;
+            }
+          }
+          return true;
         }
-    }
+  }
 }

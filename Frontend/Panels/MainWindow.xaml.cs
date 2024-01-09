@@ -4,7 +4,6 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MesseauftrittDatenerfassung.MesseauftrittDatenerfassung;
 using MesseauftrittDatenerfassung_UI.Converters;
@@ -12,22 +11,24 @@ using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
 using MesseauftrittDatenerfassung_UI.Dtos.PictureDtos;
+using MesseauftrittDatenerfassung_UI.Dtos.ProductGroupDtos;
 using MesseauftrittDatenerfassung_UI.Enums;
+using Brushes = System.Windows.Media.Brushes;
 
 namespace MesseauftrittDatenerfassung_UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        private CameraAPI cameraApi = new CameraAPI();
-        private CustomerApiClient _apiClient;
+        private CameraAPI _cameraApi = new CameraAPI();
+        private CustomerApiClient _localApiClient;
         private byte[] _capturedImageBytes;
 
         public MainWindow()
         {
-            SplashScreen splashScreen = new SplashScreen("Die Anwendung wird geladen ...");
+            var splashScreen = new SplashScreen("Die Anwendung wird geladen ...");
             splashScreen.Show();
             if (!Task.Run(() => InitializeApiClientAsync(10)).GetAwaiter().GetResult())
             {
@@ -64,13 +65,13 @@ namespace MesseauftrittDatenerfassung_UI
 
         private async Task<bool> InitializeApiClientAsync(int numberOfConnectionTries)
         {
-            _apiClient = CustomerApiClient.CreateOrGetClient(DatabaseType.LocalDatabase);        
+            _localApiClient = CustomerApiClient.CreateOrGetClient(DatabaseType.LocalDatabase);        
 
-            for (int i = 0; i < numberOfConnectionTries; i++)
+            for (var i = 0; i < numberOfConnectionTries; i++)
             {
                 try
                 {
-                    await _apiClient.GetAllCustomersAsync();
+                    await _localApiClient.GetAllCustomersAsync();
                 }
                 catch (Exception ex)
                 {
@@ -89,8 +90,8 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            if (textBox != null && textBox.Text == textBox.Tag.ToString())
+            var textBox = sender as TextBox;
+            if ((textBox != null) && (textBox.Text == textBox.Tag.ToString()))
             {
                 textBox.Text = string.Empty;
             }
@@ -98,8 +99,8 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            if (textBox != null && string.IsNullOrWhiteSpace(textBox.Text))
+            var textBox = sender as TextBox;
+            if ((textBox != null) && string.IsNullOrWhiteSpace(textBox.Text))
             {
                 textBox.Text = textBox.Tag.ToString();
             }
@@ -113,18 +114,18 @@ namespace MesseauftrittDatenerfassung_UI
         private void Image_Button_Click(object sender, RoutedEventArgs e)
         {
             _capturedImageBytes = ToByteArray();
-            //_capturedImageBytes = cameraApi.CaptureImage();
+            //_capturedImageBytes = _cameraApi.CaptureImage();
 
             if (_capturedImageBytes != null)
             {
-                personalImage.Source = CustomImageConverter.ConvertByteArrayToImage(_capturedImageBytes);
+                personalImage.Source = CustomImageConverter.ConvertByteArrayToBitmapImage(_capturedImageBytes);
             }
         }
 
         private static byte[] ToByteArray()
         {
             var image = Properties.Resources.testImage;
-            using (MemoryStream memoryStream = new MemoryStream())
+            using (var memoryStream = new MemoryStream())
             {
                 image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
                 return memoryStream.ToArray();
@@ -133,12 +134,14 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void OpenAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-            if (adminName_TextBox.Text == "Admin" && passwordBox.Password == "Admin123")
-            {
-                AdminPanel adminPanelWindow = new AdminPanel();
-                Close();
-                adminPanelWindow.Show();
-            }
+          if ((adminName_TextBox.Text != "Admin") || (passwordBox.Password != "Admin123"))
+          {
+            return;
+          }
+
+          var adminPanelWindow = new AdminPanel();
+          Close();
+          adminPanelWindow.Show();
         }
 
         private void SendData_Button_Click(object sender, RoutedEventArgs e)
@@ -148,76 +151,57 @@ namespace MesseauftrittDatenerfassung_UI
                 MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
                 return; 
             }
-
-            AddCustomerDto customerData = new AddCustomerDto()
+            
+            var customerData = new AddCompleteCustomerDto()
             {
-                FirstName = name_TextBox.Text.ToString(),
-                LastName = surname_TextBox.Text.ToString(),
-                Street = street_TextBox.Text.ToString(),
-                HouseNumber = houseNr_TextBox.Text.ToString(),
-                PostalCode = postalCode_TextBox.Text.ToString(),
-                City = city_TextBox.Text.ToString()
+                FirstName = name_TextBox.Text,
+                LastName = surname_TextBox.Text,
+                Street = street_TextBox.Text,
+                HouseNumber = houseNr_TextBox.Text,
+                PostalCode = postalCode_TextBox.Text,
+                City = city_TextBox.Text
             };
-
-            var customerId = AddCustomerToDatabase(customerData);
-
-            if(customerId == 0)
-            {
-                return;
-            }
 
             if (_capturedImageBytes != null)
             {
-                AddPictureDto pictureData = new AddPictureDto()
+                var pictureData = new AddPictureDto
                 {
-                    Name = personalImage.Name.ToString(),
-                    Image = _capturedImageBytes
+                    Name = personalImage.Name,
+                    Data = Convert.ToBase64String(_capturedImageBytes)
                 };
 
-                if(!Task.Run(() => AddPictureToCustomerAsync(customerId, pictureData)).GetAwaiter().GetResult())
-                {
-                    return;
-                }
+                customerData.Picture = pictureData;
             }
 
             if (productGroup_ListBox.SelectedIndex != -1)
             {
-                var customerProductGroups = new List<AddCustomerProductGroupDto>();
+                var customerProductGroups = new List<AddProductGroupDto>();
                 foreach (var item in productGroup_ListBox.SelectedItems)
                 {
                     if(Enum.TryParse(item.ToString(), out ProductGroupName productGroupName))
                     {
-                        customerProductGroups.Add(
-                            new AddCustomerProductGroupDto()
-                            {
-                                CustomerId = customerId,
-                                ProductGroupId = (int)productGroupName
-                            }) ;
+                        customerProductGroups.Add(new AddProductGroupDto{ Name = productGroupName}) ;
                     }
                 }
 
-                if (!Task.Run(() => AddProductGroupsToCustomerAsync(customerProductGroups)).GetAwaiter().GetResult())
-                {
-                    return;
-                }
+                customerData.ProductGroups = customerProductGroups;
             }
 
             if ((company_CheckBox.IsChecked != null) && (bool)company_CheckBox.IsChecked)
             {
-                AddBusinessDto businessData = new AddBusinessDto()
+                var businessData = new AddBusinessDto
                 {
-                    Name = companyName_TextBox.Text.ToString(),
-                    Street = companyStreet_TextBox.Text.ToString(),
-                    HouseNumber = companyHouseNr_TextBox.Text.ToString(),
-                    City = companyCity_TextBox.Text.ToString(),
-                    PostalCode = companyPLZ_TextBox.Text.ToString(),
+                    Name = companyName_TextBox.Text,
+                    Street = companyStreet_TextBox.Text,
+                    HouseNumber = companyHouseNr_TextBox.Text,
+                    City = companyCity_TextBox.Text,
+                    PostalCode = companyPLZ_TextBox.Text,
                 };
 
-                if(!Task.Run(() => AddBusinessToCustomerAsync(customerId, businessData)).GetAwaiter().GetResult())
-                {
-                    return;
-                }
+                customerData.Business = businessData;
             }
+
+            _localApiClient.CreateCompleteCustomerAsync(customerData).GetAwaiter().GetResult();
 
             ResetDataInWindow();
 
@@ -250,7 +234,7 @@ namespace MesseauftrittDatenerfassung_UI
         //    if (checkBox != null)
         //    {
         //        string productGroupName = "";
-        //        switch (checkBox.Name)
+        //        switch (checkBox.BusinessName)
         //        {
         //            case "productGroup_Checkbox1":
         //                productGroupName = productGroup_Label1.Content.ToString();
@@ -276,7 +260,7 @@ namespace MesseauftrittDatenerfassung_UI
         //    if (checkBox != null)
         //    {
         //        string productGroupName = "";
-        //        switch (checkBox.Name)
+        //        switch (checkBox.BusinessName)
         //        {
         //            case "productGroup_Checkbox1":
         //                productGroupName = productGroup_Label1.Content.ToString();
@@ -293,83 +277,31 @@ namespace MesseauftrittDatenerfassung_UI
         //    }
         //}
 
-        private bool ValidateInput(DependencyObject container)
+        private static bool ValidateInput(DependencyObject container)
         {
-            bool isValid = true;
+            var isValid = true;
             foreach (var child in LogicalTreeHelper.GetChildren(container))
             {
-                if (child is TextBox textBox && string.IsNullOrWhiteSpace(textBox.Text))
+              switch (child)
+              {
+                case TextBox textBox when string.IsNullOrWhiteSpace(textBox.Text):
+                  textBox.BorderBrush = Brushes.Red;
+                  isValid = false;
+                  break;
+                case DependencyObject dependencyObject:
                 {
-                    textBox.BorderBrush = Brushes.Red;
+                  if (!ValidateInput(dependencyObject))
+                  {
                     isValid = false;
+                  }
+
+                  break;
                 }
-                else if (child is DependencyObject dependencyObject)
-                {
-                    if (!ValidateInput(dependencyObject))
-                    {
-                        isValid = false;
-                    }
-                }
+              }
             }
             return isValid;
         }
-
-        private int AddCustomerToDatabase(AddCustomerDto customerData)
-        {
-            int id = 0;
-            try
-            {
-                id = _apiClient.CreateCustomerAsync(customerData).GetAwaiter().GetResult().Id;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fehler beim Anlegen des Benutzers: " + ex.Message);
-            }
-            return id;
-        }
-
-        private async Task<bool> AddPictureToCustomerAsync(int customerId, AddPictureDto pictureData)
-        {
-            try
-            {
-                await _apiClient.AddPictureToCustomerAsync(customerId, pictureData);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fehler beim Senden des Bildes: " + ex.Message);
-                return false;
-            }
-            return true;
-        }
-
-        private async Task<bool> AddProductGroupsToCustomerAsync(List<AddCustomerProductGroupDto> customerProductGroups)
-        {
-            try
-            {
-                await _apiClient.AddProductGroupsToCustomerAsync(customerProductGroups);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fehler beim Hinzufügen der Produktgruppe(n): " + ex.Message);
-                return false;
-            }
-            return true;
-        }
-
-        private async Task<bool> AddBusinessToCustomerAsync(int customerId, AddBusinessDto businessData)
-        {
-            try
-            {
-                await _apiClient.AddBusinessToCustomerAsync(customerId, businessData);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fehler beim Hinzufügen der Unternehmensdaten: " + ex.Message);
-                return false;
-            }
-            return true;
-        }
-
+    
         private void Company_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             SetCompanyGridEnabled(true);
@@ -387,11 +319,13 @@ namespace MesseauftrittDatenerfassung_UI
             // Stellt sicher, dass alle Elemente im Company_Grid betroffen sind
             foreach (var child in Company_Grid.Children)
             {
-                if (child is UIElement uiElement)
-                {
-                    uiElement.Visibility = visibility;
-                    uiElement.Opacity = opacity;
-                }
+              if (!(child is UIElement uiElement))
+              {
+                continue;
+              }
+
+              uiElement.Visibility = visibility;
+              uiElement.Opacity = opacity;
             }
         }
 

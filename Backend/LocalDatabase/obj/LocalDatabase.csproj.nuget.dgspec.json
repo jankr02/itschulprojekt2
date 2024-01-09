@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj": {}
+    "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj": {
+    "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj",
+        "projectUniqueName": "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj",
         "projectName": "LocalDatabase",
-        "projectPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj",
-        "packagesPath": "C:\\Users\\Matth\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\obj\\",
+        "projectPath": "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj",
+        "packagesPath": "C:\\Users\\JMJ1FE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\Backend\\LocalDatabase\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JMJ1FE\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,10 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://artifactory.boschdevcloud.com/artifactory/api/nuget/lab000003-bci-nuget-virtual/": {}
         },
         "frameworks": {
           "net7.0": {
@@ -47,6 +50,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[7.0.14, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -104,7 +111,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

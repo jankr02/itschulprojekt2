@@ -5,7 +5,6 @@ global using LocalDatabase.Dtos.PictureDtos;
 global using LocalDatabase.Dtos.ProductGroupDtos;
 global using LocalDatabase.Dtos.BusinessDtos;
 global using LocalDatabase.Enums;
-global using LocalDatabase.Converters;
 global using AutoMapper;
 global using Microsoft.EntityFrameworkCore;
 global using LocalDatabase.Data;
