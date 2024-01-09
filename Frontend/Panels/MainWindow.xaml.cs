@@ -125,6 +125,7 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void OpenAdminPanel_Click(object sender, RoutedEventArgs e)
         {
+            // Abfrage auf remote DB hinzufügen -> mit angelegtem Admin User vergleichen
             if (adminName_TextBox.Text == "Admin" && passwordBox.Password == "Admin123")
             {
                 AdminPanel adminPanelWindow = new AdminPanel();
