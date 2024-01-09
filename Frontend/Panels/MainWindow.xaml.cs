@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +23,7 @@ using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
 using MesseauftrittDatenerfassung_UI.Dtos.PictureDtos;
 using MesseauftrittDatenerfassung_UI.Enums;
+using MesseauftrittDatenerfassung_UI.Dtos.User;
 
 namespace MesseauftrittDatenerfassung_UI
 {
@@ -123,11 +126,21 @@ namespace MesseauftrittDatenerfassung_UI
             }
         }
 
-        private void OpenAdminPanel_Click(object sender, RoutedEventArgs e)
+        private async void OpenAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-            // Abfrage auf remote DB hinzufügen -> mit angelegtem Admin User vergleichen
-            if (adminName_TextBox.Text == "Admin" && passwordBox.Password == "Admin123")
+            // Obtain JWT token
+            UserLoginDto userLogin = new UserLoginDto()
             {
+                Username = adminName_TextBox.Text.ToString(),
+                Password = passwordBox.Password.ToString()
+            };
+            var response = await _apiClient.Login(userLogin);
+
+            // Save token for further requests
+            if (response == "200") {
+                // var token = await response.Data.ReadAsStringAsync();
+                // Set authentication header
+                // _apiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 AdminPanel adminPanelWindow = new AdminPanel();
                 this.Close();
                 adminPanelWindow.Show();

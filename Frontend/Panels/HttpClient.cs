@@ -9,6 +9,7 @@ using MesseauftrittDatenerfassung_UI.Dtos.PictureDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
+using MesseauftrittDatenerfassung_UI.Dtos.User;
 using System.Net.Http.Headers;
 
 namespace MesseauftrittDatenerfassung_UI
@@ -23,6 +24,17 @@ namespace MesseauftrittDatenerfassung_UI
             _httpClient = new HttpClient();
         }
 
+        // POST: Auth/Login
+        public async Task<string> Login(UserLoginDto content)
+        {
+            var jsonContent = JsonConvert.SerializeObject(content);
+            var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync("Auth/Login", contentString);
+            response.EnsureSuccessStatusCode();
+            var responseContent = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<string>(responseContent);
+        }
+        
         // GET: api/Customer
         public async Task<GetCustomerDto> GetCustomerAsync()
         {
