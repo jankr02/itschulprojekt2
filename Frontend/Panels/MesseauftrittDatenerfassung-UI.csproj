@@ -445,7 +445,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Dtos\User\UserLoginDto.cs" />
-    <Compile Include="Models\ServiceResponse.cs" />
     <Compile Include="SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
