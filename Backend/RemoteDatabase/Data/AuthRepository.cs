@@ -31,6 +31,7 @@ namespace RemoteDatabase.Data
             return response;
         }
 
+        /*
         public async Task<ServiceResponse<int>> Register(User user, string password)
         {
             var response = new ServiceResponse<int>();
@@ -50,6 +51,7 @@ namespace RemoteDatabase.Data
             response.Data = user.Id;
             return response;
         }
+        */
 
         public async Task<bool> UserExists(string username)
         {
@@ -60,6 +62,7 @@ namespace RemoteDatabase.Data
             return false;
         }
 
+        /*
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
@@ -68,6 +71,7 @@ namespace RemoteDatabase.Data
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
+        */
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
