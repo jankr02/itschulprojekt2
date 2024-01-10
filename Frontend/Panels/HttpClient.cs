@@ -10,6 +10,7 @@ using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.User;
+using MesseauftrittDatenerfassung_UI.Classes;
 using System.Net.Http.Headers;
 
 namespace MesseauftrittDatenerfassung_UI
@@ -29,10 +30,14 @@ namespace MesseauftrittDatenerfassung_UI
         {
             var jsonContent = JsonConvert.SerializeObject(content);
             var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("Auth/Login", contentString);
-            response.EnsureSuccessStatusCode();
+            var response = await _httpClient.PostAsync("http://localhost:5069/Auth/Login", contentString);
             var responseContent = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<string>(responseContent);
+            var token = JsonConvert.DeserializeObject<Response>(responseContent);
+            if (token.Success)
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Data);
+            }
+            return token.Data;
         }
         
         // GET: api/Customer

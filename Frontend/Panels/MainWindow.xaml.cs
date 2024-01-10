@@ -128,22 +128,22 @@ namespace MesseauftrittDatenerfassung_UI
 
         private async void OpenAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-            // Obtain JWT token
             UserLoginDto userLogin = new UserLoginDto()
             {
                 Username = adminName_TextBox.Text.ToString(),
                 Password = passwordBox.Password.ToString()
             };
-            var response = await _apiClient.Login(userLogin);
 
-            // Save token for further requests
-            if (response == "200") {
-                // var token = await response.Data.ReadAsStringAsync();
-                // Set authentication header
-                // _apiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await _apiClient.Login(userLogin);
+            if (response != null)
+            {
                 AdminPanel adminPanelWindow = new AdminPanel();
                 this.Close();
                 adminPanelWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Login fehlgeschlagen.");
             }
         }
 
