@@ -446,6 +446,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Response.cs" />
     <Compile Include="Dtos\User\UserLoginDto.cs" />
+    <Compile Include="ServiceResponse.cs" />
     <Compile Include="SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>

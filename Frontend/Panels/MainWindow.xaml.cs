@@ -135,15 +135,15 @@ namespace MesseauftrittDatenerfassung_UI
             };
 
             var response = await _apiClient.Login(userLogin);
-            if (response != null)
+            if (response.Success)
             {
                 AdminPanel adminPanelWindow = new AdminPanel();
-                this.Close();
+                Close();
                 adminPanelWindow.Show();
             }
             else
             {
-                MessageBox.Show("Login fehlgeschlagen.");
+                MessageBox.Show(response.Message);
             }
         }
 

@@ -10,7 +10,6 @@ using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.User;
-using MesseauftrittDatenerfassung_UI.Classes;
 using System.Net.Http.Headers;
 
 namespace MesseauftrittDatenerfassung_UI
@@ -26,18 +25,30 @@ namespace MesseauftrittDatenerfassung_UI
         }
 
         // POST: Auth/Login
-        public async Task<string> Login(UserLoginDto content)
+        public async Task<ServiceResponse<string>> Login(UserLoginDto content)
         {
             var jsonContent = JsonConvert.SerializeObject(content);
             var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("http://localhost:5069/Auth/Login", contentString);
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var token = JsonConvert.DeserializeObject<Response>(responseContent);
-            if (token.Success)
+            var serviceResponse = new ServiceResponse<string>();
+            try
             {
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Data);
+                var response = await _httpClient.PostAsync("http://localhost:5069/Auth/Login", contentString);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var token = JsonConvert.DeserializeObject<ServiceResponse<string>>(responseContent);
+                if (token.Success)
+                {
+                    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Data);
+                }
+                serviceResponse.Success = token.Success;
+                serviceResponse.Message = token.Message;
+                serviceResponse.Data = token.Data;
             }
-            return token.Data;
+            catch (Exception)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = "Verbindung zur Datenbank konnte nicht hergestellt werden.";
+            }
+            return serviceResponse;
         }
         
         // GET: api/Customer
