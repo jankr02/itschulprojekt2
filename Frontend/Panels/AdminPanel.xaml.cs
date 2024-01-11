@@ -42,7 +42,7 @@ namespace MesseauftrittDatenerfassung_UI
                 return;
             }
 
-            //LoadCustomers(DatabaseType.LocalDatabase);
+            LoadCustomers(DatabaseType.LocalDatabase);
 
             if (!Task.Run(() => _remoteApiClient.TestConnection(2)).GetAwaiter().GetResult())
             {
