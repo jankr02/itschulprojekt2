@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace LocalDatabase.Controllers
 {
-  [ApiController]
+    [Authorize]
+    [ApiController]
   [Route("api/[controller]")]
   public class CustomerController : ControllerBase
   {
