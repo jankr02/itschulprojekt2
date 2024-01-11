@@ -32,7 +32,7 @@ namespace MesseauftrittDatenerfassung_UI
             splashScreen.Show();
             InitializeApiClient(DatabaseType.LocalDatabase);
             InitializeApiClient(DatabaseType.RemoteDatabase);
-            if (!Task.Run(() => _localApiClient.TestConnection(1)).GetAwaiter().GetResult())
+            if (!Task.Run(() => _localApiClient.TestConnection(2)).GetAwaiter().GetResult())
             {
                 MessageBox.Show("Es konnte keine Verbindung zur lokalen Datenbank hergestellt werden. Die Anwendung wird geschlossen.");
                 Close();

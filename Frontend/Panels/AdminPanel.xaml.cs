@@ -42,9 +42,9 @@ namespace MesseauftrittDatenerfassung_UI
                 return;
             }
 
-            LoadCustomers(DatabaseType.LocalDatabase);
+            //LoadCustomers(DatabaseType.LocalDatabase);
 
-            if (!Task.Run(() => _remoteApiClient.TestConnection(1)).GetAwaiter().GetResult())
+            if (!Task.Run(() => _remoteApiClient.TestConnection(2)).GetAwaiter().GetResult())
             {
                 MessageBox.Show("Es konnte keine Verbindung zur remote Datenbank hergestellt werden.");
                 return;
@@ -85,7 +85,7 @@ namespace MesseauftrittDatenerfassung_UI
                 return;
             }
 
-            if (!Task.Run(() => _remoteApiClient.TestConnection(1)).GetAwaiter().GetResult())
+            if (!Task.Run(() => _remoteApiClient.TestConnection(2)).GetAwaiter().GetResult())
             {
                 MessageBox.Show("Es konnte keine Verbindung zur remote Datenbank hergestellt werden. Bitte versuchen Sie es später nochmal.");
                 return;

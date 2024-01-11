@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
 
 namespace LocalDatabase.Controllers
 {
-    [Authorize]
-    [ApiController]
+  [ApiController]
   [Route("api/[controller]")]
   public class CustomerController : ControllerBase
   {
@@ -13,19 +11,20 @@ namespace LocalDatabase.Controllers
 
     public CustomerController(ICustomerService customerService)
     {
-      _customerService = customerService;
+        _customerService = customerService;
     }
 
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> GetAllCustomers()
     {
-      return Ok(await _customerService.GetAllCustomers());
+        return Ok(await _customerService.GetAllCustomers());
     }
     
     [HttpPost]
     public async Task<ActionResult<ServiceResponse<GetCustomerDto>>> AddCompleteCustomer(AddCompleteCustomerDto newCustomer)
     {
-      return Ok(await _customerService.AddCompleteCustomer(newCustomer));
+        return Ok(await _customerService.AddCompleteCustomer(newCustomer));
     }
   }
 }

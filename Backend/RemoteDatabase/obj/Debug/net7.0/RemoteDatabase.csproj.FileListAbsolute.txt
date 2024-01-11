@@ -321,3 +321,13 @@ C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Scrutor.dll
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Backend\RemoteDatabase\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

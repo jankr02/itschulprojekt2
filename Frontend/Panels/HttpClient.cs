@@ -22,6 +22,22 @@ namespace MesseauftrittDatenerfassung_UI
             SetBaseAddress(databaseType);
         }
 
+        // GET: api/Customer/Test
+        public async Task<bool> TestConnection()
+        {
+            var response = await _httpClient.GetAsync("Test");
+            try
+            {
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            var content = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<bool>(content);
+        }
+
         // GET: api/Customer
         public async Task<List<GetCustomerDto>> GetAllCustomersAsync()
         {
@@ -74,22 +90,14 @@ namespace MesseauftrittDatenerfassung_UI
         {
             for (var i = 0; i < numberOfConnectionTries; i++)
             {
-                try
+                if(TestConnection().GetAwaiter().GetResult())
                 {
-                    await GetAllCustomersAsync();
+                    return true;
                 }
-                catch (Exception)
-                {
-                    if (i == (numberOfConnectionTries - 1))
-                    {
-                        return false;
-                    }
-                    await Task.Delay(TimeSpan.FromSeconds(1));
-                    continue;
-                }
-                return true;
+
+                await Task.Delay(TimeSpan.FromSeconds(1));
             }
-            return true;
+            return false;
         }
 
         public static async Task<bool> IsInternetAvailableAsync()
