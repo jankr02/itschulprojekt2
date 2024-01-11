@@ -138,10 +138,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\CustomImageConverter.cs" />
+    <Compile Include="Converters\PasswordLengthToVisibilityConverter.cs" />
     <Compile Include="Dtos\CustomerDtos\AddCompleteCustomerDto.cs" />
     <Compile Include="Dtos\ProductGroupDtos\AddProductGroupDto.cs" />
     <Compile Include="Enums\DatabaseType.cs" />
-    <Compile Include="Converters\PasswordLengthToVisibilityConverter.cs" />
     <Compile Include="Models\DataGridRecordSet.cs" />
     <Compile Include="SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
@@ -167,7 +167,6 @@
     <Compile Include="Dtos\BusinessDtos\GetBusinessDto.cs" />
     <Compile Include="Dtos\CustomerDtos\AddCustomerDto.cs" />
     <Compile Include="Dtos\CustomerDtos\GetCustomerDto.cs" />
-    <Compile Include="Dtos\CustomerDtos\UpdateCustomerDto.cs" />
     <Compile Include="Dtos\CustomerProductGroupDto\AddCustomerProductGroupDto.cs" />
     <Compile Include="Dtos\PictureDtos\AddPictureDto.cs" />
     <Compile Include="Dtos\PictureDtos\GetPictureDto.cs" />

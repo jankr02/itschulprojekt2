@@ -1,9 +1,8 @@
-﻿using System.Windows.Media;
-using System.Windows.Media.Imaging;
+﻿using System.Windows.Media.Imaging;
 
 namespace MesseauftrittDatenerfassung_UI.Models
 {
-  public class DataGridRecordSet
+    public class DataGridRecordSet
   {
     public int Id { get; set; }
     public string FirstName { get; set; }

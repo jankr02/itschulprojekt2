@@ -52,15 +52,6 @@ namespace MesseauftrittDatenerfassung_UI
             var responseContent = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<ServiceResponse<List<GetCustomerDto>>>(responseContent).Data;
         }
-    
-        // DELETE: api/Customer
-        public async Task<List<GetCustomerDto>> TruncateAllTablesAsync()
-        {
-            var response = await _httpClient.DeleteAsync("api/Customer");
-            response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<ServiceResponse<List<GetCustomerDto>>>(content).Data;
-        }
 
         public static CustomerApiClient CreateOrGetClient(DatabaseType databaseType)
         {
@@ -79,12 +70,29 @@ namespace MesseauftrittDatenerfassung_UI
             }
         }
 
-        private void SetBaseAddress(DatabaseType databaseType)
+        public async Task<bool> TestConnection(int numberOfConnectionTries)
         {
-          _httpClient.BaseAddress = databaseType == DatabaseType.RemoteDatabase ? new Uri("http://localhost:5069/") : new Uri("http://localhost:5222/");
+            for (var i = 0; i < numberOfConnectionTries; i++)
+            {
+                try
+                {
+                    await GetAllCustomersAsync();
+                }
+                catch (Exception)
+                {
+                    if (i == (numberOfConnectionTries - 1))
+                    {
+                        return false;
+                    }
+                    await Task.Delay(TimeSpan.FromSeconds(1));
+                    continue;
+                }
+                return true;
+            }
+            return true;
         }
 
-        public async Task<bool> IsInternetAvailableAsync()
+        public static async Task<bool> IsInternetAvailableAsync()
         {
             try
             {
@@ -99,6 +107,11 @@ namespace MesseauftrittDatenerfassung_UI
                 return false;
             }
         }
+
+        private void SetBaseAddress(DatabaseType databaseType)
+        {
+            _httpClient.BaseAddress = databaseType == DatabaseType.RemoteDatabase ? new Uri("http://localhost:5069/") : new Uri("http://localhost:5222/");
+        }        
     }
 }
 

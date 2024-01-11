@@ -4,6 +4,5 @@
     {
         Task<ServiceResponse<List<GetCustomerDto>>> GetAllCustomers();
         Task<ServiceResponse<GetCustomerDto>> AddCompleteCustomer(AddCompleteCustomerDto newCompleteCustomer);
-        Task<ServiceResponse<List<GetCustomerDto>>> TruncateAllTables();
     }
 }

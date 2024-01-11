@@ -61,21 +61,6 @@
             serviceResponse.Data = dbcustomers.Select(c => _mapper.Map<GetCustomerDto>(c)).ToList();
             return serviceResponse;
         }
-    
-        public async Task<ServiceResponse<List<GetCustomerDto>>> TruncateAllTables()
-        {
-          var serviceResponse = new ServiceResponse<List<GetCustomerDto>>();
-
-          await _context.Customers.ExecuteDeleteAsync();
-          await _context.Businesses.ExecuteDeleteAsync();
-          await _context.Pictures.ExecuteDeleteAsync();
-
-          serviceResponse.Data = await _context.Customers
-                                               .Select(c => _mapper.Map<GetCustomerDto>(c))
-                                               .ToListAsync();
-
-          return serviceResponse;
-        }
 
         private async Task<GetCustomerDto> AddCustomer(AddCustomerDto newCustomer)
         {

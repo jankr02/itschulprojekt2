@@ -24,11 +24,5 @@ namespace LocalDatabase.Controllers
     {
       return Ok(await _customerService.AddCompleteCustomer(newCustomer));
     }
-
-    [HttpDelete]
-    public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> TruncateAllTables()
-    {
-        return Ok(await _customerService.TruncateAllTables());
-    }
   }
 }

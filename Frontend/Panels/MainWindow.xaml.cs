@@ -9,7 +9,6 @@ using MesseauftrittDatenerfassung.MesseauftrittDatenerfassung;
 using MesseauftrittDatenerfassung_UI.Converters;
 using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
-using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
 using MesseauftrittDatenerfassung_UI.Dtos.PictureDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.ProductGroupDtos;
 using MesseauftrittDatenerfassung_UI.Enums;
@@ -24,14 +23,18 @@ namespace MesseauftrittDatenerfassung_UI
     {
         private CameraAPI _cameraApi = new CameraAPI();
         private CustomerApiClient _localApiClient;
+        private CustomerApiClient _remoteApiClient;
         private byte[] _capturedImageBytes;
 
         public MainWindow()
         {
             var splashScreen = new SplashScreen("Die Anwendung wird geladen ...");
             splashScreen.Show();
-            if (!Task.Run(() => InitializeApiClientAsync(10)).GetAwaiter().GetResult())
+            InitializeApiClient(DatabaseType.LocalDatabase);
+            InitializeApiClient(DatabaseType.RemoteDatabase);
+            if (!Task.Run(() => _localApiClient.TestConnection(1)).GetAwaiter().GetResult())
             {
+                MessageBox.Show("Es konnte keine Verbindung zur lokalen Datenbank hergestellt werden. Die Anwendung wird geschlossen.");
                 Close();
             }
             splashScreen.Close();
@@ -49,43 +52,20 @@ namespace MesseauftrittDatenerfassung_UI
             }
         }
 
-        //private void productGroup_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (productGroup_ComboBox.SelectedItem != null)
-        //    {
-        //        string selectedItem = productGroup_ComboBox.SelectedItem.ToString();
-        //        string[] parts = selectedItem.Split(' ');
-
-        //        if (parts.Length >= 2 && int.TryParse(parts[parts.Length - 1], out int productGroupId))
-        //        {
-        //            _productGroupId = productGroupId;
-        //        }
-        //    }
-        //}
-
-        private async Task<bool> InitializeApiClientAsync(int numberOfConnectionTries)
+        private void InitializeApiClient(DatabaseType databaseType)
         {
-            _localApiClient = CustomerApiClient.CreateOrGetClient(DatabaseType.LocalDatabase);        
-
-            for (var i = 0; i < numberOfConnectionTries; i++)
+            var apiClient = CustomerApiClient.CreateOrGetClient(databaseType);
+            switch (databaseType)
             {
-                try
-                {
-                    await _localApiClient.GetAllCustomersAsync();
-                }
-                catch (Exception ex)
-                {
-                    if(i == (numberOfConnectionTries - 1))
-                    {
-                        MessageBox.Show("Fehler bei der Initialisierung: " + ex.Message);
-                        return false;
-                    }
-                    await Task.Delay(TimeSpan.FromSeconds(2));
-                    continue;
-                }
-                return true;
-            }
-            return true;
+                case DatabaseType.LocalDatabase:
+                    _localApiClient = apiClient;
+                    break;
+                case DatabaseType.RemoteDatabase:
+                    _remoteApiClient = apiClient;
+                    break;
+                default:
+                    break;
+            }            
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -134,14 +114,21 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void OpenAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-          if ((adminName_TextBox.Text != "Admin") || (passwordBox.Password != "Admin123"))
-          {
-            return;
-          }
+            if ((adminName_TextBox.Text != "Admin") || (passwordBox.Password != "Admin123"))
+            {
+                return;
+            }
 
-          var adminPanelWindow = new AdminPanel();
-          Close();
-          adminPanelWindow.Show();
+            var adminPanelWindow = new AdminPanel(_localApiClient, _remoteApiClient);
+
+            Close();
+
+            if (adminPanelWindow.IsClosed == true)
+            {
+                return;
+            }
+
+            adminPanelWindow.Show();
         }
 
         private void SendData_Button_Click(object sender, RoutedEventArgs e)
@@ -227,55 +214,6 @@ namespace MesseauftrittDatenerfassung_UI
 
             personalImage.Source = new BitmapImage(new Uri("Resources/defaultImage.jpg", UriKind.Relative));
         }
-
-        //private void productGroup_CheckBox_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    CheckBox checkBox = sender as CheckBox;
-        //    if (checkBox != null)
-        //    {
-        //        string productGroupName = "";
-        //        switch (checkBox.BusinessName)
-        //        {
-        //            case "productGroup_Checkbox1":
-        //                productGroupName = productGroup_Label1.Content.ToString();
-        //                break;
-        //            case "productGroup_Checkbox2":
-        //                productGroupName = productGroup_Label2.Content.ToString();
-        //                break;
-        //            case "productGroup_Checkbox3":
-        //                productGroupName = productGroup_Label3.Content.ToString();
-        //                break;
-        //        }
-
-        //        if (!ProductGroups.Contains(productGroupName))
-        //        {
-        //            ProductGroups.Add(productGroupName);
-        //        }
-        //    }
-        //}
-
-        //private void productGroup_CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        //{
-        //    CheckBox checkBox = sender as CheckBox;
-        //    if (checkBox != null)
-        //    {
-        //        string productGroupName = "";
-        //        switch (checkBox.BusinessName)
-        //        {
-        //            case "productGroup_Checkbox1":
-        //                productGroupName = productGroup_Label1.Content.ToString();
-        //                break;
-        //            case "productGroup_Checkbox2":
-        //                productGroupName = productGroup_Label2.Content.ToString();
-        //                break;
-        //            case "productGroup_Checkbox3":
-        //                productGroupName = productGroup_Label3.Content.ToString();
-        //                break;
-        //        }
-
-        //        ProductGroups.Remove(productGroupName);
-        //    }
-        //}
 
         private static bool ValidateInput(DependencyObject container)
         {

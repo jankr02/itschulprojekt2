@@ -2206,23 +2206,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\JMJ1FE\\.nuget\\packages\\": {},
+    "C:\\Users\\Matth\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\Backend\\RemoteDatabase\\RemoteDatabase.csproj",
+      "projectUniqueName": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\RemoteDatabase\\RemoteDatabase.csproj",
       "projectName": "RemoteDatabase",
-      "projectPath": "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\Backend\\RemoteDatabase\\RemoteDatabase.csproj",
-      "packagesPath": "C:\\Users\\JMJ1FE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JMJ1FE\\Documents\\itschulprojekt2\\Backend\\RemoteDatabase\\obj\\",
+      "projectPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\RemoteDatabase\\RemoteDatabase.csproj",
+      "packagesPath": "C:\\Users\\Matth\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\RemoteDatabase\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\JMJ1FE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2231,10 +2231,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://artifactory.boschdevcloud.com/artifactory/api/nuget/lab000003-bci-nuget-virtual/": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
@@ -2316,7 +2313,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
