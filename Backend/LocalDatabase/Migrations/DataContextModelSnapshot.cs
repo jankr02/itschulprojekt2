@@ -115,7 +115,7 @@ namespace LocalDatabase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<byte[]>("Data")
+                    b.Property<byte[]>("Image")
                         .HasColumnType("BLOB");
 
                     b.Property<string>("Name")

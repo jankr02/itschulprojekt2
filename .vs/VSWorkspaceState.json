@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Backend",
+    "\\Backend\\RemoteDatabase",
+    "\\Frontend",
+    "\\Frontend\\Panels"
   ],
-  "SelectedNode": "\\MesseauftrittDatenerfassung.sln",
+  "SelectedNode": "\\Frontend\\Panels\\MainWindow.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

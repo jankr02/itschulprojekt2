@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MesseauftrittDatenerfassung_UI"
         mc:Ignorable="d"
-        Title="SplashScreen" Height="450" Width="800">
+        Title="SplashScreen"
+        WindowStyle="None" ResizeMode="NoResize"  
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <TextBlock x:Name="MessageTextBlock" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>

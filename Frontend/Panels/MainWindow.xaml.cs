@@ -1,91 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Gu.Wpf.Adorners;
 using MesseauftrittDatenerfassung.MesseauftrittDatenerfassung;
+using MesseauftrittDatenerfassung_UI.Converters;
 using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
-using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
 using MesseauftrittDatenerfassung_UI.Dtos.PictureDtos;
+using MesseauftrittDatenerfassung_UI.Dtos.ProductGroupDtos;
 using MesseauftrittDatenerfassung_UI.Enums;
+using Brushes = System.Windows.Media.Brushes;
 
 namespace MesseauftrittDatenerfassung_UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        private CameraAPI cameraApi = new CameraAPI();
-        private CustomerApiClient _apiClient;
+        private CameraAPI _cameraApi = new CameraAPI();
+        private CustomerApiClient _localApiClient;
+        private CustomerApiClient _remoteApiClient;
         private byte[] _capturedImageBytes;
-        private int _productGroupId;
-        public List<String> ProductGroups { get; }
 
         public MainWindow()
         {
-            InitializeComponent();
-            SplashScreen splashScreen = new SplashScreen("Die Anwendung wird geladen ...");
+            var splashScreen = new SplashScreen("Die Anwendung wird geladen ...");
             splashScreen.Show();
-            InitializeApiClientAsync(splashScreen);
+            InitializeApiClient(DatabaseType.LocalDatabase);
+            InitializeApiClient(DatabaseType.RemoteDatabase);
+            if (!Task.Run(() => _localApiClient.TestConnection(2)).GetAwaiter().GetResult())
+            {
+                MessageBox.Show("Es konnte keine Verbindung zur lokalen Datenbank hergestellt werden. Die Anwendung wird geschlossen.");
+                Close();
+            }
+            splashScreen.Close();
+            InitializeComponent();
             SetCompanyGridEnabled(false);
             SetCompanyGridVisibility(Visibility.Visible, 0.5);
-            ProductGroups = new List<string>();
+            PopulateProductGroupListBox();
         }
 
-        //private void PopulateProductGroupComboBox()
-        //{
-        //    productGroup_ComboBox.ItemsSource = Enum.GetValues(typeof(ProductGroupName))
-        //                                               .Cast<ProductGroupName>();
-        //}
-
-        //private void productGroup_ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (productGroup_ComboBox.SelectedItem != null)
-        //    {
-        //        string selectedItem = productGroup_ComboBox.SelectedItem.ToString();
-        //        string[] parts = selectedItem.Split(' ');
-
-        //        if (parts.Length >= 2 && int.TryParse(parts[parts.Length - 1], out int productGroupId))
-        //        {
-        //            _productGroupId = productGroupId;
-        //        }
-        //    }
-        //}
-
-        private async void InitializeApiClientAsync(SplashScreen splashScreen)
+        private void PopulateProductGroupListBox()
         {
-            try
+            foreach (var item in Enum.GetValues(typeof(ProductGroupName)))
             {
-                _apiClient = await CustomerApiClient.CreateAsync();
-                await Task.Delay(TimeSpan.FromSeconds(0.15));
-                splashScreen.Close();
+                productGroup_ListBox.Items.Add(item);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fehler bei der Initialisierung: " + ex.Message);
-                Close(); 
-            }
+        }
 
+        private void InitializeApiClient(DatabaseType databaseType)
+        {
+            var apiClient = CustomerApiClient.CreateOrGetClient(databaseType);
+            switch (databaseType)
+            {
+                case DatabaseType.LocalDatabase:
+                    _localApiClient = apiClient;
+                    break;
+                case DatabaseType.RemoteDatabase:
+                    _remoteApiClient = apiClient;
+                    break;
+                default:
+                    break;
+            }            
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            if (textBox != null && textBox.Text == textBox.Tag.ToString())
+            var textBox = sender as TextBox;
+            if ((textBox != null) && (textBox.Text == textBox.Tag.ToString()))
             {
                 textBox.Text = string.Empty;
             }
@@ -93,8 +79,8 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            if (textBox != null && string.IsNullOrWhiteSpace(textBox.Text))
+            var textBox = sender as TextBox;
+            if ((textBox != null) && string.IsNullOrWhiteSpace(textBox.Text))
             {
                 textBox.Text = textBox.Tag.ToString();
             }
@@ -107,167 +93,160 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void Image_Button_Click(object sender, RoutedEventArgs e)
         {
-            _capturedImageBytes = cameraApi.CaptureImage();
+            _capturedImageBytes = ToByteArray();
+            //_capturedImageBytes = _cameraApi.CaptureImage();
 
             if (_capturedImageBytes != null)
             {
-                using (MemoryStream ms = new MemoryStream(_capturedImageBytes))
-                {
-                    var image = new BitmapImage();
-                    image.BeginInit();
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.StreamSource = ms;
-                    image.EndInit();
-                    personalImage.Source = image;
-                }
+                personalImage.Source = CustomImageConverter.ConvertByteArrayToBitmapImage(_capturedImageBytes);
+            }
+        }
+
+        private static byte[] ToByteArray()
+        {
+            var image = Properties.Resources.testImage;
+            using (var memoryStream = new MemoryStream())
+            {
+                image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return memoryStream.ToArray();
             }
         }
 
         private void OpenAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-            if (adminName_TextBox.Text == "Admin" && passwordBox.Password == "Admin123")
+            if ((adminName_TextBox.Text != "Admin") || (passwordBox.Password != "Admin123"))
             {
-                AdminPanel adminPanelWindow = new AdminPanel();
-                this.Close();
-                adminPanelWindow.Show();
+                return;
             }
+
+            var adminPanelWindow = new AdminPanel(_localApiClient, _remoteApiClient);
+
+            Close();
+
+            if (adminPanelWindow.IsClosed == true)
+            {
+                return;
+            }
+
+            adminPanelWindow.Show();
         }
 
-        private void sendData_Button_Click(object sender, RoutedEventArgs e)
+        private void SendData_Button_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidateInput(this)) 
             {
                 MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
                 return; 
             }
-
-            AddCustomerDto customerData = new AddCustomerDto()
+            
+            var customerData = new AddCompleteCustomerDto()
             {
-                FirstName = name_TextBox.Text.ToString(),
-                LastName = surname_TextBox.Text.ToString(),
-                Street = street_TextBox.Text.ToString(),
-                HouseNumber = houseNr_TextBox.Text.ToString(),
-                PostalCode = postalCode_TextBox.Text.ToString(),
-                City = city_TextBox.Text.ToString()
+                FirstName = name_TextBox.Text,
+                LastName = surname_TextBox.Text,
+                Street = street_TextBox.Text,
+                HouseNumber = houseNr_TextBox.Text,
+                PostalCode = postalCode_TextBox.Text,
+                City = city_TextBox.Text
             };
 
-            AddBusinessDto businessData = new AddBusinessDto()
+            if (_capturedImageBytes != null)
             {
-                Name = companyName_TextBox.Text.ToString(),
-                Street = companyStreet_TextBox.Text.ToString(),
-                HouseNumber = companyHouseNr_TextBox.Text.ToString(),
-                City = companyCity_TextBox.Text.ToString(),
-                PostalCode = companyPLZ_TextBox.Text.ToString(),
-            };
-
-            AddPictureDto pictureData = new AddPictureDto()
-            {
-                Name = personalImage.Name.ToString(),
-                Image = _capturedImageBytes
-            };
-
-            AddCustomerProductGroupDto customerProductGroupData = new AddCustomerProductGroupDto()
-            {
-            };
-
-            SendDataToBackend(customerData, businessData, pictureData, customerProductGroupData);
-        }
-
-        private void productGroup_CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            CheckBox checkBox = sender as CheckBox;
-            if (checkBox != null)
-            {
-                string productGroupName = "";
-                switch (checkBox.Name)
+                var pictureData = new AddPictureDto
                 {
-                    case "productGroup_Checkbox1":
-                        productGroupName = productGroup_Label1.Content.ToString();
-                        break;
-                    case "productGroup_Checkbox2":
-                        productGroupName = productGroup_Label2.Content.ToString();
-                        break;
-                    case "productGroup_Checkbox3":
-                        productGroupName = productGroup_Label3.Content.ToString();
-                        break;
-                }
+                    Name = personalImage.Name,
+                    Data = Convert.ToBase64String(_capturedImageBytes)
+                };
 
-                if (!ProductGroups.Contains(productGroupName))
-                {
-                    ProductGroups.Add(productGroupName);
-                }
+                customerData.Picture = pictureData;
             }
-        }
 
-        private void productGroup_CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            CheckBox checkBox = sender as CheckBox;
-            if (checkBox != null)
+            if (productGroup_ListBox.SelectedIndex != -1)
             {
-                string productGroupName = "";
-                switch (checkBox.Name)
+                var customerProductGroups = new List<AddProductGroupDto>();
+                foreach (var item in productGroup_ListBox.SelectedItems)
                 {
-                    case "productGroup_Checkbox1":
-                        productGroupName = productGroup_Label1.Content.ToString();
-                        break;
-                    case "productGroup_Checkbox2":
-                        productGroupName = productGroup_Label2.Content.ToString();
-                        break;
-                    case "productGroup_Checkbox3":
-                        productGroupName = productGroup_Label3.Content.ToString();
-                        break;
-                }
-
-                ProductGroups.Remove(productGroupName);
-            }
-        }
-
-        private bool ValidateInput(DependencyObject container)
-        {
-            bool isValid = true;
-            foreach (var child in LogicalTreeHelper.GetChildren(container))
-            {
-                if (child is TextBox textBox && string.IsNullOrWhiteSpace(textBox.Text))
-                {
-                    textBox.BorderBrush = Brushes.Red;
-                    isValid = false;
-                }
-                else if (child is DependencyObject dependencyObject)
-                {
-                    if (!ValidateInput(dependencyObject))
+                    if(Enum.TryParse(item.ToString(), out ProductGroupName productGroupName))
                     {
-                        isValid = false;
+                        customerProductGroups.Add(new AddProductGroupDto{ Name = productGroupName}) ;
                     }
                 }
+
+                customerData.ProductGroups = customerProductGroups;
+            }
+
+            if ((company_CheckBox.IsChecked != null) && (bool)company_CheckBox.IsChecked)
+            {
+                var businessData = new AddBusinessDto
+                {
+                    Name = companyName_TextBox.Text,
+                    Street = companyStreet_TextBox.Text,
+                    HouseNumber = companyHouseNr_TextBox.Text,
+                    City = companyCity_TextBox.Text,
+                    PostalCode = companyPLZ_TextBox.Text,
+                };
+
+                customerData.Business = businessData;
+            }
+
+            _localApiClient.CreateCompleteCustomerAsync(customerData).GetAwaiter().GetResult();
+
+            ResetDataInWindow();
+
+            MessageBox.Show("Ihre Daten wurden erfolgreich gespeichert.");
+        }
+
+        private void ResetDataInWindow()
+        {
+            name_TextBox.Text = "Vorname";
+            surname_TextBox.Text = "Nachname";
+            street_TextBox.Text = "Straßenname";
+            houseNr_TextBox.Text = "Hausnr.";
+            city_TextBox.Text = "Ortsname";
+            postalCode_TextBox.Text = "PLZ";
+
+            productGroup_ListBox.SelectedIndex = -1;
+
+            companyName_TextBox.Text = "Firmenname";
+            companyStreet_TextBox.Text = "Straßenname";
+            companyHouseNr_TextBox.Text = "Hausnr.";
+            companyCity_TextBox.Text = "Ortsname";
+            companyPLZ_TextBox.Text = "PLZ";
+
+            personalImage.Source = new BitmapImage(new Uri("Resources/defaultImage.jpg", UriKind.Relative));
+        }
+
+        private static bool ValidateInput(DependencyObject container)
+        {
+            var isValid = true;
+            foreach (var child in LogicalTreeHelper.GetChildren(container))
+            {
+              switch (child)
+              {
+                case TextBox textBox when string.IsNullOrWhiteSpace(textBox.Text):
+                  textBox.BorderBrush = Brushes.Red;
+                  isValid = false;
+                  break;
+                case DependencyObject dependencyObject:
+                {
+                  if (!ValidateInput(dependencyObject))
+                  {
+                    isValid = false;
+                  }
+
+                  break;
+                }
+              }
             }
             return isValid;
         }
-
-        private async void SendDataToBackend(AddCustomerDto customerData, AddBusinessDto businessData, 
-            AddPictureDto pictureData, AddCustomerProductGroupDto customerProductGroupData)
-        {
-            try
-            {
-                int id = _apiClient.GetCustomerAsync().Result.Id;
-
-                await _apiClient.CreateCustomerAsync(customerData);
-                await _apiClient.AddBusinessToCustomerAsync(id, businessData);
-                await _apiClient.AddPictureToCustomerAsync(id, pictureData);
-                await _apiClient.AddProductGroupToCustomerAsync(id, customerProductGroupData);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fehler beim Senden der Daten: " + ex.Message);
-            }
-        }
-
-        private void company_CheckBox_Checked(object sender, RoutedEventArgs e)
+    
+        private void Company_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             SetCompanyGridEnabled(true);
             SetCompanyGridVisibility(Visibility.Visible, 1);
         }
 
-        private void company_CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        private void Company_CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             SetCompanyGridEnabled(false);
             SetCompanyGridVisibility(Visibility.Visible, 0.5);
@@ -278,11 +257,13 @@ namespace MesseauftrittDatenerfassung_UI
             // Stellt sicher, dass alle Elemente im Company_Grid betroffen sind
             foreach (var child in Company_Grid.Children)
             {
-                if (child is UIElement uiElement)
-                {
-                    uiElement.Visibility = visibility;
-                    uiElement.Opacity = opacity;
-                }
+              if (!(child is UIElement uiElement))
+              {
+                continue;
+              }
+
+              uiElement.Visibility = visibility;
+              uiElement.Opacity = opacity;
             }
         }
 
@@ -295,19 +276,6 @@ namespace MesseauftrittDatenerfassung_UI
                     uiElement.IsEnabled = isEnabled;
                 }
             }
-        }
-    }
-
-    public class PasswordLengthToVisibilityConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return (value != null && value is int && (int)value > 0) ? Visibility.Collapsed : Visibility.Visible;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
         }
     }
 }

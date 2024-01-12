@@ -1,6 +1,6 @@
 ﻿using MesseauftrittDatenerfassung_UI.Enums;
 
-namespace LocalDatabase.Dtos.ProductGroupDtos
+namespace MesseauftrittDatenerfassung_UI.Dtos.ProductGroupDtos
 {
     public class GetProductGroupDto
     {
