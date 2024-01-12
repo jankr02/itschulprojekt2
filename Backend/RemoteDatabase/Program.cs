@@ -5,7 +5,6 @@ global using RemoteDatabase.Dtos.PictureDtos;
 global using RemoteDatabase.Dtos.ProductGroupDtos;
 global using RemoteDatabase.Dtos.BusinessDtos;
 global using RemoteDatabase.Enums;
-global using RemoteDatabase.Converters;
 global using AutoMapper;
 global using Microsoft.EntityFrameworkCore;
 global using RemoteDatabase.Data;
@@ -52,6 +51,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 ValidateAudience = false
             };
     });
+
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 var app = builder.Build();
 

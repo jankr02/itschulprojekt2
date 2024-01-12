@@ -3,12 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MesseauftrittDatenerfassung_UI"
+        xmlns:converters="clr-namespace:MesseauftrittDatenerfassung_UI.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="638" ResizeMode="CanResizeWithGrip">
+        Title="MainWindow"
+        WindowStyle="None" ResizeMode="NoResize"  
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Window.Resources>
-        <local:PasswordLengthToVisibilityConverter x:Key="PasswordLengthToVisibilityConverter"/>
+        <converters:PasswordLengthToVisibilityConverter x:Key="PasswordLengthToVisibilityConverter"/>
         <Style x:Key="TransparentHoverButton" TargetType="Button">
             <Setter Property="Background" Value="LightGray"/>
             <Setter Property="BorderBrush" Value="Black"/>
@@ -32,7 +34,7 @@
             </Setter>
         </Style>
 
-        <!--<Style TargetType="ComboBox">
+        <Style TargetType="ComboBox">
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -102,7 +104,7 @@
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
-                            --><!-- Trigger zum Ändern des unteren Randes beim Öffnen des Dropdowns --><!--
+                            <!-- Trigger zum Ändern des unteren Randes beim Öffnen des Dropdowns -->
                             <Trigger Property="IsDropDownOpen" Value="True">
                                 <Setter TargetName="MainBorder" Property="CornerRadius" Value="8,8,0,0"/>
                                 <Setter TargetName="MainBorder" Property="BorderThickness" Value="1,1,1,0"/>
@@ -111,19 +113,19 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>-->
+        </Style>
 
     </Window.Resources>
     <Viewbox Stretch="Uniform" StretchDirection="Both">
         <Grid x:Name="Window_Grid">
             <!--Titel-->
-            <Label x:Name="Title_Label" Content="Sichere Dir jetzt deinen Gutschein!" HorizontalAlignment="Left" Height="60" 
+            <Label x:Name="Title_Label" Content="Sichern Sie sich Ihren Gutschein!" HorizontalAlignment="Left" Height="60" 
                    VerticalAlignment="Top" Width="467" FontSize="20" FontWeight="Bold" Margin="10,11,0,0"/>
 
             <!--Datengrid-->
             <Grid x:Name="Data_Grid" HorizontalAlignment="Left" Height="362" Margin="23,62,0,0" VerticalAlignment="Top" Width="529">
                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8">
-                    <Image x:Name="personalImage" Source="C:\Users\JRK1FE\Desktop\Schule\Projekt\images.png" 
+                    <Image x:Name="personalImage" Source="Resources/defaultImage.jpg" 
                        Margin="353,21,74,232"/>
                 </Border>
 
@@ -199,44 +201,19 @@
                 </Grid>
 
                 <!--Produktgruppen-->
-                <Grid x:Name="ProductGroup_Grid" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="402" Margin="0,140,0,0">
-                    <Label x:Name="ProductGroup_Label" Content="Produktgruppen auswählen" HorizontalAlignment="Left" Height="60" 
-                           VerticalAlignment="Top" Width="467" FontSize="20" FontWeight="Bold"/>
-                    <!--<Border CornerRadius="8" Background="Black" RenderTransformOrigin="0.5,0.5" Margin="10,36,280,12">
-                        <Label x:Name="chooseProductGroup_Label" Content="Produktgruppe" HorizontalAlignment="Center" 
-                               Height="22" Padding="2,2,2,2" VerticalAlignment="Center" Width="100" FontWeight="Bold" 
-                               Background="Black" Foreground="White" RenderTransformOrigin="0.5,0.5"/>
-                    </Border>-->
-
-
-                    <CheckBox x:Name="productGroup_Checkbox1" BorderBrush="Black" BorderThickness="1.5" Margin="10,40,371,10" Checked="productGroup_CheckBox_Checked"
-                              Unchecked="productGroup_CheckBox_Unchecked"></CheckBox>
-                    <Label x:Name="productGroup_Label1" Content="Produktgruppe 1" Margin="24,35,0,5" HorizontalAlignment="Left" Width="110" FontWeight="Bold"/>
-                    <CheckBox x:Name="productGroup_Checkbox2" BorderBrush="Black" BorderThickness="1.5" Margin="130,40,251,10" Checked="productGroup_CheckBox_Checked"
-                              Unchecked="productGroup_CheckBox_Unchecked"></CheckBox>
-                    <Label x:Name="productGroup_Label2" Content="Produktgruppe 2" Margin="145,35,147,5" FontWeight="Bold"/>
-                    <CheckBox x:Name="productGroup_Checkbox3" BorderBrush="Black" BorderThickness="1.5" Margin="255,40,126,10" RenderTransformOrigin="0.789,0.543" Checked="productGroup_CheckBox_Checked" 
-                              Unchecked="productGroup_CheckBox_Unchecked"></CheckBox>
-                    <Label x:Name="productGroup_Label3" Content="Produktgruppe 3" Margin="269,35,23,5" FontWeight="Bold"/>
-                    <!--<ComboBox x:Name="productGroup_ComboBox" Margin="127,36,90,11" BorderBrush="White" SelectionChanged="productGroup_ComboBox_SelectionChanged">
-                        <ComboBox.Background>
-                            <LinearGradientBrush EndPoint="0,1">
-                                <GradientStop Color="#FFF0F0F0"/>
-                                <GradientStop Color="White" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ComboBox.Background>
-                    </ComboBox>-->
-
+                <Grid x:Name="ProductGroup_Grid" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Width="288" Margin="0,140,0,0">
+                    <Label x:Name="ProductGroup_Label" Content="Produktgruppe(n) auswählen" HorizontalAlignment="Left" Height="41" 
+                           VerticalAlignment="Center" Width="294" FontSize="20" FontWeight="Bold"/>
+                    <Grid Margin="15">
+                        <ListBox Margin="-7,20,-40,-74" x:Name="productGroup_ListBox" SelectionMode="Multiple"/>
+                    </Grid>
                 </Grid>
 
                 <!--Firmen Daten-->
-
                 <Grid x:Name="Company_Grid" HorizontalAlignment="Left" Height="141" 
-                      VerticalAlignment="Top" Width="337" Margin="0,210,0,0">
-                    <Label x:Name="Company_Label" Content="Firmen angehörig?" HorizontalAlignment="Left" 
+                      VerticalAlignment="Top" Width="337" Margin="0,240,0,0">
+                    <Label x:Name="Company_Label" Content="Unternehmenszugehörig?" HorizontalAlignment="Left" 
                            Height="60" VerticalAlignment="Top" Width="467" FontSize="20" FontWeight="Bold"/>
-
-
 
                     <!--Firmenname Datenerfassung-->
                     <Border CornerRadius="8" Background="Black" RenderTransformOrigin="0.5,0.5" Margin="10,37,215,84">
@@ -282,12 +259,10 @@
                                  LostFocus="TextBox_LostFocus" BorderThickness="0" Background="Transparent"/>
                     </Border>
                 </Grid>
-                <Border CornerRadius="8" Background="Black" Margin="353,298,74,40"></Border>
-                <Button x:Name="sendData_Button" Content="Senden" Margin="362,298,83,40" Background="Black" BorderBrush="Black" Foreground="White"
-                        Style="{StaticResource TransparentHoverButton}" Click="sendData_Button_Click"/>
+                <Border CornerRadius="8" Background="Black" Margin="353,328,74,10"></Border>
+                <Button x:Name="sendData_Button" Content="Senden" Margin="362,328,83,10" Background="Black" BorderBrush="Black" Foreground="White"
+                        Style="{StaticResource TransparentHoverButton}" Click="SendData_Button_Click"/>
             </Grid>
-
-
 
             <!--Admin Panel-->
             <Grid x:Name="AdminPanel_Grid" HorizontalAlignment="Left" Height="38" Margin="351,10,0,0" VerticalAlignment="Top" Width="277">
@@ -315,11 +290,9 @@
                    Visibility="{Binding ElementName=passwordBox, Path=Password.Length, Converter={StaticResource PasswordLengthToVisibilityConverter}}"/>
                 </Grid>
             </Grid>
-            <CheckBox x:Name="company_CheckBox" Margin="211,286,398,122" BorderBrush="Black" BorderThickness="1.2" 
-                            Checked="company_CheckBox_Checked"
-                            Unchecked="company_CheckBox_Unchecked"/>
-
-
+            <CheckBox x:Name="company_CheckBox" Margin="278,316,331,122" BorderBrush="Black" BorderThickness="1.2" 
+                            Checked="Company_CheckBox_Checked"
+                            Unchecked="Company_CheckBox_Unchecked"/>
         </Grid>
     </Viewbox>
 </Window>

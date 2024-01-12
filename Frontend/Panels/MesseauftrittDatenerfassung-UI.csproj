@@ -18,8 +18,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -446,6 +444,12 @@
     </ApplicationDefinition>
     <Compile Include="Dtos\User\UserLoginDto.cs" />
     <Compile Include="ServiceResponse.cs" />
+    <Compile Include="Converters\CustomImageConverter.cs" />
+    <Compile Include="Converters\PasswordLengthToVisibilityConverter.cs" />
+    <Compile Include="Dtos\CustomerDtos\AddCompleteCustomerDto.cs" />
+    <Compile Include="Dtos\ProductGroupDtos\AddProductGroupDto.cs" />
+    <Compile Include="Enums\DatabaseType.cs" />
+    <Compile Include="Models\DataGridRecordSet.cs" />
     <Compile Include="SplashScreen.xaml.cs">
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
@@ -470,7 +474,6 @@
     <Compile Include="Dtos\BusinessDtos\GetBusinessDto.cs" />
     <Compile Include="Dtos\CustomerDtos\AddCustomerDto.cs" />
     <Compile Include="Dtos\CustomerDtos\GetCustomerDto.cs" />
-    <Compile Include="Dtos\CustomerDtos\UpdateCustomerDto.cs" />
     <Compile Include="Dtos\CustomerProductGroupDto\AddCustomerProductGroupDto.cs" />
     <Compile Include="Dtos\PictureDtos\AddPictureDto.cs" />
     <Compile Include="Dtos\PictureDtos\GetPictureDto.cs" />
@@ -517,6 +520,13 @@
     <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\defaultImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\testImage.jpg" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
