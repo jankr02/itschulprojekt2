@@ -24,7 +24,6 @@ namespace RemoteDatabase.Controllers
             return Ok(response);
         }
 
-        /*
         [HttpPost("Register")]
         public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegisterDto request)
         {
@@ -37,6 +36,5 @@ namespace RemoteDatabase.Controllers
             }
             return Ok(response);
         }
-        */
     }
 }

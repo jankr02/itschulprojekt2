@@ -320,3 +320,7 @@ C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\Loca
 C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\LocalDatabase\obj\Debug\net7.0\LocalDatabase.pdb
 C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\LocalDatabase\obj\Debug\net7.0\LocalDatabase.genruntimeconfig.cache
 C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\LocalDatabase\obj\Debug\net7.0\ref\LocalDatabase.dll
+C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\LocalDatabase\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\LocalDatabase\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\LocalDatabase\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\LocalDatabase\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll

@@ -31,7 +31,6 @@ namespace LocalDatabase.Data
             return response;
         }
 
-        /*
         public async Task<ServiceResponse<int>> Register(User user, string password)
         {
             var response = new ServiceResponse<int>();
@@ -51,7 +50,6 @@ namespace LocalDatabase.Data
             response.Data = user.Id;
             return response;
         }
-        */
 
         public async Task<bool> UserExists(string username)
         {
@@ -62,7 +60,6 @@ namespace LocalDatabase.Data
             return false;
         }
 
-        /*
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
@@ -71,7 +68,6 @@ namespace LocalDatabase.Data
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
         }
-        */
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {

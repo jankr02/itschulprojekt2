@@ -323,3 +323,7 @@ C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\Remo
 C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\RemoteDatabase\obj\Debug\net7.0\RemoteDatabase.pdb
 C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\RemoteDatabase\obj\Debug\net7.0\RemoteDatabase.genruntimeconfig.cache
 C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\RemoteDatabase\obj\Debug\net7.0\ref\RemoteDatabase.dll
+C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\RemoteDatabase\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\RemoteDatabase\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Backend\RemoteDatabase\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll

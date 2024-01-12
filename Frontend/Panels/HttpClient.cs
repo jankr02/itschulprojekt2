@@ -4,13 +4,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Net.NetworkInformation;
-using MesseauftrittDatenerfassung_UI.Dtos.PictureDtos;
-using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
-using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
 using MesseauftrittDatenerfassung_UI.Enums;
-using System.Collections.Generic;
 using MesseauftrittDatenerfassung_UI.Dtos.User;
 using System.Net.Http.Headers;
 
@@ -55,10 +50,8 @@ namespace MesseauftrittDatenerfassung_UI
             }
             return serviceResponse;
         }
-        
-        // GET: api/Customer
-        public async Task<GetCustomerDto> GetCustomerAsync()
-        // GET: api/Customer/Test
+
+        // GET: Test
         public async Task<bool> TestConnection()
         {
             var response = await _httpClient.GetAsync("Test");

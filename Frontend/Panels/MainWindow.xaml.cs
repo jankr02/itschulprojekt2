@@ -1,22 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Gu.Wpf.Adorners;
 using MesseauftrittDatenerfassung.MesseauftrittDatenerfassung;
 using MesseauftrittDatenerfassung_UI.Converters;
 using MesseauftrittDatenerfassung_UI.Dtos.BusinessDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
-using MesseauftrittDatenerfassung_UI.Dtos.CustomerProductGroupDto;
 using MesseauftrittDatenerfassung_UI.Dtos.PictureDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.ProductGroupDtos;
 using MesseauftrittDatenerfassung_UI.Enums;
@@ -129,9 +121,10 @@ namespace MesseauftrittDatenerfassung_UI
                 Password = passwordBox.Password.ToString()
             };
 
-            var response = await _apiClient.Login(userLogin);
+            var response = await _localApiClient.Login(userLogin);
             if (!response.Success)
             {
+                MessageBox.Show(response.Message);
                 return;
             }
 

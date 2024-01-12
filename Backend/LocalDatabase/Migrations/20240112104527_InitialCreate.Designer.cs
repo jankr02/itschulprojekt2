@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocalDatabase.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240103153405_InitialCreate")]
+    [Migration("20240112104527_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -118,7 +118,7 @@ namespace LocalDatabase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<byte[]>("Data")
+                    b.Property<byte[]>("Image")
                         .HasColumnType("BLOB");
 
                     b.Property<string>("Name")
@@ -169,6 +169,29 @@ namespace LocalDatabase.Migrations
                             Id = 5,
                             Name = 5
                         });
+                });
+
+            modelBuilder.Entity("LocalDatabase.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("BLOB");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("BLOB");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("CustomerProductGroup", b =>

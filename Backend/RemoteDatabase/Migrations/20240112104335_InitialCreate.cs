@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace LocalDatabase.Migrations
+namespace RemoteDatabase.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -36,7 +36,7 @@ namespace LocalDatabase.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Data = table.Column<byte[]>(type: "BLOB", nullable: true)
+                    Image = table.Column<byte[]>(type: "BLOB", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -54,6 +54,21 @@ namespace LocalDatabase.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductGroups", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Username = table.Column<string>(type: "TEXT", nullable: false),
+                    PasswordHash = table.Column<byte[]>(type: "BLOB", nullable: false),
+                    PasswordSalt = table.Column<byte[]>(type: "BLOB", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -144,6 +159,9 @@ namespace LocalDatabase.Migrations
         {
             migrationBuilder.DropTable(
                 name: "CustomerProductGroup");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Customers");

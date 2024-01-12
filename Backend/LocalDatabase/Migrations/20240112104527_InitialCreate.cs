@@ -36,7 +36,7 @@ namespace LocalDatabase.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Data = table.Column<byte[]>(type: "BLOB", nullable: true)
+                    Image = table.Column<byte[]>(type: "BLOB", nullable: true)
                 },
                 constraints: table =>
                 {
