@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace RemoteDatabase.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomerController : ControllerBase

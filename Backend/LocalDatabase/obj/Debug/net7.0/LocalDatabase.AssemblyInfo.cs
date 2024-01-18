@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LocalDatabase")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0aa17c7345b5867b4a3d929a91ea993e2d4f44dd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a131144b740d3a867b24e6c943315faa08aac6a")]
 [assembly: System.Reflection.AssemblyProductAttribute("LocalDatabase")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LocalDatabase")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
