@@ -14,7 +14,7 @@ namespace LocalDatabase.Controllers
         _customerService = customerService;
     }
 
-    [Authorize]
+    //[Authorize]
     [HttpGet]
     public async Task<ActionResult<ServiceResponse<List<GetCustomerDto>>>> GetAllCustomers()
     {

@@ -8,71 +8,84 @@
         WindowStyle="None" ResizeMode="NoResize"  
         WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
-<Viewbox Stretch="Uniform" StretchDirection="Both">
+    <Viewbox Stretch="Uniform" StretchDirection="Both">
         <Grid>
 
             <Label Content="Admin Panel" Margin="31,10,588,356" FontSize="16" FontWeight="Bold"/>
             <!--CustomersDataGridRemote-->
-            <Label Content="Remote Datenbank" Margin="89,42,530,324" FontSize="14"/>
-            <DataGrid x:Name="CustomersDataGridRemote" DataContext="{Binding ElementName=_remoteEntries}" AutoGenerateColumns="False" Height="100" Width="600" Margin="89,73,93,224" BorderBrush="DarkGray" BorderThickness="2" Background="White">
-              <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}"/>
-                <DataGridTextColumn Header="Nachname" Binding="{Binding LastName}"/>
-                <DataGridTemplateColumn Header="Image">
-                  <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                      <Image Height="50" Width="50" Source="{Binding ImageData}" />
-                    </DataTemplate>
-                  </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Ausgewählte Produktgruppen" Binding="{Binding ProductGroups}"/>
-                <DataGridTextColumn Header="Straße" Binding="{Binding Street}"/>
-                <DataGridTextColumn Header="Hausnummer" Binding="{Binding HouseNumber}"/>
-                <DataGridTextColumn Header="Plz" Binding="{Binding PostalCode}"/>
-                <DataGridTextColumn Header="Stadt" Binding="{Binding City}"/>
-                <DataGridTextColumn Header="Unternehmensname" Binding="{Binding BusinessName}"/>
-                <DataGridTextColumn Header="Unternehmensstraße" Binding="{Binding BusinessStreet}"/>
-                <DataGridTextColumn Header="Unternehmenshausnr." Binding="{Binding BusinessHouseNumber}"/>
-                <DataGridTextColumn Header="UnternehmensPlz" Binding="{Binding BusinessPostalCode}"/>
-                <DataGridTextColumn Header="Unternehmensstadt" Binding="{Binding BusinessCity}"/>
-              </DataGrid.Columns>
-            </DataGrid>
-            
-            <!--CustomersDataGridLocal-->
-            <Label Content="Lokale Datenbank" Margin="89,183,530,183" FontSize="14"/>
-            <DataGrid x:Name="CustomersDataGridLocal" DataContext="{Binding ElementName=_localEntries}" AutoGenerateColumns="False"  Height="100" Width="600" Margin="89,212,93,85" BorderBrush="DarkGray" BorderThickness="2" Background="White">
-              <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}"/>
-                <DataGridTextColumn Header="Nachname" Binding="{Binding LastName}"/>
-                <DataGridTemplateColumn Header="Image">
-                  <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                      <Image Height="50" Width="50" Source="{Binding ImageData}" />
-                    </DataTemplate>
-                  </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Ausgewählte Produktgruppen" Binding="{Binding ProductGroups}"/>
-                <DataGridTextColumn Header="Straße" Binding="{Binding Street}"/>
-                <DataGridTextColumn Header="Hausnummer" Binding="{Binding HouseNumber}"/>
-                <DataGridTextColumn Header="Plz" Binding="{Binding PostalCode}"/>
-                <DataGridTextColumn Header="Stadt" Binding="{Binding City}"/>
-                <DataGridTextColumn Header="Unternehmensname" Binding="{Binding BusinessName}"/>
-                <DataGridTextColumn Header="Unternehmensstraße" Binding="{Binding BusinessStreet}"/>
-                <DataGridTextColumn Header="Unternehmenshausnr." Binding="{Binding BusinessHouseNumber}"/>
-                <DataGridTextColumn Header="UnternehmensPlz" Binding="{Binding BusinessPostalCode}"/>
-                <DataGridTextColumn Header="Unternehmensstadt" Binding="{Binding BusinessCity}"/>
-              </DataGrid.Columns>
+            <Label Content="Remote Datenbank" Margin="89,64,530,302" FontSize="14" FontWeight="Bold"/>
+            <DataGrid x:Name="CustomersDataGridRemote" DataContext="{Binding ElementName=_remoteEntries}" AutoGenerateColumns="False" Height="100" Width="600" Margin="89,94,93,203" BorderBrush="DarkGray" BorderThickness="2" Background="White">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="Nachname" Binding="{Binding LastName}"/>
+                    <DataGridTemplateColumn Header="Image">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Height="50" Width="50" Source="{Binding ImageData}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Ausgewählte Produktgruppen" Binding="{Binding ProductGroups}"/>
+                    <DataGridTextColumn Header="Straße" Binding="{Binding Street}"/>
+                    <DataGridTextColumn Header="Hausnummer" Binding="{Binding HouseNumber}"/>
+                    <DataGridTextColumn Header="Plz" Binding="{Binding PostalCode}"/>
+                    <DataGridTextColumn Header="Stadt" Binding="{Binding City}"/>
+                    <DataGridTextColumn Header="Unternehmensname" Binding="{Binding BusinessName}"/>
+                    <DataGridTextColumn Header="Unternehmensstraße" Binding="{Binding BusinessStreet}"/>
+                    <DataGridTextColumn Header="Unternehmenshausnr." Binding="{Binding BusinessHouseNumber}"/>
+                    <DataGridTextColumn Header="UnternehmensPlz" Binding="{Binding BusinessPostalCode}"/>
+                    <DataGridTextColumn Header="Unternehmensstadt" Binding="{Binding BusinessCity}"/>
+                </DataGrid.Columns>
             </DataGrid>
 
-             <!--BackButton-->
+            <!--CustomersDataGridLocal-->
+            <Label Content="Lokale Datenbank" Margin="89,195,530,171" FontSize="14" FontWeight="Bold"/>
+            <DataGrid x:Name="CustomersDataGridLocal" DataContext="{Binding ElementName=_localEntries}" AutoGenerateColumns="False"  Height="100" Width="600" Margin="89,222,93,75" BorderBrush="DarkGray" BorderThickness="2" Background="White">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="Nachname" Binding="{Binding LastName}"/>
+                    <DataGridTemplateColumn Header="Image">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Height="50" Width="50" Source="{Binding ImageData}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Ausgewählte Produktgruppen" Binding="{Binding ProductGroups}"/>
+                    <DataGridTextColumn Header="Straße" Binding="{Binding Street}"/>
+                    <DataGridTextColumn Header="Hausnummer" Binding="{Binding HouseNumber}"/>
+                    <DataGridTextColumn Header="Plz" Binding="{Binding PostalCode}"/>
+                    <DataGridTextColumn Header="Stadt" Binding="{Binding City}"/>
+                    <DataGridTextColumn Header="Unternehmensname" Binding="{Binding BusinessName}"/>
+                    <DataGridTextColumn Header="Unternehmensstraße" Binding="{Binding BusinessStreet}"/>
+                    <DataGridTextColumn Header="Unternehmenshausnr." Binding="{Binding BusinessHouseNumber}"/>
+                    <DataGridTextColumn Header="UnternehmensPlz" Binding="{Binding BusinessPostalCode}"/>
+                    <DataGridTextColumn Header="Unternehmensstadt" Binding="{Binding BusinessCity}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!--BackButton-->
             <Button Content="Zurück" HorizontalAlignment="Right" Height="23" Margin="0,334,570,0" 
                     VerticalAlignment="Top" Width="123" Click="BackButton_Click" FontWeight="Bold" />
 
             <!--SaveButton-->
             <Button Content="Daten remote speichern" HorizontalAlignment="Right" Height="23" Margin="0,334,93,0" 
                     VerticalAlignment="Top" Width="150" Click="SaveButton_Click" FontWeight="Bold" />
+            <!--Filter-->
+            <GroupBox HorizontalAlignment="Left" Height="95" Header="Filter" Margin="243,-1,0,0" VerticalAlignment="Top" Width="446">
+                <Grid>
+                    <Label Content="Vorname" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="92"/>
+                    <TextBox x:Name="Filter_FirstName" HorizontalAlignment="Left" Height="22" Margin="89,0,0,0" TextChanged="TextBox_TextChanged" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                    <Label Content="Nachname" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="104" Margin="0,23,0,0"/>
+                    <TextBox x:Name="Filter_LastName" HorizontalAlignment="Left" Height="22" Margin="89,0,0,0" TextChanged="TextBox_TextChanged" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="150"/>
+                    <Label Content="Unternehmen" HorizontalAlignment="Left" Height="31" Margin="0,45,0,0" VerticalAlignment="Top" Width="116"/>
+                    <TextBox x:Name="Filter_Business" HorizontalAlignment="Left" Height="22" Margin="89,50,0,0" TextChanged="TextBox_TextChanged" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                    <Label Content="Produktgruppe(n)" HorizontalAlignment="Left" Height="31" Margin="510,-4,0,0" VerticalAlignment="Top" Width="179"/>
+                    <ListBox x:Name="Filter_ProcuctGroup" HorizontalAlignment="Left" Height="72" Margin="250,0,0,0" VerticalAlignment="Center" Width="181" RenderTransformOrigin="0.525,0.239" SelectionMode="Multiple" SelectionChanged="Filter_ProcuctGroup_SelectionChanged"/>
+                </Grid>
+            </GroupBox>
         </Grid>
     </Viewbox>
 </Window>

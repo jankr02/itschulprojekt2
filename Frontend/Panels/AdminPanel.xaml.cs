@@ -12,6 +12,8 @@ using MesseauftrittDatenerfassung_UI.Dtos.ProductGroupDtos;
 using MesseauftrittDatenerfassung_UI.Models;
 using static MesseauftrittDatenerfassung_UI.Converters.CustomImageConverter;
 using System.Windows.Media.Imaging;
+using System.Collections;
+using System.Windows.Controls;
 
 namespace MesseauftrittDatenerfassung_UI
 {
@@ -34,8 +36,9 @@ namespace MesseauftrittDatenerfassung_UI
             InitializeComponent();
             _localApiClient = localApiClient;
             _remoteApiClient = remoteApiClient;
+            PopulateProductGroupFilterListBox();
 
-            if(!Task.Run(() => _localApiClient.TestConnection(1)).GetAwaiter().GetResult())
+            if (!Task.Run(() => _localApiClient.TestConnection(1)).GetAwaiter().GetResult())
             {
                 MessageBox.Show("Es konnte keine Verbindung zur lokalen Datenbank hergestellt werden. Die Anwendung wird geschlossen.");
                 Close();
@@ -54,6 +57,16 @@ namespace MesseauftrittDatenerfassung_UI
             LoadCustomers(DatabaseType.RemoteDatabase);
         }
 
+        private void PopulateProductGroupFilterListBox()
+        {
+            Filter_ProcuctGroup.Items.Add("[Auswahl aufheben]");
+
+            foreach (var item in Enum.GetValues(typeof(ProductGroupName)))
+            {
+                Filter_ProcuctGroup.Items.Add(item);
+            }
+        }
+
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             ReturnToMainWindow();
@@ -66,12 +79,12 @@ namespace MesseauftrittDatenerfassung_UI
                 case DatabaseType.LocalDatabase:
                     var localCustomers = Task.Run(() => _localApiClient.GetAllCustomersAsync()).GetAwaiter().GetResult();
                     _localEntries = ConvertListOfGetCustomerDtoToDataGridData(localCustomers);
-                    CustomersDataGridLocal.ItemsSource = ConvertListOfGetCustomerDtoToDataGridData(localCustomers);
+                    CustomersDataGridLocal.ItemsSource = _localEntries;
                     break;
                 case DatabaseType.RemoteDatabase:
                     var remoteCustomers = Task.Run(() => _remoteApiClient.GetAllCustomersAsync()).GetAwaiter().GetResult();
                     _remoteEntries = ConvertListOfGetCustomerDtoToDataGridData(remoteCustomers);
-                    CustomersDataGridRemote.ItemsSource = ConvertListOfGetCustomerDtoToDataGridData(remoteCustomers);
+                    CustomersDataGridRemote.ItemsSource = _remoteEntries;
                     break;
                 default:
                     break;
@@ -103,7 +116,8 @@ namespace MesseauftrittDatenerfassung_UI
             var newCustomers = allLocalCustomers.Select(ConvertToAddCustomerDto).ToList();
 
             var remoteCustomers = Task.Run(() => _remoteApiClient.CreateMultipleCompleteCustomersAsync(newCustomers)).GetAwaiter().GetResult();
-            CustomersDataGridRemote.ItemsSource = ConvertListOfGetCustomerDtoToDataGridData(remoteCustomers);
+            _remoteEntries = ConvertListOfGetCustomerDtoToDataGridData(remoteCustomers);
+            DisplayTables();
 
             MessageBox.Show("Die Daten wurden erfolgreich in die Remote Datenbank gespeichert.");
         }
@@ -212,6 +226,55 @@ namespace MesseauftrittDatenerfassung_UI
             Close();
             IsClosed = true;
             mainWindow.Show();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DisplayTables();
+        }
+
+        private void Filter_ProcuctGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox listBox = sender as ListBox;
+            if (e.AddedItems.Count > 0)
+            {
+                if (e.AddedItems[0] == listBox.Items[0])
+                {
+                    listBox.SelectedItems.Clear();
+                }
+
+                if (e.AddedItems[0] != listBox.Items[0])
+                {
+                    listBox.SelectedItems.Remove(listBox.Items[0]);
+                }
+            }
+            DisplayTables();
+        }
+
+        private void DisplayTables()
+        {
+            var customerProductGroups = new List<string>();
+            if (Filter_ProcuctGroup.SelectedIndex != -1)
+            {
+                foreach (var item in Filter_ProcuctGroup.SelectedItems)
+                {
+                    if (Enum.TryParse(item.ToString(), out ProductGroupName productGroupName))
+                    {
+                        customerProductGroups.Add(item.ToString());
+                    }
+                }
+            }
+
+            CustomersDataGridLocal.ItemsSource = _localEntries
+                .Where(l => l.LastName.ToLower().Contains(Filter_LastName.Text.ToLower()))
+                .Where(l => l.FirstName.ToLower().Contains(Filter_FirstName.Text.ToLower()))
+                .Where(l => l.BusinessName.ToLower().Contains(Filter_Business.Text.ToLower()))
+                .Where(l => customerProductGroups.All(x => l.ProductGroups.Contains(x)));
+            CustomersDataGridRemote.ItemsSource = _remoteEntries
+                .Where(r => r.LastName.ToLower().Contains(Filter_LastName.Text.ToLower()))
+                .Where(r => r.FirstName.ToLower().Contains(Filter_FirstName.Text.ToLower()))
+                .Where(r => r.BusinessName.ToLower().Contains(Filter_Business.Text.ToLower()))
+                .Where(r => customerProductGroups.All(x => r.ProductGroups.Contains(x)));
         }
     }
 }
