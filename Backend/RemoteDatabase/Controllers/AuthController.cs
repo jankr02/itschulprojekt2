@@ -14,7 +14,7 @@ namespace RemoteDatabase.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<ActionResult<ServiceResponse<int>>> Login(UserRegisterDto request)
+        public async Task<ActionResult<ServiceResponse<string>>> Login(UserLoginDto request)
         {
             var response = await _authRepo.Login(request.Username, request.Password);
             if (!response.Success)

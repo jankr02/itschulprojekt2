@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using MesseauftrittDatenerfassung_UI.Dtos.CustomerDtos;
 using MesseauftrittDatenerfassung_UI.Enums;
-using System.Collections.Generic;
+using MesseauftrittDatenerfassung_UI.Dtos.User;
+using System.Net.Http.Headers;
 
 namespace MesseauftrittDatenerfassung_UI
 {
@@ -22,7 +24,34 @@ namespace MesseauftrittDatenerfassung_UI
             SetBaseAddress(databaseType);
         }
 
-        // GET: api/Customer/Test
+        // POST: Auth/Login
+        public async Task<ServiceResponse<string>> Login(UserLoginDto content)
+        {
+            var jsonContent = JsonConvert.SerializeObject(content);
+            var contentString = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var serviceResponse = new ServiceResponse<string>();
+            try
+            {
+                var response = await _httpClient.PostAsync("Auth/Login", contentString);
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var token = JsonConvert.DeserializeObject<ServiceResponse<string>>(responseContent);
+                if (token.Success)
+                {
+                    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Data);
+                }
+                serviceResponse.Success = token.Success;
+                serviceResponse.Message = token.Message;
+                serviceResponse.Data = token.Data;
+            }
+            catch (Exception)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = "Verbindung zur Datenbank konnte nicht hergestellt werden.";
+            }
+            return serviceResponse;
+        }
+
+        // GET: Test
         public async Task<bool> TestConnection()
         {
             var response = await _httpClient.GetAsync("Test");
