@@ -13,15 +13,17 @@ using MesseauftrittDatenerfassung_UI.Dtos.PictureDtos;
 using MesseauftrittDatenerfassung_UI.Dtos.ProductGroupDtos;
 using MesseauftrittDatenerfassung_UI.Enums;
 using Brushes = System.Windows.Media.Brushes;
+using MesseauftrittDatenerfassung_UI.Dtos.User;
 
 namespace MesseauftrittDatenerfassung_UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     public partial class MainWindow
     {
-        private CameraAPI _cameraApi = new CameraAPI();
+        private CameraAPI _cameraApi;
         private CustomerApiClient _localApiClient;
         private CustomerApiClient _remoteApiClient;
         private byte[] _capturedImageBytes;
@@ -42,6 +44,7 @@ namespace MesseauftrittDatenerfassung_UI
             SetCompanyGridEnabled(false);
             SetCompanyGridVisibility(Visibility.Visible, 0.5);
             PopulateProductGroupListBox();
+            _cameraApi = new CameraAPI();
         }
 
         private void PopulateProductGroupListBox()
@@ -93,8 +96,7 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void Image_Button_Click(object sender, RoutedEventArgs e)
         {
-            _capturedImageBytes = ToByteArray();
-            //_capturedImageBytes = _cameraApi.CaptureImage();
+            _capturedImageBytes = _cameraApi.CaptureImage();
 
             if (_capturedImageBytes != null)
             {
@@ -102,21 +104,25 @@ namespace MesseauftrittDatenerfassung_UI
             }
         }
 
-        private static byte[] ToByteArray()
+        private async void OpenAdminPanel_Click(object sender, RoutedEventArgs e)
         {
-            var image = Properties.Resources.testImage;
-            using (var memoryStream = new MemoryStream())
+            UserLoginDto userLogin = new UserLoginDto()
             {
-                image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                return memoryStream.ToArray();
-            }
-        }
+                Username = adminName_TextBox.Text.ToString(),
+                Password = passwordBox.Password.ToString()
+            };
 
-        private void OpenAdminPanel_Click(object sender, RoutedEventArgs e)
-        {
-            if ((adminName_TextBox.Text != "Admin") || (passwordBox.Password != "Admin123"))
+            var responseLocal = await _localApiClient.Login(userLogin);
+            if (!responseLocal.Success)
             {
+                MessageBox.Show("Fehler beim Anmelden an der lokalen Datenbank: " + responseLocal.Message);
                 return;
+            }
+
+            var responseRemote = await _remoteApiClient.Login(userLogin);
+            if (!responseRemote.Success)
+            {
+                MessageBox.Show("Fehler beim Anmelden an der remote Datenbank: " + responseRemote.Message);
             }
 
             var adminPanelWindow = new AdminPanel(_localApiClient, _remoteApiClient);

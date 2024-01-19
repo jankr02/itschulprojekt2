@@ -16,23 +16,18 @@ namespace LocalDatabase.Data
         public async Task<ServiceResponse<string>> Login(string username, string password)
         {
             var response = new ServiceResponse<string>();
+
             var user = await _context.Users
                 .FirstOrDefaultAsync(u => u.Username.ToLower().Equals(username.ToLower()));
-            if (user == null)
+            if (user == null || !VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             {
                 response.Success = false;
-                response.Message = "User not found.";
-            }
-            else if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-            {
-                response.Success = false;
-                response.Message = "Wrong password.";
+                response.Message = "Falscher Benutzername oder Passwort.";
             }
             else
             {
                 response.Data = CreateToken(user);
             }
-
             return response;
         }
 

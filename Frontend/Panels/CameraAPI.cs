@@ -4,12 +4,15 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MesseauftrittDatenerfassung
 {
 
     namespace MesseauftrittDatenerfassung
     {
+        [System.Runtime.Versioning.SupportedOSPlatform("windows")]
         public class CameraAPI
         {
             private VideoCaptureDevice videoSource;
@@ -34,7 +37,7 @@ namespace MesseauftrittDatenerfassung
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"An error occurred: {ex.Message}");
+                    Task.Run(() => MessageBox.Show($"Ein Fehler ist aufgetreten: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly));
                 }
             }
 
@@ -47,16 +50,22 @@ namespace MesseauftrittDatenerfassung
 
             public byte[] CaptureImage()
             {
-                if (currentFrame != null)
+                try
                 {
-                    using (MemoryStream memoryStream = new MemoryStream())
+                    if (currentFrame != null)
                     {
-                        // Save to memory stream in JPEG format
-                        currentFrame.Save(memoryStream, ImageFormat.Jpeg);
+                        using (MemoryStream memoryStream = new MemoryStream())
+                        {
+                            // Save to memory stream in JPEG format
+                            currentFrame.Save(memoryStream, ImageFormat.Jpeg);
 
-                        // Get bytes from stream
-                        return memoryStream.ToArray();
+                            // Get bytes from stream
+                            return memoryStream.ToArray();
+                        }
                     }
+                }
+                catch (Exception)
+                {
                 }
                 return null;
             }
