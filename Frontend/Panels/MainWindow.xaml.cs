@@ -20,9 +20,10 @@ namespace MesseauftrittDatenerfassung_UI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     public partial class MainWindow
     {
-        private CameraAPI _cameraApi = new CameraAPI();
+        private CameraAPI _cameraApi;
         private CustomerApiClient _localApiClient;
         private CustomerApiClient _remoteApiClient;
         private byte[] _capturedImageBytes;
@@ -43,6 +44,7 @@ namespace MesseauftrittDatenerfassung_UI
             SetCompanyGridEnabled(false);
             SetCompanyGridVisibility(Visibility.Visible, 0.5);
             PopulateProductGroupListBox();
+            _cameraApi = new CameraAPI();
         }
 
         private void PopulateProductGroupListBox()
@@ -94,22 +96,11 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void Image_Button_Click(object sender, RoutedEventArgs e)
         {
-            _capturedImageBytes = ToByteArray();
-            //_capturedImageBytes = _cameraApi.CaptureImage();
+            _capturedImageBytes = _cameraApi.CaptureImage();
 
             if (_capturedImageBytes != null)
             {
                 personalImage.Source = CustomImageConverter.ConvertByteArrayToBitmapImage(_capturedImageBytes);
-            }
-        }
-
-        private static byte[] ToByteArray()
-        {
-            var image = Properties.Resources.testImage;
-            using (var memoryStream = new MemoryStream())
-            {
-                image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                return memoryStream.ToArray();
             }
         }
 

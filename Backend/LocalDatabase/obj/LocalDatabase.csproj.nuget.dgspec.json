@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Emilie\\OneDrive\\Dokumente\\Ausbildung\\Projekt_Messeauftritt\\Backend\\LocalDatabase\\LocalDatabase.csproj": {}
+    "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Emilie\\OneDrive\\Dokumente\\Ausbildung\\Projekt_Messeauftritt\\Backend\\LocalDatabase\\LocalDatabase.csproj": {
+    "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Emilie\\OneDrive\\Dokumente\\Ausbildung\\Projekt_Messeauftritt\\Backend\\LocalDatabase\\LocalDatabase.csproj",
+        "projectUniqueName": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj",
         "projectName": "LocalDatabase",
-        "projectPath": "C:\\Users\\Emilie\\OneDrive\\Dokumente\\Ausbildung\\Projekt_Messeauftritt\\Backend\\LocalDatabase\\LocalDatabase.csproj",
-        "packagesPath": "C:\\Users\\Emilie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Emilie\\OneDrive\\Dokumente\\Ausbildung\\Projekt_Messeauftritt\\Backend\\LocalDatabase\\obj\\",
+        "projectPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj",
+        "packagesPath": "C:\\Users\\Matth\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Emilie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -25,8 +25,6 @@
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -53,21 +51,7 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
-            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
-              "target": "Package",
-              "version": "[7.0.14, )"
-            },
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[7.0.5, )"
-            },
             "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[7.0.14, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.14, )"
             },

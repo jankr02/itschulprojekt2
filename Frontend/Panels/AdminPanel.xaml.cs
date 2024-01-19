@@ -17,7 +17,8 @@ namespace MesseauftrittDatenerfassung_UI
 {
     /// <summary>
     /// Interaction logic for AdminPanel.xaml
-    /// </summary>
+    /// </summary>    
+    [System.Runtime.Versioning.SupportedOSPlatform("windows")]
     public partial class AdminPanel
     {
         private CustomerApiClient _localApiClient;

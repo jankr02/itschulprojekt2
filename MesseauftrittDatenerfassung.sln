@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteDatabase", "Backend\R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalDatabase", "Backend\LocalDatabase\LocalDatabase.csproj", "{9417D6A1-845F-4706-A886-78DEB56373F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MesseauftrittDatenerfassung-UI", "Frontend\Panels\MesseauftrittDatenerfassung-UI.csproj", "{8AC48C8F-4C7E-4505-8FA8-3A3D3074AF2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MesseauftrittDatenerfassung-UI", "Frontend\Panels\MesseauftrittDatenerfassung-UI.csproj", "{8AC48C8F-4C7E-4505-8FA8-3A3D3074AF2B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{692FCC90-E56D-4C63-8637-A28BBAD5C45B}"
 EndProject
