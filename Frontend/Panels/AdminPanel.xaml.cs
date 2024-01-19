@@ -12,7 +12,6 @@ using MesseauftrittDatenerfassung_UI.Dtos.ProductGroupDtos;
 using MesseauftrittDatenerfassung_UI.Models;
 using static MesseauftrittDatenerfassung_UI.Converters.CustomImageConverter;
 using System.Windows.Media.Imaging;
-using System.Collections;
 using System.Windows.Controls;
 
 namespace MesseauftrittDatenerfassung_UI
@@ -26,8 +25,8 @@ namespace MesseauftrittDatenerfassung_UI
         private CustomerApiClient _localApiClient;
         private CustomerApiClient _remoteApiClient;
 
-        private ObservableCollection<DataGridRecordSet> _localEntries;
-        private ObservableCollection<DataGridRecordSet> _remoteEntries;
+        private ObservableCollection<DataGridRecordSet> _localEntries = [];
+        private ObservableCollection<DataGridRecordSet> _remoteEntries = [];
 
         public bool IsClosed { get; private set; }
 
@@ -38,23 +37,21 @@ namespace MesseauftrittDatenerfassung_UI
             _remoteApiClient = remoteApiClient;
             PopulateProductGroupFilterListBox();
 
-            if (!Task.Run(() => _localApiClient.TestConnection(1)).GetAwaiter().GetResult())
+            try
             {
-                MessageBox.Show("Es konnte keine Verbindung zur lokalen Datenbank hergestellt werden. Die Anwendung wird geschlossen.");
-                Close();
-                IsClosed = true;
-                return;
+                LoadCustomers(DatabaseType.LocalDatabase);
+            }
+            catch (Exception)
+            {
             }
 
-            LoadCustomers(DatabaseType.LocalDatabase);
-
-            if (!Task.Run(() => _remoteApiClient.TestConnection(2)).GetAwaiter().GetResult())
+            try
             {
-                MessageBox.Show("Es konnte keine Verbindung zur remote Datenbank hergestellt werden.");
-                return;
+                LoadCustomers(DatabaseType.RemoteDatabase);
             }
-
-            LoadCustomers(DatabaseType.RemoteDatabase);
+            catch (Exception)
+            {                
+            }
         }
 
         private void PopulateProductGroupFilterListBox()
@@ -99,7 +96,7 @@ namespace MesseauftrittDatenerfassung_UI
                 return;
             }
 
-            if (!Task.Run(() => _remoteApiClient.TestConnection(2)).GetAwaiter().GetResult())
+            if (!Task.Run(() => _remoteApiClient.TestConnection(1)).GetAwaiter().GetResult())
             {
                 MessageBox.Show("Es konnte keine Verbindung zur remote Datenbank hergestellt werden. Bitte versuchen Sie es später nochmal.");
                 return;
