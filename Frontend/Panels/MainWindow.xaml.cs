@@ -121,11 +121,17 @@ namespace MesseauftrittDatenerfassung_UI
                 Password = passwordBox.Password.ToString()
             };
 
-            var response = await _localApiClient.Login(userLogin);
-            if (!response.Success)
+            var responseLocal = await _localApiClient.Login(userLogin);
+            if (!responseLocal.Success)
             {
-                MessageBox.Show(response.Message);
+                MessageBox.Show("Fehler beim Anmelden an der lokalen Datenbank: " + responseLocal.Message);
                 return;
+            }
+
+            var responseRemote = await _remoteApiClient.Login(userLogin);
+            if (!responseRemote.Success)
+            {
+                MessageBox.Show("Fehler beim Anmelden an der remote Datenbank: " + responseRemote.Message);
             }
 
             var adminPanelWindow = new AdminPanel(_localApiClient, _remoteApiClient);

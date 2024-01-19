@@ -14,7 +14,6 @@ namespace MesseauftrittDatenerfassung_UI
     public sealed class CustomerApiClient
     {
         private readonly HttpClient _httpClient;
-        // public HttpClient _httpClient;
 
         private static CustomerApiClient _remoteDatabaseClient;
         private static CustomerApiClient _localDatabaseClient;
@@ -39,8 +38,6 @@ namespace MesseauftrittDatenerfassung_UI
                 if (token.Success)
                 {
                     _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Data);
-                    _localDatabaseClient._httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Data);
-                    _remoteDatabaseClient._httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Data);
                 }
                 serviceResponse.Success = token.Success;
                 serviceResponse.Message = token.Message;
