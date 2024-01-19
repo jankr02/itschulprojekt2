@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RemoteDatabase")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d436db05c7766d9b6f4255fadcdf82fc91f7d275")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9713cc8f60045a8eeda5ea67afb17ff5ce6407a4")]
 [assembly: System.Reflection.AssemblyProductAttribute("RemoteDatabase")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RemoteDatabase")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
