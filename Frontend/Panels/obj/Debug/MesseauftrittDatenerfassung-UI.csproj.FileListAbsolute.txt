@@ -246,3 +246,5 @@ C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Frontend\Pan
 C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Frontend\Panels\obj\Debug\MesseauftrittDatenerfassung-UI.csproj.SuggestedBindingRedirects.cache
 C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Frontend\Panels\obj\Debug\MesseauftrittDatenerfassung-UI.exe.config
 C:\Users\Emilie\OneDrive\Dokumente\Ausbildung\Projekt_Messeauftritt\Frontend\Panels\obj\Debug\MesseauftrittDatenerfassung-UI_Content.g.cs
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Frontend\Panels\obj\Debug\MesseauftrittDatenerfassung-UI.exe
+C:\Users\Matth\Documents\GitHub\itschulprojekt2\Frontend\Panels\obj\Debug\MesseauftrittDatenerfassung-UI.pdb
