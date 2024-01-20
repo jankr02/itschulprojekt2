@@ -6,13 +6,6 @@ namespace RemoteDatabase.Controllers
     [Route("[controller]")]
     public class TestController : ControllerBase
     {
-        private readonly ICustomerService _customerService;
-
-        public TestController(ICustomerService customerService)
-        {
-            _customerService = customerService;
-        }
-
         [HttpGet]
         public ActionResult<bool> TestConnection()
         {
