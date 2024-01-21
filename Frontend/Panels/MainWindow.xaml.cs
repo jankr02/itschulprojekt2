@@ -14,6 +14,7 @@ using MesseauftrittDatenerfassung_UI.Dtos.ProductGroupDtos;
 using MesseauftrittDatenerfassung_UI.Enums;
 using Brushes = System.Windows.Media.Brushes;
 using MesseauftrittDatenerfassung_UI.Dtos.User;
+using Newtonsoft.Json;
 
 namespace MesseauftrittDatenerfassung_UI
 {
@@ -139,12 +140,17 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void SendData_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!ValidateInput(this)) 
+            if (!ValidateRequiredInput(this)) 
             {
                 MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
                 return; 
             }
-            
+            if (!ValidateInputParameters(this))
+            {
+                MessageBox.Show("Bitte benutzen Sie korrekte Informationen.");
+                return;
+            }
+
             var customerData = new AddCompleteCustomerDto()
             {
                 FirstName = name_TextBox.Text,
@@ -203,49 +209,85 @@ namespace MesseauftrittDatenerfassung_UI
 
         private void ResetDataInWindow()
         {
-            name_TextBox.Text = "Vorname";
-            surname_TextBox.Text = "Nachname";
-            street_TextBox.Text = "Straßenname";
-            houseNr_TextBox.Text = "Hausnr.";
-            city_TextBox.Text = "Ortsname";
-            postalCode_TextBox.Text = "PLZ";
+            var json = File.ReadAllText("FormPlaceholders.json");
+            var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+
+            name_TextBox.Text = data["name"];
+            surname_TextBox.Text = data["surname"];
+            street_TextBox.Text = data["street"];
+            houseNr_TextBox.Text = data["houseNr"];
+            city_TextBox.Text = data["city"];
+            postalCode_TextBox.Text = data["postalCode"];
 
             productGroup_ListBox.SelectedIndex = -1;
 
-            companyName_TextBox.Text = "Firmenname";
-            companyStreet_TextBox.Text = "Straßenname";
-            companyHouseNr_TextBox.Text = "Hausnr.";
-            companyCity_TextBox.Text = "Ortsname";
-            companyPLZ_TextBox.Text = "PLZ";
+            companyName_TextBox.Text = data["companyName"];
+            companyStreet_TextBox.Text = data["companyStreet"];
+            companyHouseNr_TextBox.Text = data["companyHouseNr"];
+            companyCity_TextBox.Text = data["companyCity"];
+            companyPLZ_TextBox.Text = data["companyPLZ"];
 
             personalImage.Source = new BitmapImage(new Uri("Resources/defaultImage.jpg", UriKind.Relative));
         }
 
-        private static bool ValidateInput(DependencyObject container)
+        private static bool ValidateRequiredInput(DependencyObject container)
         {
             var isValid = true;
             foreach (var child in LogicalTreeHelper.GetChildren(container))
             {
-              switch (child)
-              {
-                case TextBox textBox when string.IsNullOrWhiteSpace(textBox.Text):
-                  textBox.BorderBrush = Brushes.Red;
-                  isValid = false;
-                  break;
-                case DependencyObject dependencyObject:
+                switch (child)
                 {
-                  if (!ValidateInput(dependencyObject))
-                  {
-                    isValid = false;
-                  }
-
-                  break;
+                    case TextBox textBox when string.IsNullOrWhiteSpace(textBox.Text):
+                        textBox.BorderBrush = Brushes.Red;
+                        isValid = false;
+                        break;
+                    case DependencyObject dependencyObject:
+                    {
+                        if (!ValidateRequiredInput(dependencyObject))
+                        {
+                            isValid = false;
+                        }
+                        break;
+                    }
                 }
-              }
             }
             return isValid;
         }
-    
+
+        private bool ValidateInputParameters(DependencyObject container)
+        {
+            var json = File.ReadAllText("FormValidation.json");
+            var data = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(json);
+
+            var isValid = true;
+            foreach (var child in LogicalTreeHelper.GetChildren(container))
+            {
+                switch (child)
+                {
+                    case TextBox textBox:
+                        var textBoxName = textBox.Name.Split('_')[0];
+                        if (textBoxName == "adminName") break;
+                        foreach (var value in data[textBoxName])
+                        {
+                            if (value.ToLower() == textBox.Text.ToLower())
+                            {
+                                isValid = false;
+                            }
+                        }
+                        break;
+                    case DependencyObject dependencyObject:
+                    {
+                        if (!ValidateInputParameters(dependencyObject))
+                        {
+                            isValid = false;
+                        }
+                        break;
+                    }
+                }
+            }
+            return isValid;
+        }
+
         private void Company_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             SetCompanyGridEnabled(true);
