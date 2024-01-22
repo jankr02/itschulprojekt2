@@ -54,17 +54,17 @@ namespace MesseauftrittDatenerfassung_UI
         // GET: Test
         public async Task<bool> TestConnection()
         {
-            var response = await _httpClient.GetAsync("Test");
             try
             {
+                var response = await _httpClient.GetAsync("Test");
                 response.EnsureSuccessStatusCode();
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<bool>(content);
             }
             catch (Exception)
             {
                 return false;
             }
-            var content = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<bool>(content);
         }
 
         // GET: api/Customer
@@ -104,11 +104,11 @@ namespace MesseauftrittDatenerfassung_UI
             {
               case DatabaseType.RemoteDatabase:
               {
-                return _remoteDatabaseClient ?? (_remoteDatabaseClient = new CustomerApiClient(DatabaseType.RemoteDatabase));
+                return _remoteDatabaseClient ??= new CustomerApiClient(DatabaseType.RemoteDatabase);
               }
               case DatabaseType.LocalDatabase:
               {
-                return _localDatabaseClient ?? (_localDatabaseClient = new CustomerApiClient(DatabaseType.LocalDatabase));
+                return _localDatabaseClient ??= new CustomerApiClient(DatabaseType.LocalDatabase);
               }
               default:
                 throw new NotImplementedException();
@@ -133,11 +133,9 @@ namespace MesseauftrittDatenerfassung_UI
         {
             try
             {
-                using (var client = new HttpClient())
-                {
-                    var response = await client.GetAsync("http://www.google.com");
-                    return response.IsSuccessStatusCode;
-                }
+                using var client = new HttpClient();
+                var response = await client.GetAsync("http://www.google.com");
+                return response.IsSuccessStatusCode;
             }
             catch
             {

@@ -23,18 +23,5 @@ namespace LocalDatabase.Controllers
             }
             return Ok(response);
         }
-
-        [HttpPost("Register")]
-        public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegisterDto request)
-        {
-            var response = await _authRepo.Register(
-                new User { Username = request.Username }, request.Password
-            );
-            if(!response.Success)
-            {
-                return response;
-            }
-            return Ok(response);
-        }
     }
 }
