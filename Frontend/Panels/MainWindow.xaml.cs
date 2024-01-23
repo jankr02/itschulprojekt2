@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +15,7 @@ using Brushes = System.Windows.Media.Brushes;
 using MesseauftrittDatenerfassung_UI.Dtos.User;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace MesseauftrittDatenerfassung_UI
 {
@@ -132,6 +132,7 @@ namespace MesseauftrittDatenerfassung_UI
             var adminPanelWindow = new AdminPanel(_localApiClient, _remoteApiClient);
 
             Close();
+            _cameraApi.StopCamera();
 
             if (adminPanelWindow.IsClosed == true)
             {

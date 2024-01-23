@@ -29,7 +29,7 @@
               addedCustomer = customerAfterAdditionOfBusiness.Data;
             }
 
-            if ((newCompleteCustomer.ProductGroups != null) && !newCompleteCustomer.ProductGroups.Any())
+            if ((newCompleteCustomer.ProductGroups != null) && newCompleteCustomer.ProductGroups.Any())
             {
               var customerProductGroups = newCompleteCustomer.ProductGroups
                                                              .Select(productGroup => new AddCustomerProductGroupDto
