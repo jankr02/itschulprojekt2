@@ -36,7 +36,7 @@
                     await AddBusiness(completeCustomer.Business, addedCustomer.Id);
                 }
 
-                if ((completeCustomer.ProductGroups == null) || completeCustomer.ProductGroups.Any())
+                if ((completeCustomer.ProductGroups == null) || !completeCustomer.ProductGroups.Any())
                 {
                   continue;
                 }

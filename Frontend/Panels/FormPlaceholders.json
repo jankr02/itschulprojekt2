@@ -1,0 +1,13 @@
+﻿{
+  "name": "Vorname",
+  "surname": "Nachname",
+  "street": "Straßenname",
+  "houseNr": "Hausnr.",
+  "city": "Ortsname",
+  "postalCode": "PLZ",
+  "companyName": "Firmenname",
+  "companyStreet": "Straßenname",
+  "companyHouseNr": "Hausnr.",
+  "companyCity": "Ortsname",
+  "companyPLZ": "PLZ"
+}
