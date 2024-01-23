@@ -15,6 +15,7 @@ using MesseauftrittDatenerfassung_UI.Enums;
 using Brushes = System.Windows.Media.Brushes;
 using MesseauftrittDatenerfassung_UI.Dtos.User;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace MesseauftrittDatenerfassung_UI
 {
@@ -27,6 +28,7 @@ namespace MesseauftrittDatenerfassung_UI
         private CameraAPI _cameraApi;
         private CustomerApiClient _localApiClient;
         private CustomerApiClient _remoteApiClient;
+        private bool _imageTaken;
         private byte[] _capturedImageBytes;
 
         public MainWindow()
@@ -102,6 +104,7 @@ namespace MesseauftrittDatenerfassung_UI
             if (_capturedImageBytes != null)
             {
                 personalImage.Source = CustomImageConverter.ConvertByteArrayToBitmapImage(_capturedImageBytes);
+                _imageTaken = true;
             }
         }
 
@@ -145,9 +148,10 @@ namespace MesseauftrittDatenerfassung_UI
                 MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
                 return; 
             }
-            if (!ValidateInputParameters(this))
+            var errorMessage = ValidateInputParameters(this);
+            if (errorMessage != String.Empty)
             {
-                MessageBox.Show("Bitte benutzen Sie korrekte Informationen.");
+                MessageBox.Show(errorMessage);
                 return;
             }
 
@@ -228,6 +232,7 @@ namespace MesseauftrittDatenerfassung_UI
             companyPLZ_TextBox.Text = data["companyPLZ"];
 
             personalImage.Source = new BitmapImage(new Uri("Resources/defaultImage.jpg", UriKind.Relative));
+            _imageTaken = false;
         }
 
         private static bool ValidateRequiredInput(DependencyObject container)
@@ -254,12 +259,12 @@ namespace MesseauftrittDatenerfassung_UI
             return isValid;
         }
 
-        private bool ValidateInputParameters(DependencyObject container)
+        private string ValidateInputParameters(DependencyObject container)
         {
             var json = File.ReadAllText("FormValidation.json");
             var data = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(json);
 
-            var isValid = true;
+            var errorMessage = String.Empty;
             foreach (var child in LogicalTreeHelper.GetChildren(container))
             {
                 switch (child)
@@ -269,23 +274,136 @@ namespace MesseauftrittDatenerfassung_UI
                         if (textBoxName == "adminName") break;
                         foreach (var value in data[textBoxName])
                         {
-                            if (value.ToLower() == textBox.Text.ToLower())
+                            switch (textBoxName)
                             {
-                                isValid = false;
+                                case "name":
+                                    if (value.ToLower() == textBox.Text.ToLower() || textBox.Text.Length > 50)
+                                    {
+                                        errorMessage = "Bitte geben Sie einen gültigen Vornamen ein.";
+                                        return errorMessage;
+                                    }
+                                    break;
+                                case "surname":
+                                    if (value.ToLower() == textBox.Text.ToLower() || textBox.Text.Length > 50)
+                                    {
+                                        errorMessage = "Bitte geben Sie einen gültigen Nachnamen ein.";
+                                        return errorMessage;
+                                    }
+                                    break;
+                                case "street":
+                                    if (value.ToLower() == textBox.Text.ToLower() || textBox.Text.Length > 50)
+                                    {
+                                        errorMessage = "Bitte geben Sie eine gültige Straße ein.";
+                                        return errorMessage;
+                                    }
+                                    break;
+                                case "houseNr":
+                                    if (textBox.Text.Length > 4 || !(new Regex("^[0-9]+$").IsMatch(textBox.Text)))
+                                    {
+                                        errorMessage = "Bitte geben Sie eine gültige Hausnummer ein.";
+                                        return errorMessage;
+                                    }
+                                    break;
+                                case "city":
+                                    if (value.ToLower() == textBox.Text.ToLower() || textBox.Text.Length > 50)
+                                    {
+                                        errorMessage = "Bitte geben Sie eine gültige Stadt ein.";
+                                        return errorMessage;
+                                    }
+                                    break;
+                                case "postalCode":
+                                    if (textBox.Text.Length != 5 || !(new Regex("^[0-9]+$").IsMatch(textBox.Text)))
+                                    {
+                                        errorMessage = "Bitte geben Sie eine gültige Postleitzahl ein.";
+                                        return errorMessage;
+                                    }
+                                    break;
+                                case "companyName":
+                                    if (!(bool)company_CheckBox.IsChecked)
+                                    {
+                                        break;
+                                    }
+                                    if (value.ToLower() == textBox.Text.ToLower() || textBox.Text.Length > 50)
+                                    {
+                                        errorMessage = "Bitte geben Sie einen gültigen Unternehmensnamen ein.";
+                                        return errorMessage;
+                                    }
+                                    break;
+                                case "companyStreet":
+                                    if (!(bool)company_CheckBox.IsChecked)
+                                    {
+                                        break;
+                                    }
+                                    if (value.ToLower() == textBox.Text.ToLower() || textBox.Text.Length > 50)
+                                    {
+                                        errorMessage = "Bitte geben Sie eine gültige Unternehmensstraße ein.";
+                                        return errorMessage;
+                                    }
+                                    break;
+                                case "companyHouseNr":
+                                    if (!(bool)company_CheckBox.IsChecked)
+                                    {
+                                        break;
+                                    }
+                                    if (textBox.Text.Length > 4 || !(new Regex("^[0-9]+$").IsMatch(textBox.Text)))
+                                     {
+                                        errorMessage = "Bitte geben Sie eine gültige Unternehmenshausnummer ein.";
+                                        return errorMessage;
+                                    }
+                                    break;
+                                case "companyCity":
+                                    if (!(bool)company_CheckBox.IsChecked)
+                                    {
+                                        break;
+                                    }
+                                    if (value.ToLower() == textBox.Text.ToLower() || textBox.Text.Length > 50)
+                                    {
+                                        errorMessage = "Bitte geben Sie eine gültige Unternehmensstadt ein.";
+                                        return errorMessage;
+                                    }
+                                    break;
+                                case "companyPLZ":
+                                    if (!(bool)company_CheckBox.IsChecked)
+                                    {
+                                        break;
+                                    }
+                                    if (textBox.Text.Length != 5 || !(new Regex("^[0-9]+$").IsMatch(textBox.Text)))
+                                    {
+                                        errorMessage = "Bitte geben Sie eine gültige Unternehmenspostleitzahl ein.";
+                                        return errorMessage;
+                                    }
+                                    break;
+                                default:
+                                    break;
                             }
+                        }
+                        break;
+                    case ListBox listBox:
+                        if (listBox.SelectedIndex == -1)
+                        {
+                            errorMessage = "Bitte wählen Sie mindestens eine Produktgruppe aus.";
+                            return errorMessage;
+                        }
+                        break;
+                    case Image image:
+                        if(!_imageTaken)
+                        {
+                            errorMessage = "Bitte nehmen Sie ein Bild auf.";
+                            return errorMessage;
                         }
                         break;
                     case DependencyObject dependencyObject:
                     {
-                        if (!ValidateInputParameters(dependencyObject))
+                        var insideErrorMessage = ValidateInputParameters(dependencyObject);
+                        if (insideErrorMessage != String.Empty)
                         {
-                            isValid = false;
+                           errorMessage = insideErrorMessage;
                         }
                         break;
                     }
                 }
             }
-            return isValid;
+            return errorMessage;
         }
 
         private void Company_CheckBox_Checked(object sender, RoutedEventArgs e)
