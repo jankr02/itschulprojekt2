@@ -2438,23 +2438,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Matth\\.nuget\\packages\\": {},
+    "C:\\Users\\JJM1FE\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj",
+      "projectUniqueName": "C:\\Users\\JJM1FE\\Desktop\\BSMesseauftritt\\jankr02\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj",
       "projectName": "LocalDatabase",
-      "projectPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj",
-      "packagesPath": "C:\\Users\\Matth\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Matth\\Documents\\GitHub\\itschulprojekt2\\Backend\\LocalDatabase\\obj\\",
+      "projectPath": "C:\\Users\\JJM1FE\\Desktop\\BSMesseauftritt\\jankr02\\itschulprojekt2\\Backend\\LocalDatabase\\LocalDatabase.csproj",
+      "packagesPath": "C:\\Users\\JJM1FE\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JJM1FE\\Desktop\\BSMesseauftritt\\jankr02\\itschulprojekt2\\Backend\\LocalDatabase\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Matth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JJM1FE\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2462,6 +2462,7 @@
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2538,7 +2539,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
