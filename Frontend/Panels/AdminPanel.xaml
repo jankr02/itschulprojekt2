@@ -14,7 +14,7 @@
             <Label Content="Admin Panel" Margin="31,10,588,356" FontSize="16" FontWeight="Bold"/>
             <!--CustomersDataGridRemote-->
             <Label Content="Remote Datenbank" Margin="89,64,530,302" FontSize="14" FontWeight="Bold"/>
-            <DataGrid x:Name="CustomersDataGridRemote" DataContext="{Binding ElementName=_remoteEntries}" AutoGenerateColumns="False" Height="100" Width="600" Margin="89,94,93,203" BorderBrush="DarkGray" BorderThickness="2" Background="White">
+            <DataGrid x:Name="CustomersDataGridRemote" IsReadOnly="True" DataContext="{Binding ElementName=_remoteEntries}" AutoGenerateColumns="False" Height="100" Width="600" Margin="89,94,93,203" BorderBrush="DarkGray" BorderThickness="2" Background="White">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}"/>
@@ -41,7 +41,7 @@
 
             <!--CustomersDataGridLocal-->
             <Label Content="Lokale Datenbank" Margin="89,195,530,171" FontSize="14" FontWeight="Bold"/>
-            <DataGrid x:Name="CustomersDataGridLocal" DataContext="{Binding ElementName=_localEntries}" AutoGenerateColumns="False"  Height="100" Width="600" Margin="89,222,93,75" BorderBrush="DarkGray" BorderThickness="2" Background="White">
+            <DataGrid x:Name="CustomersDataGridLocal" IsReadOnly="True" DataContext="{Binding ElementName=_localEntries}" AutoGenerateColumns="False"  Height="100" Width="600" Margin="89,222,93,75" BorderBrush="DarkGray" BorderThickness="2" Background="White">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Vorname" Binding="{Binding FirstName}"/>
